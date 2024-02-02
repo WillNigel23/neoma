@@ -12,6 +12,9 @@ export default class extends Controller {
     }
 
     handleWheel(event) {
+        if (this.menuShown) {
+            return;
+        }
         if (event.deltaY > 0) {
             this.scrollCount++;
 
