@@ -16,7 +16,8 @@
 
     <span class="flex justify-end">
       <% if customer_signed_in? %>
-        <%= link_to t('devise.logout'), main_app.destroy_customer_session_path(current_customer),
+        <%= button_to t('devise.logout'), main_app.destroy_customer_session_path(current_customer),
+          method: :delete,
           class: "bg-black text-white text-xs text-right w-min px-4 py-1"%>
       <% else %>
         <%= link_to t('devise.login'), main_app.new_customer_session_path,
