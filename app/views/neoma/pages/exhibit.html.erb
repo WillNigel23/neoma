@@ -1,0 +1,17 @@
+<!-- Banner -->
+<section class="fixed top-0 left-0 flex items-center justify-center w-full h-screen overflow-hidden bg-gradient-to-t from-black to-[#303030] p-0 m-0">
+  <%= content.image_tag(:banner, {resize_to_fill: [1920, 1080] }, {class: 'absolute top-0 left-0 w-full min-w-[1920px] object-cover opacity-50'}) %>
+  <div class="container mx-auto px-5 z-10 text-center">
+    <p class="text-xs text-white mb-5 md:mb-16"><%=  content(:date) %></p>
+    <p class="font-bold text-white text-5xl md:text-8xl mb-2"><%=  content(:header) %></p>
+    <p class="font-light text-white text-normal md:text-xl"><%=  content(:subheader) %> | <%= content(:artist) %> </p>
+  </div>
+</section>
+
+<!-- Padding -->
+<section class="w-full min-h-screen">
+</section>
+
+<!-- Content -->
+<section class="w-full h-96 bg-white">
+</section>

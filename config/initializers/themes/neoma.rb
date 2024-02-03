@@ -21,7 +21,23 @@ Spina::Theme.register do |theme|
   # - Option
   # - Repeater
   theme.parts = [
-    {name: "text", title: "Body", hint: "Your main content", part_type: "Spina::Parts::Text"}
+    # General
+    {name: "header", title: "Header", hint: "Your header content", part_type: "Spina::Parts::Line"},
+    {name: "subheader", title: "Subheader", hint: "Your subheader", part_type: "Spina::Parts::Line"},
+    {name: "body", title: "Body", hint: "Your main content", part_type: "Spina::Parts::Text"},
+    {name: "date", title: "Date", hint: "Date", part_type: "Spina::Parts::Line"},
+    {name: "artist", title: "Artist", part_type: "Spina::Parts::Line"},
+
+    # Exhibition
+    {name: 'banner', title: "Banner", part_type: "Spina::Parts::Image"},
+    {name: "carousel", title: "Image carousel", part_type: "Spina::Parts::ImageCollection"},
+    {
+      name: 'section',
+      title: "Section",
+      hint: "Section for content block",
+      parts: %w(header body carousel),
+      part_type: "Spina::Parts::Repeater"
+    },
   ]
 
   # View templates
@@ -29,15 +45,17 @@ Spina::Theme.register do |theme|
   # You define which parts you want to enable for every view template
   # by referencing them from the theme.parts configuration above.
   theme.view_templates = [
-    {name: "homepage", title: "Homepage", parts: %w[text]},
-    {name: "show", title: "Page", parts: %w[text]}
+    {name: "homepage", title: "Homepage"},
+    {name: "exhibits", title: "Exhibits"},
+    {name: "exhibit", title: "Exhibit", parts: %w(header subheader date artist banner section)},
   ]
 
   # Custom pages
   # Some pages should not be created by the user, but generated automatically.
   # By naming them you can reference them in your code.
   theme.custom_pages = [
-    {name: "homepage", title: "Homepage", deletable: false, view_template: "homepage"}
+    {name: "homepage", title: "Homepage", deletable: false, view_template: "homepage"},
+    {name: "exhibits", title: "Exhibits", deletable: false, view_template: "exhibits"}
   ]
 
   # Navigations (optional)
@@ -55,7 +73,9 @@ Spina::Theme.register do |theme|
   # Resources (optional)
   # Think of resources as a collection of pages. They are managed separately in Spina
   # allowing you to separate these pages from the 'main' collection of pages.
-  theme.resources = []
+  theme.resources = [
+    {name: "exhibits", label: "Exhibits", view_template: "exhibit", slug: "exhibits"},
+  ]
 
   # Plugins (optional)
   theme.plugins = []

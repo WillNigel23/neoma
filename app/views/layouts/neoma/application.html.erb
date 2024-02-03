@@ -13,10 +13,8 @@
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body class="flex flex-col w-full bg-gray-500">
+  <body class="flex flex-col w-full">
     <%= render 'neoma/shared/navigation' %>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+    <%= yield %>
   </body>
 </html>

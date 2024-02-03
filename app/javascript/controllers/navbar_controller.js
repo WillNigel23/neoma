@@ -2,12 +2,13 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="navbar"
 export default class extends Controller {
-    static targets = ["nav", "menu", "grunge"]
+    static targets = ["nav", "menu"]
 
     connect() {
         this.navShown = true;
         this.menuShown = false;
         this.scrollCount = 0;
+        this.navTarget.classList.remove('-translate-y-full');
         document.addEventListener('wheel', (event) => this.handleWheel(event));
     }
 
@@ -53,5 +54,6 @@ export default class extends Controller {
         else {
             curTarget.classList.add(`-translate-${direction}-full`);
         }
+        curTarget.offsetWidth;
     }
 }

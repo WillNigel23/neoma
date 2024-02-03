@@ -40,5 +40,10 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
+# Ignore node_modules
+**/node_modules/**
+**/vendor/**
+
 # Local dev dependecies
 .tool-versions
+
