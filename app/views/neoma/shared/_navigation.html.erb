@@ -1,0 +1,40 @@
+<%# presenter = Spina::MenuPresenter.new(Spina::Page.all) %>
+<%#= presenter.to_html %>
+
+<!-- Navbar starts here -->
+<nav class="fixed top-0 left-0 z-50 w-full" data-controller="navbar">
+  <div class="w-full px-5 md:px-12 py-5 grid grid-cols-3 gap-4 duration-500" data-navbar-target="nav">
+    <span class="flex justify-start">
+      <%= button_tag '', class: "text-white cursor-hover fa-solid fa-bars", data: { action: 'click->navbar#toggleMenu' } %>
+    </span>
+
+    <span class="flex justify-center">
+      <%= link_to root_path, class: "font-medium text-white tracking-widest" do %>
+        NEOMA
+      <% end %>
+    </span>
+
+    <span class="flex justify-end">
+      <% if customer_signed_in? %>
+        <%= button_to t('devise.logout'), main_app.destroy_customer_session_path(current_customer),
+          method: :delete,
+          class: "bg-black text-white text-xs text-right w-min px-4 py-1"%>
+      <% else %>
+        <%= link_to t('devise.login'), main_app.new_customer_session_path,
+          class: "bg-black text-white text-xs text-right w-min px-4 py-1"%>
+      <% end %>
+    </span>
+  </div>
+  <div class="absolute top-0 left-0 w-full h-screen max-w-[100%] md:max-w-[20%] bg-black flex flex-col p-10 duration-500 -translate-x-full" data-navbar-target="menu">
+    <span class="flex justify-end mb-32">
+      <%= button_tag '', class: "text-xl text-white cursor-hover fa-solid fa-xmark", data: { action: 'click->navbar#toggleMenu' } %>
+    </span>
+
+    <span class="flex flex-col w-full justify-center md:justify-start px-10">
+      <% ['Artists', 'Exhibitions', 'Web3', 'Voices', 'Store', 'News', 'About', 'Contact'].each do |menu| %>
+        <%= link_to menu, '/', class: "text-3xl text-white text-center md:text-start font-light cursor-hover my-3" %>
+      <% end %>
+    </span>
+  </div>
+</nav>
+<!-- Navbar ends here -->
