@@ -75,3 +75,5 @@ gem "tailwindcss-rails", "~> 2.3"
 gem "hotwire-livereload", "~> 1.3", :group => :development
 
 gem "devise", "~> 4.9"
+
+gem "jsbundling-rails"

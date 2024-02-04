@@ -47,3 +47,5 @@
 # Local dev dependecies
 .tool-versions
 
+
+/node_modules
