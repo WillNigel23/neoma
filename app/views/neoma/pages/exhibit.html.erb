@@ -13,5 +13,66 @@
 </section>
 
 <!-- Content -->
-<section class="w-full h-96 bg-white">
+<section class="w-full bg-white z-20">
+  <% repeater(:section) do |block| %>
+    <% if block.content(:carousel) %>
+      <div data-controller="carousel"
+        class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden"
+        data-carousel-options-value='
+        {
+          "navigation": {
+            "nextEl": ".swiper-button-next",
+            "prevEl": ".swiper-button-prev"
+          },
+          "pagination": {
+            "el": ".swiper-pagination",
+            "type": "bullets"
+          },
+          "keyboard": {
+            "enabled": "true",
+            "onlyInViewport": "false"
+          },
+          "loop": "true",
+          "effect": "fade",
+          "fadeEffect": {
+            "crossFade": "true"
+          },
+          "autoplay": {
+            "delay": "5000"
+          }
+        }'
+      >
+        <div class="swiper-wrapper" id="swiper-wrapper-f4cd29c2e54b216f" aria-live="polite">
+          <% block.content(:carousel).each do |img| %>
+            <div class="swiper-slide swiper-slide-active" role="group" style="width: 100%;">
+              <div class="flex justify-center items-center">
+                <%= content.image_tag img, resize_to_fill: [1920, 1080] %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+      </div>
+    <% end %>
+
+    <% if block.content(:body) %>
+      <div class="container w-full py-5 md:py-10 mx-auto px-5 my-5">
+        <h2 class="font-bold"><%= block.content(:header) %></h2>
+        <hr class="w-full my-5">
+        <div class="markdown">
+          <%= block.content.html(:body)%>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="container w-full py-5 md:py-10 mx-auto px-5 my-5">
+    <h2 class="font-bold">Selected Works</h2>
+    <hr class="w-full my-5">
+    <div class="markdown">
+      <p class="font-extrabold text-9xl"> TODO </p>
+    </div>
+  </div>
 </section>
