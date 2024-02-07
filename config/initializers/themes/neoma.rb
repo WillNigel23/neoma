@@ -31,6 +31,7 @@ Spina::Theme.register do |theme|
     # Exhibition
     {name: 'banner', title: "Banner", part_type: "Spina::Parts::Image"},
     {name: "carousel", title: "Image carousel", part_type: "Spina::Parts::ImageCollection"},
+    {name: "artpieces", title: "Art Pieces", part_type: "Spina::Parts::Artpiece"},
     {
       name: 'section',
       title: "Section",
@@ -38,6 +39,12 @@ Spina::Theme.register do |theme|
       parts: %w(header body carousel),
       part_type: "Spina::Parts::Repeater"
     },
+
+    # Artwork
+    {name: 'image', title: "Image", part_type: "Spina::Parts::Image"},
+    {name: "details", title: "Details", hint: "Details", part_type: "Spina::Parts::Text"},
+    {name: "price", title: "Price", hint: "Price", part_type: "Spina::Parts::Line"},
+    {name: 'status', title: "Status", hint: "Status", options: ["for_sale", "not_for_sale", "sold"], part_type: "Spina::Parts::Option"},
   ]
 
   # View templates
@@ -47,7 +54,8 @@ Spina::Theme.register do |theme|
   theme.view_templates = [
     {name: "homepage", title: "Homepage"},
     {name: "exhibits", title: "Exhibits"},
-    {name: "exhibit", title: "Exhibit", parts: %w(header subheader date artist banner section)},
+    {name: "exhibit", title: "Exhibit", parts: %w(header subheader date artist banner section artpieces)},
+    {name: "artwork", title: "Artwork", parts: %w(header details artist image body price status)},
   ]
 
   # Custom pages
@@ -75,6 +83,7 @@ Spina::Theme.register do |theme|
   # allowing you to separate these pages from the 'main' collection of pages.
   theme.resources = [
     {name: "exhibits", label: "Exhibits", view_template: "exhibit", slug: "exhibits"},
+    {name: "artworks", label: "Artworks", view_template: "artwork", slug: "artwork"},
   ]
 
   # Plugins (optional)
