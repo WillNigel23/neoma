@@ -12,3 +12,9 @@ application.register("navbar", NavbarController)
 
 import Carousel from "stimulus-carousel"
 application.register("carousel", Carousel)
+
+import ScrollReveal from "stimulus-scroll-reveal"
+application.register("scroll-reveal", ScrollReveal)
+
+import ReadMore from "stimulus-read-more"
+application.register("read-more", ReadMore)

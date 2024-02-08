@@ -188,6 +188,11 @@ stimulus-carousel@^5.0.1:
   dependencies:
     swiper "^8.4.5"
 
+stimulus-read-more@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/stimulus-read-more/-/stimulus-read-more-4.1.0.tgz#f34efb2dcb33fd091936d84c569937bc100506c8"
+  integrity sha512-SJyCJqZrhDSKpfrepnhStBaxtyv6Jnvr+b84GDg3l+/BzL5HaFLYmc6QkSNCeR6y0x+Zw7lwKuzv+XzyAm1KzQ==
+
 stimulus-scroll-reveal@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/stimulus-scroll-reveal/-/stimulus-scroll-reveal-3.2.0.tgz#e9bdf2c0ddce82c24df99ba627f2f3375bc64f41"
