@@ -4,7 +4,7 @@ Spina.configure do |config|
   # All locales your content should be available in.
   # Defaults to I18n.default_locale
   # config.locales = [:en, :nl]
-  
+
   # Backend title
   # ===============
   # Set <title> for the admin panel. Defaults to "Spina CMS"
@@ -87,4 +87,9 @@ Spina.configure do |config|
   # %i( bulgarian cyrillic danish german greek latin macedonian norwegian
   #     romanian russian serbian spanish swedish ukrainian vietnamese)
   # config.transliterations = %i(latin)
+
+  # Custom Pages
+  Rails.application.reloader.to_prepare do
+    Spina::Part.register(Spina::Parts::Artpiece)
+  end
 end

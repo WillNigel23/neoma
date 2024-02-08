@@ -1,0 +1,14 @@
+<div class="mt-6">
+  <label class="block text-sm leading-5 font-medium text-gray-700"><%= f.object.title %></label>
+  <div class="mt-1">
+    <% artpiece_collection = [] %>
+
+    <% pages = Spina::Resource.where(name: 'artworks').first&.pages %>
+
+    <% pages&.each do |p| %>
+      <% artpiece_collection << [p.id, p.content(:header)] %>
+    <% end %>
+
+    <%= f.select :artwork_ids, options_for_select(artpiece_collection.map { |id, header| [header, id] }, f.object.artwork_ids), { multiple: true } %>
+  </div>
+</div>
