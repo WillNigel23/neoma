@@ -3,11 +3,19 @@
     <%= fe_carousel do %>
       <%= fe_carousel_wrapper do %>
         <%= fe_carousel_item do %>
-          <div class="flex justify-center items-center w-full">
-            <%= exhibit.content.image_tag(:banner, resize_to_fill: [1920, 1080]) %>
-          </div>
+          <%= fe_banner do %>
+            <%= fe_banner_img(exhibit.content.image_url(:banner)) %>
+
+            <%= fe_banner_inner do %>
+              <%= fe_banner_preheader(exhibit.content(:date)) if exhibit.content(:date) %>
+              <%= fe_banner_header(exhibit.content(:header)) if exhibit.content(:header) %>
+              <%= fe_banner_subheader(exhibit.content(:subheader)) if exhibit.content(:subheader) %>
+              <%= fe_banner_link('Explore Now', exhibit.materialized_path) %>
+            <% end %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
 </section>
+

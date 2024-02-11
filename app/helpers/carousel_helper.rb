@@ -2,7 +2,7 @@ module CarouselHelper
 
   def fe_carousel(_content = nil, &block)
     content_tag(:div, 
-      class: 'swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden',
+      class: 'w-full h-screen swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden',
       data: { 
         controller: 'carousel', 
         carousel_options_value: '

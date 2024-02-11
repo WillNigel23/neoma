@@ -57,16 +57,15 @@ module BannerHelper
     content_tag(:p, content, **opts)
   end
 
-  def fe_banner_button(
+  def fe_banner_link(
     content,
     link_url,
     opts = {
-      class: 'text-center text-white hover:text-black hover:bg-white transition-all duration-300 border border-white px-3 py-2 min-w-[120px] bg-transparent',
+      class: 'text-center text-white hover:text-black hover:bg-white transition-all duration-300 border border-white px-3 py-2 min-w-[120px] bg-transparent reveal',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }
   )
-    #content_tag(:button, content, opts)
-    button_to(content, link_url, **opts)
+    link_to(content, link_url, **opts)
   end
 
 end
