@@ -1,2 +1,13 @@
-<h1><%= current_page.title %></h1>
-<%= content.html :text %>
+<section class="w-full bg-white z-20">
+  <% exhibits.each do |exhibit| %>
+    <%= fe_carousel do %>
+      <%= fe_carousel_wrapper do %>
+        <%= fe_carousel_item do %>
+          <div class="flex justify-center items-center w-full">
+            <%= exhibit.content.image_tag(:banner, resize_to_fill: [1920, 1080]) %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>
