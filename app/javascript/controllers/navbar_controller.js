@@ -19,7 +19,6 @@ export default class extends Controller {
         if (event.deltaY > 0) {
             this.scrollCount++;
 
-            console.log(this.scrollCount);
             if (this.scrollCount > 2) {
                 if (this.navShown) {
                     this.navShown = !this.navShown;

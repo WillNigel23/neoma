@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def artpieces_collection
     artpiece_collection = []
 
@@ -10,4 +11,9 @@ module ApplicationHelper
 
     artpiece_collection
   end
+
+  def exhibits
+    @exhibits ||= Spina::Resource.find_by(name: 'exhibits').pages.live
+  end
+
 end

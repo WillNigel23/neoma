@@ -1,18 +1,35 @@
 <!-- Banner -->
-<section class="fixed top-0 left-0 flex items-center justify-center w-full h-screen overflow-hidden bg-gradient-to-t from-black to-[#303030] p-0 m-0">
-  <%= content.image_tag(:banner, {resize_to_fill: [1920, 1080] }, {class: 'absolute top-0 left-0 w-full min-w-[1920px] object-cover opacity-50'}) %>
-  <div class="container mx-auto px-5 z-10 text-center" data-controller="scroll-reveal">
-    <p class="text-xs text-white mb-5 md:mb-16 reveal" data-scroll-reveal-target="item" data-delay="250ms"><%=  content(:date) %></p>
-    <p class="font-bold text-white text-5xl md:text-8xl mb-2 reveal" data-scroll-reveal-target="item" data-delay="500ms"><%=  content(:header) %></p>
-    <p class="font-light text-white text-normal md:text-xl reveal" data-scroll-reveal-target="item" data-delay="750ms"><%=  content(:subheader) %> | <%= content(:artist) %> </p>
-  </div>
-</section>
+<%= fe_banner do %>
+  <%= fe_banner_img(content.image_url(:banner)) %>
+
+  <%= fe_banner_inner do %>
+    <%= fe_banner_preheader(content(:date)) if content(:date) %>
+    <%= fe_banner_header(content(:header)) if content(:header) %>
+    <%= fe_banner_subheader(content(:subheader)) if content(:subheader) %>
+  <% end %>
+<% end %>
 
 <!-- Padding -->
 <section class="w-full min-h-screen">
 </section>
 
 <!-- Content -->
+<section class="w-full bg-white z-20">
+  <% repeater(:section) do |block| %>
+    <%= fe_carousel do %>
+      <%= fe_carousel_wrapper do %>
+        <% block.content(:carousel).each do |img| %>
+          <%= fe_carousel_item do %>
+            <div class="flex justify-center items-center">
+              <%= content.image_tag img, resize_to_fill: [1920, 1080] %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>
+
 <section class="w-full bg-white z-20">
   <% repeater(:section) do |block| %>
     <% if block.content(:carousel) %>
