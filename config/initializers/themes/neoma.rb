@@ -28,6 +28,10 @@ Spina::Theme.register do |theme|
     {name: "date", title: "Date", hint: "Date", part_type: "Spina::Parts::Line"},
     {name: "artist", title: "Artist", part_type: "Spina::Parts::Line"},
 
+    # Homepage
+    {name: "story", title: "Story", hint: "Our story", part_type: "Spina::Parts::Text"},
+    {name: "events", title: "Events", hint: "Upcoming events", part_type: "Spina::Parts::Text"},
+    
     # Exhibition
     {name: 'banner', title: "Banner", part_type: "Spina::Parts::Image"},
     {name: "carousel", title: "Image carousel", part_type: "Spina::Parts::ImageCollection"},
@@ -52,7 +56,7 @@ Spina::Theme.register do |theme|
   # You define which parts you want to enable for every view template
   # by referencing them from the theme.parts configuration above.
   theme.view_templates = [
-    {name: "homepage", title: "Homepage"},
+    {name: "homepage", title: "Homepage", parts: %w(story events)},
     {name: "exhibits", title: "Exhibits"},
     {name: "exhibit", title: "Exhibit", parts: %w(header subheader date artist banner section artpieces)},
     {name: "artwork", title: "Artwork", parts: %w(header details artist image body price status)},

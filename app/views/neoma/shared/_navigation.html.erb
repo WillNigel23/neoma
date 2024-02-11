@@ -30,7 +30,7 @@
       <%= button_tag '', class: "text-xl text-white cursor-hover fa-solid fa-xmark", data: { action: 'click->navbar#toggleMenu' } %>
     </span>
 
-    <span class="flex flex-col w-full justify-center md:justify-start px-10">
+    <span class="flex flex-col w-full justify-center md:justify-start px-10 overflow-x-hidden">
       <% ['Artists', 'Exhibitions', 'Web3', 'Voices', 'Store', 'News', 'About', 'Contact'].each do |menu| %>
         <%= link_to menu, '/', class: "text-3xl text-white text-center md:text-start font-light cursor-hover my-3" %>
       <% end %>

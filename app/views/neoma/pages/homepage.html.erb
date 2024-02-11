@@ -1,4 +1,4 @@
-<section class="w-full bg-white z-20">
+<section class='w-full bg-white z-20'>
   <% exhibits.each do |exhibit| %>
     <%= fe_carousel do %>
       <%= fe_carousel_wrapper do %>
@@ -19,3 +19,28 @@
   <% end %>
 </section>
 
+<section class='w-full bg-white z-20' data-controller='scroll-reveal'>
+  <div class='grid grid-cols-1 md:grid-cols-2'>
+    <span class='flex flex-col justify-center items-center md:items-start bg-black w-full h-full px-16 py-10'>
+      <h1 class='text-white font-bold text-5xl md:text-7xl mb-0 md:mb-64 reveal' data-scroll-reveal-target='item'> Our Story </h1>
+      <hr class='bg-white w-[2.5rem] mb-5 hidden md:block reveal' data-scroll-reveal-target='item'>
+      <p class='text-white hidden md:block reveal' data-scroll-reveal-target='item'> Read More </p>
+    </span>
+    <span class='py-10 font-light px-10 md:px-16 reveal' data-scroll-reveal-target='item'>
+      <%= content.html(:story) %>
+    </span>
+  </div>
+</section>
+
+<section class='w-full bg-white z-20' data-controller='scroll-reveal'>
+  <div class='grid grid-cols-1 md:grid-cols-2'>
+    <span class='py-10 font-light px-10 md:px-16 order-2 md:order-1 reveal' data-scroll-reveal-target='item'>
+      <%= content.html(:events) %>
+    </span>
+    <span class='flex flex-col justify-center items-center md:items-end bg-black w-full h-full px-16 py-10 order-1'>
+      <h1 class='text-white font-bold text-5xl md:text-7xl mb-0 md:mb-64 reveal' data-scroll-reveal-target='item'> Events </h1>
+      <hr class='bg-white w-[2.5rem] mb-5 hidden md:block reveal' data-scroll-reveal-target='item'>
+      <p class='text-white hidden md:block reveal' data-scroll-reveal-target='item'> See More </p>
+    </span>
+  </div>
+</section>
