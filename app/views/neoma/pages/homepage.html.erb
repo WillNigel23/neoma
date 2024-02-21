@@ -43,42 +43,6 @@
               <p class='text-light text-sm text-gray-800'> <%= artwork.content(:price) %> </p>
             </span>
           <% end %>
-
-
-
-
-          <% exhibit.content(:artpieces).each do |artwork| %>
-            <span class='flex flex-col w-full'>
-            <%= artwork.content.image_tag(:image, {}, class: 'mb-5') %> 
-              <h3 class='font-bold text-xl mb-2'> <%= artwork.content(:header) %> </h3>
-              <p class='text-light text-sm'> <%= artwork.content(:subheader) %> </p>
-              <p class='text-light text-sm text-gray-800'> <%= artwork.content(:price) %> </p>
-            </span>
-          <% end %>
-          <% exhibit.content(:artpieces).each do |artwork| %>
-            <span class='flex flex-col w-full'>
-            <%= artwork.content.image_tag(:image, {}, class: 'mb-5') %> 
-              <h3 class='font-bold text-xl mb-2'> <%= artwork.content(:header) %> </h3>
-              <p class='text-light text-sm'> <%= artwork.content(:subheader) %> </p>
-              <p class='text-light text-sm text-gray-800'> <%= artwork.content(:price) %> </p>
-            </span>
-          <% end %>
-          <% exhibit.content(:artpieces).each do |artwork| %>
-            <span class='flex flex-col w-full'>
-            <%= artwork.content.image_tag(:image, {}, class: 'mb-5') %> 
-              <h3 class='font-bold text-xl mb-2'> <%= artwork.content(:header) %> </h3>
-              <p class='text-light text-sm'> <%= artwork.content(:subheader) %> </p>
-              <p class='text-light text-sm text-gray-800'> <%= artwork.content(:price) %> </p>
-            </span>
-          <% end %>
-          <% exhibit.content(:artpieces).each do |artwork| %>
-            <span class='flex flex-col w-full'>
-            <%= artwork.content.image_tag(:image, {}, class: 'mb-5') %> 
-              <h3 class='font-bold text-xl mb-2'> <%= artwork.content(:header) %> </h3>
-              <p class='text-light text-sm'> <%= artwork.content(:subheader) %> </p>
-              <p class='text-light text-sm text-gray-800'> <%= artwork.content(:price) %> </p>
-            </span>
-          <% end %>
         </div>
       <% end %>
     </div>
