@@ -30,7 +30,7 @@ module CarouselHelper
         }'
       }   
     ) do
-      concat(capture(&block)) if block_given?
+      concat(capture(&block)) if block.present?
     end
   end
 
@@ -39,7 +39,11 @@ module CarouselHelper
     pagination = content_tag(:div, '', class: 'swiper-pagination')
 
     content_tag(:div, class: 'swiper-wrapper') do
-      concat(block + pagination)
+      if block.present?
+        concat(block + pagination)
+      else
+        concat(pagination)
+      end
     end
   end
 

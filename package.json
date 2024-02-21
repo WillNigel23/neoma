@@ -3,6 +3,7 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^7.3.0",
     "esbuild": "^0.20.0",
+    "slim-select": "^2.8.1",
     "stimulus-carousel": "^5.0.1",
     "stimulus-read-more": "^4.1.0",
     "stimulus-scroll-reveal": "^3.2.0"
