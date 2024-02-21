@@ -9,11 +9,12 @@ module BannerHelper
     end
   end
   
-  def fe_banner_img(image_url)
+  def fe_banner_img(spina_image)
+    image_url = main_app.url_for(spina_image.file)
     image_tag(image_url, 
       { 
         class: 'absolute top-0 left-0 w-full min-w-[1920px] 
-          object-cover opacity-50'
+          object-cover opacity-50 lazy'
       }
     )
   end
@@ -61,11 +62,14 @@ module BannerHelper
     content,
     link_url,
     opts = {
-      class: 'text-center text-white hover:text-black hover:bg-white transition-all duration-300 border border-white px-3 py-2 min-w-[120px] bg-transparent reveal',
+      class: 'text-center text-white transition-color duration-500 hover:text-black hover:bg-white border border-white px-3 py-2 min-w-[120px]',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }
   )
-    link_to(content, link_url, **opts)
+    content_tag(:span, 
+      link_to(content, link_url, { class: opts[:class] }),
+      { class: 'reveal', data: opts[:data] }
+    )
   end
 
 end

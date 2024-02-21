@@ -9,6 +9,46 @@
       <% artpiece_collection << [p.id, p.content(:header)] %>
     <% end %>
 
-    <%= f.select :artwork_ids, options_for_select(artpiece_collection.map { |id, header| [header, id] }, f.object.artwork_ids), { multiple: true } %>
+    <%= f.select :artwork_ids, nil, { multiple: true }, class: 'selectElement', data: { controller: 'slimselect', slimselect_target: 'field' } do %>
+      <% artpiece_collection.each do |id, header| %>
+        <option value="<%= id %>" <%= 'selected' if f.object.artwork_ids.include?(id) %>><%= header %></option>
+      <% end %>
+    <% end %>
   </div>
 </div>
+
+<link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet">
+
+<script>
+  function loadScript(url, callback) {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+
+    if (script.readyState) {  // IE
+      script.onreadystatechange = function() {
+        if (script.readyState === "loaded" || script.readyState === "complete") {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else {  // Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.head.appendChild(script);
+  }
+
+  // Load SlimSelect script dynamically
+  loadScript("https://unpkg.com/slim-select@latest/dist/slimselect.min.js", function() {
+    new SlimSelect({
+      select: '.selectElement',
+      settings: {
+        maxValuesShown: 0,
+        maxValuesMessage: '{number} values selected',
+      }
+    });
+  });
+</script>

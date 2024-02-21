@@ -18,3 +18,6 @@ application.register("scroll-reveal", ScrollReveal)
 
 import ReadMore from "stimulus-read-more"
 application.register("read-more", ReadMore)
+
+import SlimSelect from "slim-select"
+application.register("slim-select", SlimSelect)

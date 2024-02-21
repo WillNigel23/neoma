@@ -59,7 +59,7 @@ Spina::Theme.register do |theme|
     {name: "homepage", title: "Homepage", parts: %w(story events)},
     {name: "exhibits", title: "Exhibits"},
     {name: "exhibit", title: "Exhibit", parts: %w(header subheader date artist banner section artpieces)},
-    {name: "artwork", title: "Artwork", parts: %w(header details artist image body price status)},
+    {name: "artwork", title: "Artwork", parts: %w(header subheader artist image body price status)},
   ]
 
   # Custom pages

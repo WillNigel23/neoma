@@ -1,10 +1,10 @@
 <section class='w-full bg-white z-20'>
-  <% exhibits.each do |exhibit| %>
-    <%= fe_carousel do %>
-      <%= fe_carousel_wrapper do %>
+  <%= fe_carousel do %>
+    <%= fe_carousel_wrapper do %>
+      <% exhibits.each do |exhibit| %>
         <%= fe_carousel_item do %>
           <%= fe_banner do %>
-            <%= fe_banner_img(exhibit.content.image_url(:banner)) %>
+            <%= fe_banner_img(exhibit.content(:banner).spina_image) %>
 
             <%= fe_banner_inner do %>
               <%= fe_banner_preheader(exhibit.content(:date)) if exhibit.content(:date) %>
@@ -19,28 +19,68 @@
   <% end %>
 </section>
 
-<section class='w-full bg-white z-20' data-controller='scroll-reveal'>
-  <div class='grid grid-cols-1 md:grid-cols-2'>
-    <span class='flex flex-col justify-center items-center md:items-start bg-black w-full h-full px-16 py-10'>
-      <h1 class='text-white font-bold text-5xl md:text-7xl mb-0 md:mb-64 reveal' data-scroll-reveal-target='item'> Our Story </h1>
-      <hr class='bg-white w-[2.5rem] mb-5 hidden md:block reveal' data-scroll-reveal-target='item'>
-      <p class='text-white hidden md:block reveal' data-scroll-reveal-target='item'> Read More </p>
-    </span>
-    <span class='py-10 font-light px-10 md:px-16 reveal' data-scroll-reveal-target='item'>
-      <%= content.html(:story) %>
-    </span>
-  </div>
-</section>
+<section class='w-full bg-white z-20 mt-10' data-controller='scroll-reveal'>
+  <div class='flex flex-col w-full container py-5 justify-center items-start mx-auto px-5 my-5'>
+    <h2 class='font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'> Exhibits </h2>
+    <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
 
-<section class='w-full bg-white z-20' data-controller='scroll-reveal'>
-  <div class='grid grid-cols-1 md:grid-cols-2'>
-    <span class='py-10 font-light px-10 md:px-16 order-2 md:order-1 reveal' data-scroll-reveal-target='item'>
-      <%= content.html(:events) %>
-    </span>
-    <span class='flex flex-col justify-center items-center md:items-end bg-black w-full h-full px-16 py-10 order-1'>
-      <h1 class='text-white font-bold text-5xl md:text-7xl mb-0 md:mb-64 reveal' data-scroll-reveal-target='item'> Events </h1>
-      <hr class='bg-white w-[2.5rem] mb-5 hidden md:block reveal' data-scroll-reveal-target='item'>
-      <p class='text-white hidden md:block reveal' data-scroll-reveal-target='item'> See More </p>
-    </span>
+    <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
+      <% @exhibits.live.each do |exhibit| %>
+        <div class='relative flex flex-col reveal' data-scroll-reveal-target='item'>
+          <span class='sticky top-5 flex flex-col'>
+            <%= exhibit.content.image_tag(:banner, {}, class: 'mb-5') %> 
+            <h3 class='font-bold text-xl mb-2'> <%= exhibit.content(:header) %> </h3>
+            <p class='text-light text-sm'> <%= exhibit.content(:subheader) %> </p>
+            <p class='text-light text-sm text-gray-800'> <%= exhibit.content(:date) %> </p>
+          </span>
+        </div>
+        <div class='hidden md:grid grid-cols-2 gap-5 w-full reveal' data-scroll-reveal-target='item'>
+          <% exhibit.content(:artpieces).each do |artwork| %>
+            <span class='flex flex-col w-full'>
+            <%= artwork.content.image_tag(:image, {}, class: 'mb-5') %> 
+              <h3 class='font-bold text-xl mb-2'> <%= artwork.content(:header) %> </h3>
+              <p class='text-light text-sm'> <%= artwork.content(:subheader) %> </p>
+              <p class='text-light text-sm text-gray-800'> <%= artwork.content(:price) %> </p>
+            </span>
+          <% end %>
+
+
+
+
+          <% exhibit.content(:artpieces).each do |artwork| %>
+            <span class='flex flex-col w-full'>
+            <%= artwork.content.image_tag(:image, {}, class: 'mb-5') %> 
+              <h3 class='font-bold text-xl mb-2'> <%= artwork.content(:header) %> </h3>
+              <p class='text-light text-sm'> <%= artwork.content(:subheader) %> </p>
+              <p class='text-light text-sm text-gray-800'> <%= artwork.content(:price) %> </p>
+            </span>
+          <% end %>
+          <% exhibit.content(:artpieces).each do |artwork| %>
+            <span class='flex flex-col w-full'>
+            <%= artwork.content.image_tag(:image, {}, class: 'mb-5') %> 
+              <h3 class='font-bold text-xl mb-2'> <%= artwork.content(:header) %> </h3>
+              <p class='text-light text-sm'> <%= artwork.content(:subheader) %> </p>
+              <p class='text-light text-sm text-gray-800'> <%= artwork.content(:price) %> </p>
+            </span>
+          <% end %>
+          <% exhibit.content(:artpieces).each do |artwork| %>
+            <span class='flex flex-col w-full'>
+            <%= artwork.content.image_tag(:image, {}, class: 'mb-5') %> 
+              <h3 class='font-bold text-xl mb-2'> <%= artwork.content(:header) %> </h3>
+              <p class='text-light text-sm'> <%= artwork.content(:subheader) %> </p>
+              <p class='text-light text-sm text-gray-800'> <%= artwork.content(:price) %> </p>
+            </span>
+          <% end %>
+          <% exhibit.content(:artpieces).each do |artwork| %>
+            <span class='flex flex-col w-full'>
+            <%= artwork.content.image_tag(:image, {}, class: 'mb-5') %> 
+              <h3 class='font-bold text-xl mb-2'> <%= artwork.content(:header) %> </h3>
+              <p class='text-light text-sm'> <%= artwork.content(:subheader) %> </p>
+              <p class='text-light text-sm text-gray-800'> <%= artwork.content(:price) %> </p>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </section>

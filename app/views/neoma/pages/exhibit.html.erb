@@ -1,6 +1,6 @@
 <!-- Banner -->
 <%= fe_banner do %>
-  <%= fe_banner_img(content.image_url(:banner)) %>
+  <%= fe_banner_img(content(:banner).spina_image) %>
 
   <%= fe_banner_inner do %>
     <%= fe_banner_preheader(content(:date)) if content(:date) %>
@@ -16,62 +16,18 @@
 <!-- Content -->
 <section class="w-full bg-white z-20">
   <% repeater(:section) do |block| %>
-    <%= fe_carousel do %>
-      <%= fe_carousel_wrapper do %>
-        <% block.content(:carousel).each do |img| %>
-          <%= fe_carousel_item do %>
-            <div class="flex justify-center items-center">
-              <%= content.image_tag img, resize_to_fill: [1920, 1080] %>
-            </div>
+    <% if block.content(:carousel).present? %>
+      <%= fe_carousel do %>
+        <%= fe_carousel_wrapper do %>
+          <% block.content(:carousel).each do |img| %>
+            <%= fe_carousel_item do %>
+              <%= fe_banner do %>
+                <%= fe_banner_img(img.spina_image) %>
+              <% end %>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  <% end %>
-</section>
-
-<section class="w-full bg-white z-20">
-  <% repeater(:section) do |block| %>
-    <% if block.content(:carousel) %>
-      <div data-controller="carousel"
-        class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden"
-        data-carousel-options-value='
-        {
-          "navigation": {
-            "nextEl": ".swiper-button-next",
-            "prevEl": ".swiper-button-prev"
-          },
-          "pagination": {
-            "el": ".swiper-pagination",
-            "type": "bullets"
-          },
-          "keyboard": {
-            "enabled": "true",
-            "onlyInViewport": "false"
-          },
-          "loop": "true",
-          "effect": "fade",
-          "fadeEffect": {
-            "crossFade": "true"
-          },
-          "autoplay": {
-            "delay": "5000"
-          }
-        }'
-      >
-        <div class="swiper-wrapper" id="swiper-wrapper-f4cd29c2e54b216f" aria-live="polite">
-          <% block.content(:carousel).each do |img| %>
-            <div class="swiper-slide swiper-slide-active" role="group" style="width: 100%;">
-              <div class="flex justify-center items-center">
-                <%= content.image_tag img, resize_to_fill: [1920, 1080] %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="swiper-pagination"></div>
-        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-      </div>
     <% end %>
 
     <% if block.content(:body) %>

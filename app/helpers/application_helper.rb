@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def exhibits
-    @exhibits ||= Spina::Resource.find_by(name: 'exhibits').pages.live
+    @exhibits ||= Spina::Resource.find_by(name: 'exhibits').pages
   end
 
 end
