@@ -1,0 +1,57 @@
+<!-- Footer starts here -->
+<section class='fixed top-0 left-0 w-full h-screen bg-black flex justify-center'>
+  <div class='flex flex-col w-full container pt-16 md:pt-40 px-5 md:px-24 justify-between'>
+    <div class='flex flex-col md:flex-row md:justify-between w-full'>
+      <div class='flex flex-1 flex-col mb-5'>
+        <h1 class='font-medium text-3xl text-white mb-5'> Unit, Mayfair </h1>
+
+        <p class='font-light text-sm text-white mb-5'> 3 Hanover Square, Mayfair, W1S 1HD </p>
+
+        <p class='font-light text-sm text-white mb-2'> Opening times: </p>
+        <p class='font-light text-sm text-white mb-2'> Mon–Sat, 10am–7pm, </p>
+        <p class='font-light text-sm text-white mb-5'> Sunday, 12pm-6pm </p>
+
+        <p class='font-light text-sm text-white mb-5'> No booking required. </p>
+        
+        <p class='font-light text-sm text-white mb-2'> +44 (0) 20 7494 2035 </p>
+        <p class='font-light text-sm text-white mb-2'> art@unitlondon.com </p>
+      </div>
+
+      <div class='flex flex-1 flex-col mb-5'>
+        <h1 class='font-medium text-3xl text-white mb-5'> Press Inquiries </h1>
+
+        <p class='font-light text-sm text-white mb-5'> For all press enquiries please contact us at; </p>
+
+        <p class='font-light text-sm text-white mb-2'> +44 (0) 20 7494 2035 </p>
+        <p class='font-light text-sm text-white mb-2'> art@unitlondon.com </p>
+      </div>
+
+      <div class='flex flex-1 flex-col mb-5'>
+        <h1 class='font-medium text-3xl text-white mb-5'> Stay in touch </h1>
+
+        <span class='flex flex-row w-full justify-start items-end mb-3'>
+          <%= link_to 'https://www.facebook.com/neomagalleria', class: 'mr-5', target: '_blank' do %>
+            <i class='fa-brands fa-facebook-f text-white text-lg'></i>
+          <% end %>
+          <%= link_to 'http://www.intagram.com/neomagalleria', class: 'mr-5', target: '_blank' do %>
+            <i class='fa-brands fa-instagram text-white text-xl'></i>
+          <% end %>
+        </span>
+        <%= form_tag('/', class: 'flex flex-row w-full border-b border-white pb-1 mb-3') do %>
+          <%= email_field_tag :email, '', class: 'flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 text-sm font-light', placeholder: 'Join our mailing list' %>
+          <%= button_tag(type: 'submit') do %>
+            <i class='fa-solid fa-chevron-right font-light text-white text-sm'></i>
+          <% end %>
+        <% end %>
+        <p class='text-[9px] font-light text-gray-300'>
+          By signing up you agree to our privacy policy. 
+          You can unsubscribe or change your preferences 
+          at any time by clicking the link in any emails.
+        </p>
+      </div>
+    </div>
+    <p class='w-full text-light text-gray-500 text-center text-sm py-5'>
+      ©2021 by Neoma Galleria
+    </p>
+  </div>
+</section>
