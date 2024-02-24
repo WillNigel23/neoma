@@ -12,6 +12,10 @@ module ApplicationHelper
     artpiece_collection
   end
 
+  def main_nav_items
+    @main_nav_items ||= Spina::Navigation.find_by(name: "main").navigation_items.roots.sorted
+  end
+
   def exhibits
     @exhibits ||= Spina::Resource.find_by(name: 'exhibits').pages
   end

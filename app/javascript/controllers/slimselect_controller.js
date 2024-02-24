@@ -5,7 +5,6 @@ import SlimSelect from 'slim-select';
 export default class extends Controller {
   static targets = ["field"]
   connect() {
-      console.log("Hello");
       new SlimSelect({
           select: this.fieldTarget
       })

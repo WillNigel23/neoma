@@ -41,21 +41,23 @@
     <% end %>
   <% end %>
 
-  <div class="container w-full py-5 md:py-10 mx-auto px-5 my-5" data-controller="scroll-reveal">
-    <h2 class="font-bold reveal" data-scroll-reveal-target="item" data-delay="250ms">Selected Works</h2>
-    <hr class="w-full my-5 reveal" data-scroll-reveal-target="item" data-delay="500ms">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal" data-scroll-reveal-target="item" data-delay="750ms">
-      <% content(:artpieces).each do |artwork| %>
-        <%= link_to artwork.materialized_path do %>
-          <span class="flex flex-col transition-all duration-500 hover:scale-110">
-            <%= artwork.content.image_tag(:image, resize_to_fill: [450, 500]) %>
-            <h3 class="font-bold my-3"><%= artwork.content(:header) %></h3>
-            <div class="font-light text-sm">
-              <%= artwork.content.html(:details) %>
-            </div>
-          </span>
+  <% if content(:artpieces).any? %>
+    <div class="container w-full py-5 md:py-10 mx-auto px-5 my-5" data-controller="scroll-reveal">
+      <h2 class="font-bold reveal" data-scroll-reveal-target="item" data-delay="250ms">Selected Works</h2>
+      <hr class="w-full my-5 reveal" data-scroll-reveal-target="item" data-delay="500ms">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal" data-scroll-reveal-target="item" data-delay="750ms">
+        <% content(:artpieces).each do |artwork| %>
+          <%= link_to artwork.materialized_path do %>
+            <span class="flex flex-col transition-all duration-500 hover:scale-110">
+              <%= artwork.content.image_tag(:image, resize_to_fill: [450, 500]) %>
+              <h3 class="font-bold my-3"><%= artwork.content(:header) %></h3>
+              <div class="font-light text-sm">
+                <%= artwork.content.html(:details) %>
+              </div>
+            </span>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </section>

@@ -21,3 +21,6 @@ application.register("read-more", ReadMore)
 
 import SlimSelect from "slim-select"
 application.register("slim-select", SlimSelect)
+
+import SlimselectController from "./slimselect_controller"
+application.register("slimselect", SlimselectController)
