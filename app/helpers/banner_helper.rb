@@ -1,29 +1,31 @@
-module BannerHelper
+# frozen_string_literal: true
 
+module BannerHelper
   def fe_banner(_content = nil, &block)
     content_tag(:section,
-      class: 'fixed top-0 left-0 flex items-center justify-center
+                class: 'sticky top-0 left-0 flex items-center justify-center
         w-full h-screen overflow-hidden bg-gradient-to-t
         from-black to-[#303030] p-0 m-0 z-20') do
       concat(capture(&block)) if block_given?
     end
   end
 
-  def fe_banner_img(spina_image)
+  def fe_banner_img(spina_image, opts = {})
+    opacity = opts[:opacity] || '.2'
+
     image_url = main_app.url_for(spina_image.file)
     image_tag(image_url,
-      {
-        class: 'absolute top-0 left-0 w-full min-w-[1920px] min-h-[1080px]
-          object-cover opacity-20'
-      }
-    )
+              {
+                class: 'absolute top-0 left-0 w-full min-w-[1920px] min-h-[1080px]
+          object-cover',
+                style: "opacity: #{opacity};"
+              })
   end
 
   def fe_banner_inner(_content = nil, &block)
     content_tag(:div,
-      class: 'container mx-auto px-5 z-10 text-center',
-      data: { controller: 'scroll-reveal' }
-    ) do
+                class: 'container mx-auto px-5 z-10 text-center',
+                data: { controller: 'scroll-reveal' }) do
       concat(capture(&block)) if block_given?
     end
   end
@@ -67,9 +69,7 @@ module BannerHelper
     }
   )
     content_tag(:span,
-      link_to(content, link_url, { class: opts[:class] }),
-      { class: 'reveal', data: opts[:data] }
-    )
+                link_to(content, link_url, { class: opts[:class] }),
+                { class: 'reveal', data: opts[:data] })
   end
-
 end

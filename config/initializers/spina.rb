@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Spina.configure do |config|
   # Locales
   # ===============
@@ -8,7 +10,7 @@ Spina.configure do |config|
   # Backend title
   # ===============
   # Set <title> for the admin panel. Defaults to "Spina CMS"
-  config.backend_title = "Neoma Galleria CMS"
+  config.backend_title = 'Neoma Galleria CMS'
 
   # Backend path
   # ===============
@@ -90,7 +92,10 @@ Spina.configure do |config|
 
   # Custom Pages
   Rails.application.reloader.to_prepare do
-    Spina::Part.register(Spina::Parts::Artpiece)
+    Spina::Part.register(Spina::Parts::FeaturedArtist)
+    Spina::Part.register(Spina::Parts::FeaturedArtwork)
     Spina::Part.register(Spina::Parts::FeaturedExhibit)
+    Spina::Part.register(Spina::Parts::FeaturedEvent)
+    Spina::Part.register(Spina::Parts::FeaturedGallery)
   end
 end

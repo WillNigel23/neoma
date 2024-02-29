@@ -2,21 +2,21 @@
   <label class='block text-sm leading-5 font-medium text-gray-700'><%= f.object.title %></label>
   <div class='grid grid-cols-3 gap-5 mt-1'>
     <div class='flex flex-col' style='padding-right: 1.5rem;'>
-      <label class='block text-sm leading-5 font-light text-gray-700'> Main Exhibit </label>
-      <%= f.select :main_exhibit_id, nil, { multiple: false }, class: 'mainExhibit', style: 'min-height: 49.33px;' do %>
+      <label class='block text-sm leading-5 font-light text-gray-700'> Main Gallery </label>
+      <%= f.select :main_gallery_id, nil, { multiple: false }, class: 'mainGallery', style: 'min-height: 49.33px;' do %>
         <option value=''></option>
-        <% Spina::Resource.find_by(name: 'exhibits').pages&.each do |exhibit| %>
-          <option value='<%= exhibit.id %>' <%= 'selected' if f.object.main_exhibit_id == exhibit.id %>><%= exhibit %></option>
+        <% Spina::Resource.find_by(name: 'galleries').pages&.each do |gallery| %>
+          <option value='<%= gallery.id %>' <%= 'selected' if f.object.main_gallery_id == gallery.id %>><%= gallery %></option>
         <% end %>
       <% end %>
     </div>
 
     <div class='flex flex-col col-span-2' style='padding-right: 1.5rem;'>
-      <label class='block text-sm leading-5 font-light text-gray-700'> Past Exhibits </label>
-      <%= f.select :exhibit_ids, nil, { multiple: true }, class: 'exhibits', style: 'min-height: 49.33px;' do %>
+      <label class='block text-sm leading-5 font-light text-gray-700'> Featured Galleries </label>
+      <%= f.select :gallery_ids, nil, { multiple: true }, class: 'galleries', style: 'min-height: 49.33px;' do %>
         <option value=''></option>
-        <% Spina::Resource.find_by(name: 'exhibits').pages&.each do |exhibit| %>
-          <option value='<%= exhibit.id %>' <%= 'selected' if f.object.exhibit_ids.include?(exhibit.id) %>><%= exhibit %></option>
+        <% Spina::Resource.find_by(name: 'galleries').pages&.each do |gallery| %>
+          <option value='<%= gallery.id %>' <%= 'selected' if f.object.gallery_ids.include?(gallery.id) %>><%= gallery %></option>
         <% end %>
       <% end %>
     </div>
@@ -50,14 +50,14 @@
   // Load SlimSelect script dynamically
   loadScript('https://unpkg.com/slim-select@latest/dist/slimselect.min.js', function() {
     new SlimSelect({
-      select: '.mainExhibit',
+      select: '.mainGallery',
       settings: {
         allowDeselect: true,
       }
     });
 
     new SlimSelect({
-      select: '.exhibits',
+      select: '.galleries',
       settings: {
         allowDeselect: true,
       }

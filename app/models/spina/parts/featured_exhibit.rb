@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Spina
   module Parts
     class FeaturedExhibit < Base
@@ -6,7 +8,7 @@ module Spina
 
       def content
         [
-          Spina::Page.find(view_template: 'exhibit', id: main_exhibit_id),
+          Spina::Page.find_by(view_template: 'exhibit', id: main_exhibit_id),
           Spina::Page.where(view_template: 'exhibit', id: exhibit_ids)
         ]
       end

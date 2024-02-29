@@ -1,25 +1,25 @@
 <div class='mt-6'>
   <label class='block text-sm leading-5 font-medium text-gray-700'><%= f.object.title %></label>
   <div class='grid grid-cols-3 gap-5 mt-1'>
-    <div class='flex flex-col' style='padding-right: 1.5rem;'>
-      <label class='block text-sm leading-5 font-light text-gray-700'> Main Exhibit </label>
-      <%= f.select :main_exhibit_id, nil, { multiple: false }, class: 'mainExhibit', style: 'min-height: 49.33px;' do %>
-        <option value=''></option>
-        <% Spina::Resource.find_by(name: 'exhibits').pages&.each do |exhibit| %>
-          <option value='<%= exhibit.id %>' <%= 'selected' if f.object.main_exhibit_id == exhibit.id %>><%= exhibit %></option>
+    <% if f.object.title == 'Artist' %>
+      <div class='flex flex-col' style='padding-right: 1.5rem;'>
+        <%= f.select :main_artist_id, nil, { multiple: false }, class: 'mainArtist', style: 'min-height: 49.33px;' do %>
+          <option value=''></option>
+          <% Spina::Resource.find_by(name: 'artists').pages&.each do |artist| %>
+            <option value='<%= artist.id %>' <%= 'selected' if f.object.main_artist_id == artist.id %>><%= artist %></option>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-
-    <div class='flex flex-col col-span-2' style='padding-right: 1.5rem;'>
-      <label class='block text-sm leading-5 font-light text-gray-700'> Past Exhibits </label>
-      <%= f.select :exhibit_ids, nil, { multiple: true }, class: 'exhibits', style: 'min-height: 49.33px;' do %>
-        <option value=''></option>
-        <% Spina::Resource.find_by(name: 'exhibits').pages&.each do |exhibit| %>
-          <option value='<%= exhibit.id %>' <%= 'selected' if f.object.exhibit_ids.include?(exhibit.id) %>><%= exhibit %></option>
+      </div>
+    <% elsif f.object.title == 'Featured Artists' %>
+      <div class='flex flex-col col-span-2' style='padding-right: 1.5rem;'>
+        <%= f.select :artist_ids, nil, { multiple: true }, class: 'artists', style: 'min-height: 49.33px;' do %>
+          <option value=''></option>
+          <% Spina::Resource.find_by(name: 'artists').pages&.each do |artist| %>
+            <option value='<%= artist.id %>' <%= 'selected' if f.object.artist_ids.include?(artist.id) %>><%= artist %></option>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -50,14 +50,14 @@
   // Load SlimSelect script dynamically
   loadScript('https://unpkg.com/slim-select@latest/dist/slimselect.min.js', function() {
     new SlimSelect({
-      select: '.mainExhibit',
+      select: '.mainArtist',
       settings: {
         allowDeselect: true,
       }
     });
 
     new SlimSelect({
-      select: '.exhibits',
+      select: '.artists',
       settings: {
         allowDeselect: true,
       }

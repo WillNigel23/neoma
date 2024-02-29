@@ -1,18 +1,10 @@
 <div class='mt-6'>
   <label class='block text-sm leading-5 font-medium text-gray-700'><%= f.object.title %></label>
   <div class='mt-1'>
-    <% artpiece_collection = [] %>
-
-    <% pages = Spina::Resource.where(name: 'artworks').first&.pages %>
-
-    <% pages&.each do |p| %>
-      <% artpiece_collection << [p.id, p.content(:header)] %>
-    <% end %>
-
-    <%= f.select :artwork_ids, nil, { multiple: true }, class: 'selectElement' do %>
+    <%= f.select :event_ids, nil, { multiple: true }, class: 'events', style: 'min-height: 49.33px;' do %>
       <option value=''></option>
-      <% artpiece_collection&.each do |id, header| %>
-        <option value='<%= id %>' <%= 'selected' if f.object.artwork_ids.include?(id) %>><%= header %></option>
+      <% Spina::Resource.find_by(name: 'events').pages&.each do |event| %>
+        <option value='<%= event.id %>' <%= 'selected' if f.object.event_ids.include?(event.id) %>><%= event %></option>
       <% end %>
     <% end %>
   </div>
@@ -45,7 +37,7 @@
   // Load SlimSelect script dynamically
   loadScript('https://unpkg.com/slim-select@latest/dist/slimselect.min.js', function() {
     new SlimSelect({
-      select: '.selectElement',
+      select: '.events',
       settings: {
         maxValuesShown: 0,
         maxValuesMessage: '{number} values selected',

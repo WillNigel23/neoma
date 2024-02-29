@@ -1,11 +1,9 @@
 <!-- Footer starts here -->
-<section class='fixed top-0 left-0 w-full h-screen bg-black flex justify-center'>
+<section class='fixed top-0 left-0 w-full h-screen bg-neoma-blue-4 flex justify-center'>
   <div class='flex flex-col w-full container pt-16 md:pt-40 px-5 md:px-24 justify-between'>
     <div class='flex flex-col md:flex-row md:justify-between w-full'>
       <div class='flex flex-1 flex-col mb-5'>
         <h1 class='font-medium text-3xl text-white mb-5'> Neoma Galleria </h1>
-
-        <p class='font-light text-sm text-white mb-5'> 24 Dr. Maldo del Rosario St. Kapasigan Pasig City </p>
 
         <p class='font-light text-sm text-white mb-2'> +639167470507 </p>
         <p class='font-light text-sm text-white mb-2'> neoma.art.official@gmail.com </p>
@@ -13,10 +11,11 @@
 
       <div class='flex flex-1 flex-col mb-5'>
         <h1 class='font-medium text-3xl text-white mb-5'> Galleries </h1>
-
-        <p class='font-light text-sm text-white mb-2'> Gallery, Address </p>
-        <p class='font-light text-sm text-white mb-2'> Gallery, Address </p>
-        <p class='font-light text-sm text-white mb-2'> Gallery, Address </p>
+        
+        <% galleries.limit(3).each do |gallery| %>
+          <%= link_to "#{gallery.content(:header)}, #{gallery.content(:subheader)}", 
+            gallery.materialized_path, class: 'font-light text-sm text-white mb-2' %>
+        <% end %>
       </div>
 
       <div class='flex flex-1 flex-col mb-5'>
