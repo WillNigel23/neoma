@@ -2,25 +2,29 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from './application'
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import HelloController from './hello_controller'
+application.register('hello', HelloController)
 
-import NavbarController from "./navbar_controller"
-application.register("navbar", NavbarController)
+import NavbarController from './navbar_controller'
+application.register('navbar', NavbarController)
 
-import Carousel from "stimulus-carousel"
-application.register("carousel", Carousel)
+import Carousel from 'stimulus-carousel'
+application.register('carousel', Carousel)
 
-import ScrollReveal from "stimulus-scroll-reveal"
-application.register("scroll-reveal", ScrollReveal)
+import ScrollReveal from 'stimulus-scroll-reveal'
+application.register('scroll-reveal', ScrollReveal)
 
-import ReadMore from "stimulus-read-more"
-application.register("read-more", ReadMore)
+import ReadMore from 'stimulus-read-more'
+application.register('read-more', ReadMore)
 
-import SlimSelect from "slim-select"
-application.register("slim-select", SlimSelect)
+import SlimSelect from 'slim-select'
+application.register('slim-select', SlimSelect)
 
-import SlimselectController from "./slimselect_controller"
-application.register("slimselect", SlimselectController)
+import SlimselectController from './slimselect_controller'
+application.register('slimselect', SlimselectController)
+
+import ScrollToController from './scroll_to_controller'
+application.register('scroll-to', ScrollToController)
+

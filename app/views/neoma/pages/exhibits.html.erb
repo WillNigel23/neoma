@@ -1,3 +1,5 @@
+<%= render partial: 'neoma/shared/scroll_nav', locals: { menu_items: exhibit_scroll_nav_items } %>
+
 <!-- Exhibits start here -->
 <section class='w-full bg-white z-20'>
   <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white'>
@@ -5,7 +7,10 @@
 
     <hr class='w-full my-5'>
 
-    <div>
+    <div id='#ongoing' class='min-h-screen'>
+      Exhibits go here
+    </div>
+    <div id='#past' class='min-h-screen'>
       Exhibits go here
     </div>
   </section>

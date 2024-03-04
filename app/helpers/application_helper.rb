@@ -9,7 +9,25 @@ module ApplicationHelper
     @exhibits ||= Spina::Resource.find_by(name: 'exhibits').pages
   end
 
+  def artists 
+    @artists ||= Spina::Resource.find_by(name: 'artists').pages
+  end
+
   def galleries
     @galleries ||= Spina::Resource.find_by(name: 'galleries').pages
+  end
+
+  def exhibit_scroll_nav_items
+    [
+      ['#ongoing', 'Ongoing'],
+      ['#past', 'Past'] 
+    ]
+  end
+
+  def artist_scroll_nav_items
+    [
+      ['#list_view', 'List View'],
+      ['#grid_view', 'Grid View'] 
+    ]
   end
 end
