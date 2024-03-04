@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from spina (originally 16)
 class AddAncestryCacheColumnsToSpinaPages < ActiveRecord::Migration[6.0]
   def change

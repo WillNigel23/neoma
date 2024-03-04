@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Restora';
+    src: url('RestoraBold.eot');
+    src: local('Restora Bold'), local('RestoraBold'),
+        url('RestoraBold.eot?#iefix') format('embedded-opentype'),
+        url('RestoraBold.woff2') format('woff2'),
+        url('RestoraBold.woff') format('woff'),
+        url('RestoraBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Restora';
+    src: url('RestoraItalic.eot');
+    src: local('Restora Italic'), local('RestoraItalic'),
+        url('RestoraItalic.eot?#iefix') format('embedded-opentype'),
+        url('RestoraItalic.woff2') format('woff2'),
+        url('RestoraItalic.woff') format('woff'),
+        url('RestoraItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Restora';
+    src: url('Restora.eot');
+    src: local('Restora'),
+        url('Restora.eot?#iefix') format('embedded-opentype'),
+        url('Restora.woff2') format('woff2'),
+        url('Restora.woff') format('woff'),
+        url('Restora.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Restora';
+    src: url('RestoraBoldItalic.eot');
+    src: local('Restora Bold Italic'), local('RestoraBoldItalic'),
+        url('RestoraBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('RestoraBoldItalic.woff2') format('woff2'),
+        url('RestoraBoldItalic.woff') format('woff'),
+        url('RestoraBoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+.font-restora {
+    font-family: 'Restora', sans-serif;
+}

@@ -19,32 +19,111 @@
   <% end %>
 </section>
 
-<section class='w-full bg-white z-20 py-10 mb-[100vh]' data-controller='scroll-reveal'>
+<section class='w-full bg-white z-20 py-10' data-controller='scroll-reveal'>
   <div class='flex flex-col w-full container py-5 justify-center items-start mx-auto px-5 my-5'>
-    <h2 class='font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'> Exhibits </h2>
-    <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
-
-    <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
-      <% @exhibits.live.each do |exhibit| %>
+    <% if content(:featured_exhibits) %>
+      <h2 class='font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'> Exhibits </h2>
+      <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+      <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
         <div class='relative flex flex-col reveal' data-scroll-reveal-target='item'>
-          <span class='sticky top-5 flex flex-col'>
-            <%= exhibit.content.image_tag(:banner, {}, class: 'mb-5') %> 
-            <h3 class='font-bold text-xl mb-2'> <%= exhibit.content(:header) %> </h3>
-            <p class='text-light text-sm'> <%= exhibit.content(:subheader) %> </p>
-            <p class='text-light text-sm text-gray-800'> <%= exhibit.content(:date) %> </p>
-          </span>
-        </div>
-        <div class='hidden md:grid grid-cols-2 gap-5 w-full reveal' data-scroll-reveal-target='item'>
-          <% exhibit.content(:artpieces).each do |artwork| %>
-            <span class='flex flex-col w-full'>
-            <%= artwork.content.image_tag(:image, {}, class: 'mb-5') %> 
-              <h3 class='font-bold text-xl mb-2'> <%= artwork.content(:header) %> </h3>
-              <p class='text-light text-sm'> <%= artwork.content(:subheader) %> </p>
-              <p class='text-light text-sm text-gray-800'> <%= artwork.content(:price) %> </p>
-            </span>
+          <%= fe_featured_item_link(content(:featured_exhibits)[0]&.materialized_path) do %>
+            <%= fe_featured_item_content_wrapper() do %>
+              <%= fe_featured_item_image(content(:featured_exhibits)[0].content(:banner).spina_image) %>
+              <%= fe_featured_item_title(content(:featured_exhibits)[0].content(:header)) %>
+              <%= fe_featured_item_subtitle(content(:featured_exhibits)[0].content(:subheader)) %>
+              <%= fe_featured_item_text(content(:featured_exhibits)[0].content(:date)) %>
+            <% end %>
           <% end %>
         </div>
-      <% end %>
-    </div>
+        <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full reveal' data-scroll-reveal-target='item'>
+          <% if content(:featured_exhibits)[1].any? %>
+            <% content(:featured_exhibits)[1]&.in_groups_of((content(:featured_exhibits)[1].length / 2.0).ceil) do |group| %>
+              <div class='flex flex-col w-full'>
+                <% group.compact.each do |exhibit| %>
+                  <%= fe_featured_item_link(exhibit.materialized_path, { class: 'mb-5' }) do %>
+                    <%= fe_featured_item_content_wrapper() do %>
+                      <%= fe_featured_item_image(exhibit.content(:banner).spina_image) %>
+                      <%= fe_featured_item_title(exhibit.content(:header)) %>
+                      <%= fe_featured_item_subtitle(exhibit.content(:subheader)) %>
+                      <%= fe_featured_item_text(exhibit.content(:date)) %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if content(:featured_galleries) %>
+      <h2 class='font-bold reveal mt-10' data-scroll-reveal-target='item' data-delay='250ms'> Galleries </h2>
+      <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+      <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
+        <div class='relative flex flex-col reveal' data-scroll-reveal-target='item'>
+          <%= fe_featured_item_link(content(:featured_galleries)[0]&.materialized_path) do %>
+            <%= fe_featured_item_content_wrapper() do %>
+              <%= fe_featured_item_image(content(:featured_galleries)[0].content(:banner).spina_image) %>
+              <%= fe_featured_item_title(content(:featured_galleries)[0].content(:header)) %>
+              <%= fe_featured_item_subtitle(content(:featured_galleries)[0].content(:subheader)) %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full reveal' data-scroll-reveal-target='item'>
+          <% if content(:featured_galleries)[1].any? %>
+            <% content(:featured_galleries)[1]&.in_groups_of((content(:featured_galleries)[1].length / 2.0).ceil) do |group| %>
+              <div class='flex flex-col w-full'>
+                <% group.compact.each do |gallery| %>
+                  <%= fe_featured_item_link(gallery.materialized_path, { class: 'mb-5' }) do %>
+                    <%= fe_featured_item_content_wrapper() do %>
+                      <%= fe_featured_item_image(gallery.content(:banner).spina_image) %>
+                      <%= fe_featured_item_title(gallery.content(:header)) %>
+                      <%= fe_featured_item_subtitle(gallery.content(:subheader)) %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if content(:featured_artworks).any? %>
+      <h2 class='font-bold reveal mt-10' data-scroll-reveal-target='item' data-delay='250ms'> Artworks </h2>
+      <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+      <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal mx-auto' data-scroll-reveal-target='item' data-delay='750ms'>
+        <% content(:featured_artworks).each do |artwork| %>
+          <%= fe_featured_item_link(artwork.materialized_path, { class: 'flex flex-col mx-auto' }) do %>
+            <%= fe_featured_item_content_wrapper() do %>
+              <div class='transition-all duration-500 hover:scale-110'>
+                <%= artwork.content.image_tag(:image, resize_to_fill: [450, 500]) %>
+              </div>
+              <%= fe_featured_item_title(artwork.content(:header)) %>
+              <%= fe_featured_item_subtitle(artwork.content(:subheader)) %>
+              <%= fe_featured_item_text(artwork.content(:price)) %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if content(:featured_artists).any? %>
+      <h2 class='font-bold reveal mt-10' data-scroll-reveal-target='item' data-delay='250ms'> Artists </h2>
+      <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+      <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal' data-scroll-reveal-target='item' data-delay='750ms'>
+        <% content(:featured_artists)[1].each do |artist| %>
+          <%= fe_featured_item_link(artist.materialized_path, { class: 'flex flex-col mx-auto' }) do %>
+            <%= fe_featured_item_content_wrapper() do %>
+              <div class='transition-all duration-500 hover:scale-110'>
+                <%= artist.content.image_tag(:banner, resize_to_fill: [450, 500]) %>
+              </div>
+              <%= fe_featured_item_title(artist.content(:header)) %>
+              <%= fe_featured_item_subtitle(artist.content(:subheader)) %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </section>

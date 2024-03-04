@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Spina
   module Parts
-    class Artpiece < Base
+    class FeaturedArtwork < Base
       attr_json :artwork_ids, :integer, array: true, default: []
 
       def content
