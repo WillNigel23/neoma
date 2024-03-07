@@ -33,7 +33,7 @@ module BannerHelper
   def fe_banner_preheader(
     content,
     opts = {
-      class: 'text-xs text-white mb-5 md:mb-16 reveal',
+      class: 'text-xs text-white mb-5 reveal',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }
   )

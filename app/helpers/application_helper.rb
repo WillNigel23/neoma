@@ -9,6 +9,16 @@ module ApplicationHelper
     @exhibits ||= Spina::Resource.find_by(name: 'exhibits').pages
   end
 
+  def ongoing_exhibits
+    ongoing = exhibits.select { |exhibit| exhibit.content(:end_date).present? && Date.strptime(exhibit.content(:end_date), "%d, %B %Y") >= Date.current }
+    ongoing.sort_by! { |exhibit| exhibit.content(:start_date).nil? ? [1, Date.current] : [0, Date.strptime(exhibit.content(:start_date), "%d, %B %Y")] }
+  end
+
+  def past_exhibits
+    past = exhibits.select { |exhibit| exhibit.content(:end_date).nil? || Date.strptime(exhibit.content(:end_date), "%d, %B %Y") < Date.current }
+    past.sort_by! { |exhibit| exhibit.content(:start_date).nil? ? [1, Date.current] : [0, Date.strptime(exhibit.content(:start_date), "%d, %B %Y")] }
+  end
+
   def artists 
     @artists ||= Spina::Resource.find_by(name: 'artists').pages
   end
@@ -32,6 +42,6 @@ module ApplicationHelper
   end
 
   def navbar_color_scheme
-    ['Artists', 'Exhibits']
+    ['Artists', 'Exhibits', 'Galleries']
   end
 end

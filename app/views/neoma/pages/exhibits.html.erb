@@ -2,16 +2,54 @@
 
 <!-- Exhibits start here -->
 <section class='w-full bg-white z-20'>
-  <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white'>
-    <h1 class='font-bold text-black text-4xl md:text-7xl lg:text-9xl mb-5 md:mb-10'> EXHIBITIONS </h2>
+  <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white' data-controller='scroll-reveal'>
+    <h1 class='font-bold text-black text-4xl md:text-7xl lg:text-9xl mb-10 reveal' data-scroll-reveal-target='item'> EXHIBITIONS </h1>
 
-    <hr class='w-full my-5'>
+    <div id='#ongoing' class='w-full mb-10'>
+      <h2 class='font-bold reveal' data-scroll-reveal-target='item'> Ongoing </h2>
+      <hr class='w-full my-5'>
+      <div class='grid grid-cols-1 md:grid-cols-2'>
+        <% ongoing_exhibits.each do |exhibit| %>
+          <%= exhibit.content.image_tag(:banner, {}, { class: 'reveal', data: { scroll_reveal_target: 'item' } }) %>
 
-    <div id='#ongoing' class='min-h-screen'>
-      Exhibits go here
+          <span class='flex flex-col w-full my-auto py-5 px-0 md:px-5'>
+            <p class='text-gray-600 text-light text-sm reveal' data-scroll-reveal-target='item'>
+              <%= [exhibit.content(:start_date), exhibit.content(:end_date)].compact.join(' - ') %>
+            </p>
+            <h4 class='font-bold text-xl md:text-3xl my-5 reveal' data-scroll-reveal-target='item'> 
+              <%= exhibit.content(:header) %>
+            </h4>
+            <p class='text-light reveal' data-scroll-reveal-target='item'>
+              <%= exhibit.content(:subheader) %>
+            </p>
+            <%= simple_format exhibit.content(:summary), { class: 'text-light text-xs my-5 reveal', data: { scroll_reveal_target: 'item' } } %>
+            <%= fe_banner_link('Explore Now', exhibit.materialized_path) %>
+          </span>
+        <% end %>
+      </div>
     </div>
-    <div id='#past' class='min-h-screen'>
-      Exhibits go here
+    <div id='#past' class='w-full mb-10'>
+      <h2 class='font-bold reveal' data-scroll-reveal-target='item'> Past </h2>
+      <hr class='w-full my-5'>
+      <div class='grid grid-cols-1 md:grid-cols-2'>
+        <% past_exhibits.each do |exhibit| %>
+          <%= exhibit.content.image_tag(:banner, {}, { class: 'reveal', data: { scroll_reveal_target: 'item' } }) %>
+
+          <span class='flex flex-col w-full my-auto py-5 px-0 md:px-5'>
+            <p class='text-gray-600 text-light text-sm reveal' data-scroll-reveal-target='item'>
+              <%= [exhibit.content(:start_date), exhibit.content(:end_date)].compact.join(' - ') %>
+            </p>
+            <h4 class='font-bold text-xl md:text-3xl my-5 reveal' data-scroll-reveal-target='item'> 
+              <%= exhibit.content(:header) %>
+            </h4>
+            <p class='text-light reveal' data-scroll-reveal-target='item'>
+              <%= exhibit.content(:subheader) %>
+            </p>
+            <%= simple_format exhibit.content(:summary), { class: 'text-light text-xs my-5 reveal', data: { scroll_reveal_target: 'item' } } %>
+            <%= fe_banner_link('Explore Now', exhibit.materialized_path) %>
+          </span>
+        <% end %>
+      </div>
     </div>
   </section>
 </section>
