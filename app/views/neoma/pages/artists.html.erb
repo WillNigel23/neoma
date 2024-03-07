@@ -7,7 +7,7 @@
 
     <hr class='w-full my-5'>
 
-    <div id='#list_view' class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 w-full mb-10 data-scroll-reveal-target='item''>
+    <div id='#list_view' class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 w-full mb-10 md:mb-20' data-scroll-reveal-target='item'>
       <% artists.each do |artist| %>
         <%= link_to artist, artist.materialized_path, class: 'text-nowrap font-bold text-base sm:text-xl md:text-3xl transition-all duration-300 hover:text-[#f7b1af]' %>
       <% end %>

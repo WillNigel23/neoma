@@ -30,4 +30,8 @@ module ApplicationHelper
       ['#grid_view', 'Grid View'] 
     ]
   end
+
+  def navbar_color_scheme
+    ['Artists', 'Exhibits']
+  end
 end
