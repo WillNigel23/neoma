@@ -16,7 +16,7 @@ module BannerHelper
     image_url = main_app.url_for(spina_image.file)
     image_tag(image_url,
               {
-                class: 'absolute top-0 left-0 w-full min-w-[1920px] min-h-[1080px]
+                class: 'absolute top-0 left-0 w-full w-[100vw] min-h-[100vh]
           object-cover',
                 style: "opacity: #{opacity};"
               })

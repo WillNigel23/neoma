@@ -3,7 +3,7 @@
 module FeaturedItemHelper
   def fe_featured_item_link(link_path,
                             opts = { class: 'sticky top-5 md:top-1/4' }, &block)
-    link_to(link_path, class: opts[:class]) do
+    link_to(link_path, method: :get, class: opts[:class], data: opts[:data]) do
       concat(capture(&block)) if block_given?
     end
   end
@@ -24,6 +24,11 @@ module FeaturedItemHelper
               {
                 class: opts[:class]
               })
+  end
+
+  def fe_featured_item_pretitle(content,
+                                opts = { class: 'text-gray-600 text-light text-sm' })
+    content_tag(:p, content, **opts)
   end
 
   def fe_featured_item_title(content,
