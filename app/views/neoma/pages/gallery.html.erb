@@ -2,8 +2,12 @@
   <!-- Banner -->
   <%= fe_banner do %>
     <%= fe_banner_img(content(:banner).spina_image) %>
-
     <%= fe_banner_inner do %>
+      <% if content(:start_date) && content(:end_date) %>
+        <%= fe_banner_preheader("#{content(:start_date)} - #{content(:end_date)}") %>
+      <% elsif content(:start_date) %>
+        <%= fe_banner_preheader(content(:start_date)) %>
+      <% end %>
       <%= fe_banner_header(content(:header)) if content(:header) %>
       <%= fe_banner_subheader(content(:subheader)) if content(:subheader) %>
     <% end %>

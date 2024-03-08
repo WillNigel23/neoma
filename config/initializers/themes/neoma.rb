@@ -27,7 +27,7 @@ Spina::Theme.register do |theme|
     { name: 'header', title: 'Header', hint: 'Your header content', part_type: 'Spina::Parts::Line' },
     { name: 'subheader', title: 'Subheader', hint: 'Your subheader', part_type: 'Spina::Parts::Line' },
     { name: 'body', title: 'Body', hint: 'Your main content', part_type: 'Spina::Parts::Text' },
-    { name: 'date', title: 'Date', hint: 'Date', part_type: 'Spina::Parts::Line' },
+    { name: 'summary', title: 'Summary', hint: 'Ideally 1-3 lines', part_type: 'Spina::Parts::MultiLine' },
 
     # Homepage
     { name: 'featured_exhibits', title: 'Featured Exhibits', part_type: 'Spina::Parts::FeaturedExhibit' },
@@ -41,6 +41,9 @@ Spina::Theme.register do |theme|
     { name: 'poster', title: 'Poster', part_type: 'Spina::Parts::Image' },
     { name: 'carousel', title: 'Image carousel', part_type: 'Spina::Parts::ImageCollection' },
     { name: 'featured_artist', title: 'Artist', part_type: 'Spina::Parts::FeaturedArtist' },
+    { name: 'start_date', title: 'Start Date', part_type: 'Spina::Parts::DatePicker' },
+    { name: 'date', title: 'Date', part_type: 'Spina::Parts::DatePicker' },
+    { name: 'end_date', title: 'End Date', part_type: 'Spina::Parts::DatePicker' },
     {
       name: 'section',
       title: 'Section',
@@ -71,11 +74,12 @@ Spina::Theme.register do |theme|
     { name: 'events', title: 'Events' },
     { name: 'about_us', title: 'About Us' },
     { name: 'exhibit', title: 'Exhibit',
-      parts: %w[header subheader date featured_artist banner poster section featured_artworks] },
-    { name: 'artwork', title: 'Artwork', parts: %w[header subheader featured_artist image body price status] },
+      parts: %w[header subheader summary start_date end_date featured_artist banner poster section featured_artworks] },
+    { name: 'artwork', title: 'Artwork', parts: %w[header subheader date featured_artist image body price status] },
     { name: 'article', title: 'Article', parts: %w[header subheader date banner body] },
-    { name: 'gallery', title: 'Gallery', parts: %w[header subheader date banner body featured_artworks] },
-    { name: 'event', title: 'Event', parts: %w[header subheader date banner body] },
+    { name: 'gallery', title: 'Gallery',
+      parts: %w[header subheader start_date end_date banner body featured_artworks] },
+    { name: 'event', title: 'Event', parts: %w[header subheader start_date end_date banner body] },
     { name: 'artist', title: 'Artist', parts: %w[header subheader banner details section featured_artworks] }
   ]
 

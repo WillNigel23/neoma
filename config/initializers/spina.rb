@@ -97,5 +97,6 @@ Spina.configure do |config|
     Spina::Part.register(Spina::Parts::FeaturedExhibit)
     Spina::Part.register(Spina::Parts::FeaturedEvent)
     Spina::Part.register(Spina::Parts::FeaturedGallery)
+    Spina::Part.register(Spina::Parts::DatePicker)
   end
 end
