@@ -6,7 +6,7 @@ module Spina
       attr_json :date, :datetime
 
       def content
-        date.strftime("%d, %B %Y")
+        date.strftime('%d, %B %Y')
       end
     end
   end

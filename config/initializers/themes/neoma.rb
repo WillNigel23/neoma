@@ -77,7 +77,8 @@ Spina::Theme.register do |theme|
       parts: %w[header subheader summary start_date end_date featured_artist banner poster section featured_artworks] },
     { name: 'artwork', title: 'Artwork', parts: %w[header subheader date featured_artist image body price status] },
     { name: 'article', title: 'Article', parts: %w[header subheader date banner body] },
-    { name: 'gallery', title: 'Gallery', parts: %w[header subheader start_date end_date banner body featured_artworks] },
+    { name: 'gallery', title: 'Gallery',
+      parts: %w[header subheader start_date end_date banner body featured_artworks] },
     { name: 'event', title: 'Event', parts: %w[header subheader start_date end_date banner body] },
     { name: 'artist', title: 'Artist', parts: %w[header subheader banner details section featured_artworks] }
   ]
