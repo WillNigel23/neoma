@@ -247,10 +247,10 @@
 }
 :root {
     --swiper-navigation-size: 44px;
+    --swiper-navigation-color: #1d2835;
     /*
     --swiper-navigation-top-offset: 50%;
     --swiper-navigation-sides-offset: 10px;
-    --swiper-navigation-color: var(--swiper-theme-color);
      */
 }
 .swiper-button-prev,

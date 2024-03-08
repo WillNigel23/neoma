@@ -9,6 +9,10 @@ module ApplicationHelper
     @exhibits ||= Spina::Resource.find_by(name: 'exhibits').pages
   end
 
+  def artworks
+    @artworks ||= Spina::Resource.find_by(name: 'artworks').pages
+  end
+
   def ongoing_exhibits
     ongoing = exhibits.select do |exhibit|
       exhibit.content(:end_date).present? && Date.strptime(exhibit.content(:end_date), '%d, %B %Y') >= Date.current

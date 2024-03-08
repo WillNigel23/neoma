@@ -53,6 +53,7 @@ Spina::Theme.register do |theme|
     },
 
     # Artwork
+    { name: 'portrait', title: 'Portrait', part_type: 'Spina::Parts::Image' },
     { name: 'image', title: 'Image', part_type: 'Spina::Parts::Image' },
     { name: 'details', title: 'Details', hint: 'Details', part_type: 'Spina::Parts::Text' },
     { name: 'price', title: 'Price', hint: 'Price', part_type: 'Spina::Parts::Line' },
@@ -75,12 +76,12 @@ Spina::Theme.register do |theme|
     { name: 'about_us', title: 'About Us' },
     { name: 'exhibit', title: 'Exhibit',
       parts: %w[header subheader summary start_date end_date featured_artist banner poster section featured_artworks] },
-    { name: 'artwork', title: 'Artwork', parts: %w[header subheader date featured_artist image body price status] },
+    { name: 'artwork', title: 'Artwork', parts: %w[header date featured_artist image body price status] },
     { name: 'article', title: 'Article', parts: %w[header subheader date banner body] },
     { name: 'gallery', title: 'Gallery',
       parts: %w[header subheader start_date end_date banner body featured_artworks] },
     { name: 'event', title: 'Event', parts: %w[header subheader start_date end_date banner body] },
-    { name: 'artist', title: 'Artist', parts: %w[header subheader banner details section featured_artworks] }
+    { name: 'artist', title: 'Artist', parts: %w[header subheader banner portrait details section featured_artworks] }
   ]
 
   # Custom pages

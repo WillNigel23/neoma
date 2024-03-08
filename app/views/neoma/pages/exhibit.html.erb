@@ -52,13 +52,15 @@
         <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
         <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal' data-scroll-reveal-target='item' data-delay='750ms'>
           <% content(:featured_artworks).each do |artwork| %>
-            <%= link_to artwork.materialized_path, class: 'flex flex-col mx-auto' do %>
-              <div class='transition-all duration-500 hover:scale-110'>
-                <%= artwork.content.image_tag(:image, resize_to_fill: [450, 500]) %>
-              </div>
-              <h3 class='font-bold my-3'><%= artwork.content(:header) %></h3>
-              <p class='font-light text-sm'> <%= artwork.content(:subheader) %></p >
-              <p class='font-light text-sm text-gray-500'> <%= artwork.content(:price) %></p >
+            <%= fe_featured_item_link(artwork.materialized_path, { class: 'flex flex-col mx-auto' }) do %>
+              <%= fe_featured_item_content_wrapper() do %>
+                <div class='transition-all duration-500 hover:scale-110 mb-5'>
+                  <%= artwork.content.image_tag(:image, resize_to_fill: [450, 500]) %>
+                </div>
+                <%= fe_featured_item_title(artwork.content(:header)) %>
+                <%= fe_featured_item_subtitle(artwork.content(:featured_artist)[0]&.content(:header)) %>
+                <%= fe_featured_item_text(artwork.content(:price)) %>
+              <% end %>
             <% end %>
           <% end %>
         </div>
