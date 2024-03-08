@@ -3,23 +3,23 @@
   <div class='flex flex-col w-full container pt-16 lg:pt-40 px-5 md:px-24 justify-between'>
     <div class='flex flex-col lg:flex-row md:justify-between w-full'>
       <div class='flex flex-1 flex-col mb-5'>
-        <h1 class='font-medium text-3xl text-white mb-5'> Neoma Galleria </h1>
+        <h1 class='font-medium text-3xl text-white mb-5'> <%= t('footer.neoma_galleria') %> </h1>
 
-        <p class='font-light text-sm text-white mb-2'> +639167470507 </p>
-        <p class='font-light text-sm text-white mb-2'> neoma.art.official@gmail.com </p>
+        <p class='font-light text-sm text-white mb-2'> <%= t('footer.phone_number') %> </p>
+        <p class='font-light text-sm text-white mb-2'> <%= t('footer.email') %> </p>
       </div>
 
       <div class='flex flex-1 flex-col mb-5'>
-        <h1 class='font-medium text-3xl text-white mb-5'> Galleries </h1>
-        
+        <h1 class='font-medium text-3xl text-white mb-5'> <%= t('footer.title.galleries') %> </h1>
+
         <% galleries.limit(3).each do |gallery| %>
-          <%= link_to "#{gallery.content(:header)}, #{gallery.content(:subheader)}", 
+          <%= link_to "#{gallery.content(:header)}, #{gallery.content(:subheader)}",
             gallery.materialized_path, class: 'font-light text-sm text-white mb-2' %>
         <% end %>
       </div>
 
       <div class='flex flex-1 flex-col mb-5'>
-        <h1 class='font-medium text-3xl text-white mb-5'> Stay in touch </h1>
+        <h1 class='font-medium text-3xl text-white mb-5'> <%= t('footer.stay_in_touch') %> </h1>
 
         <span class='flex flex-row w-full justify-start items-end mb-3'>
           <%= link_to 'https://www.facebook.com/neomagalleria', class: 'mr-5', target: '_blank' do %>
@@ -30,20 +30,14 @@
           <% end %>
         </span>
         <%= form_tag('/', class: 'flex flex-row w-full border-b border-white pb-1 mb-3') do %>
-          <%= email_field_tag :email, '', class: 'flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 text-sm font-light', placeholder: 'Join our mailing list' %>
+          <%= email_field_tag :email, '', class: 'flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 text-sm font-light', placeholder: t('form.mailing_list.placeholder') %>
           <%= button_tag(type: 'submit') do %>
             <i class='fa-solid fa-chevron-right font-light text-white text-sm'></i>
           <% end %>
         <% end %>
-        <p class='text-[9px] font-light text-gray-300'>
-          By signing up you agree to our privacy policy.
-          You can unsubscribe or change your preferences
-          at any time by clicking the link in any emails.
-        </p>
+        <p class='text-[9px] font-light text-gray-300'> <%= t('form.mailing_list.privacy_policy') %> </p>
       </div>
     </div>
-    <p class='w-full text-light text-gray-500 text-center text-sm py-5'>
-      ©2021 by Neoma Galleria
-    </p>
+    <p class='w-full text-light text-gray-500 text-center text-sm py-5'> <%= t('footer.copyright') %> </p>
   </div>
 </section>

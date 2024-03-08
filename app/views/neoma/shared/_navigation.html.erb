@@ -12,14 +12,9 @@
     </span>
 
     <span class='flex justify-end'>
-      <% if customer_signed_in? %>
-        <%= button_to t('devise.logout'), main_app.destroy_customer_session_path(current_customer),
-          method: :delete,
-          class: 'bg-neoma-pink-1 text-black font-montserrat text-xs text-right w-min px-4 py-1 transition-all duration-500 hover:bg-[#f7b1af]'%>
-      <% else %>
-        <%= link_to t('devise.login'), main_app.new_customer_session_path,
-          class: 'bg-neoma-pink-1 text-black font-montserrat text-xs text-right w-min px-4 py-1 transition-all duration-500 hover:bg-[#f7b1af]'%>
-      <% end %>
+      <%= button_to t('buttons.inquire_now'), '',
+        method: :post,
+        class: 'bg-neoma-pink-1 text-black text-nowrap font-montserrat text-xs text-right w-min px-4 py-1 transition-all duration-500 hover:bg-[#f7b1af]'%>
     </span>
   </div>
   <div class='absolute top-0 left-0 w-full h-screen max-w-[100%] md:max-w-[40%] lg:max-w-[20%] bg-neoma-blue-4 flex flex-col p-10 duration-500 transform -translate-x-full' data-navbar-target='menu'>
