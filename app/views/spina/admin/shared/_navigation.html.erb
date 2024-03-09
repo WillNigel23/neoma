@@ -43,6 +43,7 @@
 
         <% nav.with_links do %>
           <%= render Spina::MainNavigation::LinkComponent.new(t('spina.inbox.email_list'), spina.admin_mailinglists_path, active: controller_name == "mailinglists") %>
+          <%= render Spina::MainNavigation::LinkComponent.new(t('spina.inbox.inquiries'), spina.admin_mails_path, active: controller_name == "mails") %>
 
           <%= render Spina::Hooks::HookComponent.new(partial: "inbox_secondary_navigation") %>
         <% end %>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Spina
   module Admin
     class MailinglistsController < AdminController
@@ -5,14 +7,14 @@ module Spina
 
       def index
         @mails = Mailinglist.order(:email)
-        add_breadcrumb I18n.t("spina.inbox.email_list"), spina.admin_mailinglists_path
+        add_breadcrumb I18n.t('spina.inbox.email_list'), spina.admin_mailinglists_path
       end
 
       def new
         @mail = Mailinglist.new
 
         add_index_breadcrumb
-        add_breadcrumb I18n.t("spina.mailinglists.new")
+        add_breadcrumb I18n.t('spina.mailinglists.new')
       end
 
       def create
@@ -20,9 +22,9 @@ module Spina
         if @mail.save
           redirect_to admin_mailinglists_url
         else
-          flash.now[:alert] = I18n.t("spina.mailinglists.cannot_be_created")
+          flash.now[:alert] = I18n.t('spina.mailinglists.cannot_be_created')
           add_index_breadcrumb
-          add_breadcrumb I18n.t("spina.mailinglists.new")
+          add_breadcrumb I18n.t('spina.mailinglists.new')
           render :new, status: :unprocessable_entity
         end
       end
@@ -30,22 +32,21 @@ module Spina
       def edit
         @mail = Mailinglist.find(params[:id])
         add_index_breadcrumb
-        add_breadcrumb I18n.t("spina.mailinglists.edit")
+        add_breadcrumb I18n.t('spina.mailinglists.edit')
       end
 
-      def update
-      end
+      def update; end
 
       def destroy
         @mail = Mailinglist.find(params[:id])
         @mail.destroy
-        redirect_to spina.admin_mailinglists_url, flash: {success: t("spina.mailinglists.deleted")}
+        redirect_to spina.admin_mailinglists_url, flash: { success: t('spina.mailinglists.deleted') }
       end
 
       private
 
       def add_index_breadcrumb
-        add_breadcrumb I18n.t("spina.inbox.email_list"), spina.admin_mailinglists_path, class: "text-gray-400"
+        add_breadcrumb I18n.t('spina.inbox.email_list'), spina.admin_mailinglists_path, class: 'text-gray-400'
       end
 
       def mail_params

@@ -4,6 +4,7 @@ en:
       inbox: Inbox
     inbox:
       email_list: Email List
+      inquiries: Inquiries
     no_content_available: No available data
     button:
       save: Save
@@ -12,3 +13,5 @@ en:
       edit: Edit Email
       deleted: Email deleted
       cannot_be_created: Failed to add email
+    inquiries:
+      show: View

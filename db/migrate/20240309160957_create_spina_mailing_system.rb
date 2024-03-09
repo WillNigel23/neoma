@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateSpinaMailingSystem < ActiveRecord::Migration[7.1]
   def change
     create_table :spina_mailinglists, force: :cascade do |t|
