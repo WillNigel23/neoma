@@ -1,1 +1,29 @@
-News
+<!-- News start here -->
+<section class='w-full bg-white z-20'>
+  <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white min-h-screen' data-controller='scroll-reveal'>
+    <h1 class='font-bold text-black text-4xl md:text-7xl lg:text-9xl mb-10 uppercase reveal' data-scroll-reveal-target='item'> <%= t('title.news') %> </h1>
+    <hr class='w-full my-5'>
+
+    <div class='w-full mb-10'>
+      <div class='grid grid-cols-1 md:grid-cols-2 gap-5'>
+        <% news.each do |article| %>
+          <%= article.content.image_tag(:banner, {}, { class: 'reveal', data: { scroll_reveal_target: 'item' } }) %>
+
+          <span class='flex flex-col w-full my-auto py-5 px-0 md:px-5'>
+            <p class='text-gray-600 text-light text-sm reveal' data-scroll-reveal-target='item'>
+              <%= article.content(:date) %>
+            </p>
+            <h4 class='font-bold text-xl md:text-3xl my-5 reveal' data-scroll-reveal-target='item'>
+              <%= article.content(:header) %>
+            </h4>
+            <p class='text-light reveal' data-scroll-reveal-target='item'>
+              <%= article.content(:subheader) %>
+            </p>
+            <%= simple_format article.content(:summary), { class: 'text-light text-xs my-5 reveal', data: { scroll_reveal_target: 'item' } } %>
+            <%= fe_banner_link(t('buttons.read_more'), article.materialized_path) %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</section>

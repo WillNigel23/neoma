@@ -5,6 +5,12 @@ module ApplicationHelper
     @main_nav_items ||= Spina::Navigation.find_by(name: 'main').navigation_items.roots.sorted
   end
 
+  def scrollto_section_items(content_sections)
+    content_sections&.map do |section|
+      ["##{section.content(:header).downcase.gsub(' ', '_')}", section.content(:header)] if section.content(:header)
+    end
+  end
+
   def exhibits
     @exhibits ||= Spina::Resource.find_by(name: 'exhibits').pages
   end
@@ -49,7 +55,52 @@ module ApplicationHelper
     @galleries ||= Spina::Resource.find_by(name: 'galleries').pages
   end
 
+  def events
+    @events ||= Spina::Resource.find_by(name: 'events').pages
+  end
+
+  def news
+    @news ||= Spina::Resource.find_by(name: 'articles').pages.to_a.sort_by do |article|
+      Date.strptime(article.content(:date), '%d, %B %Y')
+    end
+  end
+
+  def ongoing_events
+    ongoing = events.select do |event|
+      event.content(:end_date).present? && Date.strptime(event.content(:end_date), '%d, %B %Y') >= Date.current
+    end
+    ongoing.sort_by! do |event|
+      if event.content(:start_date).nil?
+        [1,
+         Date.current]
+      else
+        [0, Date.strptime(event.content(:start_date), '%d, %B %Y')]
+      end
+    end
+  end
+
+  def past_events
+    past = events.select do |event|
+      event.content(:end_date).nil? || Date.strptime(event.content(:end_date), '%d, %B %Y') < Date.current
+    end
+    past.sort_by! do |event|
+      if event.content(:start_date).nil?
+        [1,
+         Date.current]
+      else
+        [0, Date.strptime(event.content(:start_date), '%d, %B %Y')]
+      end
+    end
+  end
+
   def exhibit_scroll_nav_items
+    [
+      ['#ongoing', 'Ongoing'],
+      ['#past', 'Past']
+    ]
+  end
+
+  def event_scroll_nav_items
     [
       ['#ongoing', 'Ongoing'],
       ['#past', 'Past']
@@ -64,6 +115,6 @@ module ApplicationHelper
   end
 
   def navbar_color_scheme
-    %w[Artists Exhibits Galleries]
+    %w[Artists Exhibits Galleries Events News]
   end
 end

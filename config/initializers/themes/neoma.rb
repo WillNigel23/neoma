@@ -26,6 +26,7 @@ Spina::Theme.register do |theme|
     # General
     { name: 'header', title: 'Header', hint: 'Your header content', part_type: 'Spina::Parts::Line' },
     { name: 'subheader', title: 'Subheader', hint: 'Your subheader', part_type: 'Spina::Parts::Line' },
+    { name: 'role', title: 'Role', hint: 'Your role', part_type: 'Spina::Parts::Line' },
     { name: 'body', title: 'Body', hint: 'Your main content', part_type: 'Spina::Parts::Text' },
     { name: 'summary', title: 'Summary', hint: 'Ideally 1-3 lines', part_type: 'Spina::Parts::MultiLine' },
 
@@ -73,15 +74,16 @@ Spina::Theme.register do |theme|
     { name: 'galleries', title: 'Galleries' },
     { name: 'news', title: 'News' },
     { name: 'events', title: 'Events' },
-    { name: 'about_us', title: 'About Us' },
+    { name: 'about_us', title: 'About Us', parts: %w[banner section featured_artists] },
     { name: 'exhibit', title: 'Exhibit',
       parts: %w[header subheader summary start_date end_date featured_artist banner poster section featured_artworks] },
     { name: 'artwork', title: 'Artwork', parts: %w[header date featured_artist image body price status] },
-    { name: 'article', title: 'Article', parts: %w[header subheader date banner body] },
+    { name: 'article', title: 'Article', parts: %w[header subheader date summary banner section] },
     { name: 'gallery', title: 'Gallery',
-      parts: %w[header subheader start_date end_date banner body featured_artworks] },
-    { name: 'event', title: 'Event', parts: %w[header subheader start_date end_date banner body] },
-    { name: 'artist', title: 'Artist', parts: %w[header subheader banner portrait details section featured_artworks] }
+      parts: %w[header subheader summary start_date end_date banner section featured_artworks] },
+    { name: 'event', title: 'Event', parts: %w[header subheader summary start_date end_date banner section] },
+    { name: 'artist', title: 'Artist',
+      parts: %w[header subheader role banner portrait details section featured_artworks] }
   ]
 
   # Custom pages

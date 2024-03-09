@@ -6,11 +6,11 @@ export default class extends Controller {
   static values = {
     offset: {
       default: 150,
-      type:Number 
+      type:Number
     }
-  } 
+  }
   activeNavItem = null;
-  
+
   connect() {
     setTimeout( () => {
       this.element.classList.toggle('-translate-x-full');
@@ -26,7 +26,7 @@ export default class extends Controller {
       const scrollId = nav_item.getAttribute('data-scroll-id');
       const section = document.getElementById(`${scrollId}`);
       if (section) {
-        const sectionTop = section.getBoundingClientRect().top - 
+        const sectionTop = section.getBoundingClientRect().top -
                            document.body.getBoundingClientRect().top -
                            this.offsetValue
         const sectionBottom = sectionTop + section.offsetHeight;
@@ -52,12 +52,12 @@ export default class extends Controller {
 
   click(event) {
     const targetElement = document.getElementById(`${event.target.getAttribute('data-scroll-id')}`);
-    
+
     if(targetElement) {
       window.scrollTo({
         behavior: 'smooth',
-        top: 
-          targetElement.getBoundingClientRect().top - 
+        top:
+          targetElement.getBoundingClientRect().top -
           document.body.getBoundingClientRect().top -
           this.offsetValue
       });
