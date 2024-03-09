@@ -2,3 +2,5 @@ en:
   flash:
     mailinglist:
       success: Email added to mailing list
+    inquiry:
+      success: Inquiry sent

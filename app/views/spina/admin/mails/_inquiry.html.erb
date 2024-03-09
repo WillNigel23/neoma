@@ -1,6 +1,8 @@
 <div class="border-b border-gray-200 flex items-center justify-between space-x-8 px-4 py-3">
   <%= link_to spina.admin_mail_path(inquiry), class: "flex items-center" do %>
-    <%= image_tag main_app.url_for(Spina::Page.find(inquiry.artwork_id).content(:image).variant({ resize_to_fit: [40, 40] })) %>
+    <% if inquiry.artwork_id %>
+      <%= image_tag main_app.url_for(Spina::Page.find(inquiry.artwork_id).content(:image).variant({ resize_to_fit: [40, 40] })) %>
+    <% end %>
     <div style='margin-left: 0.5rem;'>
       <div class='font-medium'> <%= "#{inquiry.first_name} #{inquiry.last_name}" %></div>
       <div class="text-gray-500 text-sm"><%= inquiry.email %></div>

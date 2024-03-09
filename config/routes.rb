@@ -7,10 +7,13 @@ Rails.application.routes.draw do
 
   resources :artwork_modals do
     get 'show_modal', on: :collection
+    get 'show_sidemodal', on: :collection
     get 'close_modal', on: :collection
+    get 'close_sidemodal', on: :collection
   end
 
   resources :neoma_mailers do
+    post 'inquire', on: :collection
     post 'add_to_mailinglist', on: :collection
   end
 

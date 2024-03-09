@@ -12,7 +12,7 @@ module Spina
 
       def show
         @inquiry = Mail.find(params[:id])
-        @artwork = Page.find(@inquiry.artwork_id)
+        @artwork = @inquiry.artwork_id ? Page.find(@inquiry.artwork_id) : nil
 
         add_index_breadcrumb
         add_breadcrumb I18n.t('spina.inquiries.show'), spina.admin_mails_path
