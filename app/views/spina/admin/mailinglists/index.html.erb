@@ -1,0 +1,7 @@
+<%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+  <% header.with_after_breadcrumbs do %>
+    <%= link_to 'Test', class: 'btn btn-default h-8 px-2 ml-3' do %>
+      <%= heroicon('plus', style: :mini, class: 'w-4 h-4') %>
+    <% end %>
+  <% end %>
+<% end %>

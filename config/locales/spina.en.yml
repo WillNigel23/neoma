@@ -2,4 +2,5 @@ en:
   spina:
     website:
       mailer: Mailer
-      mailing_list: Mailing List
+    inbox:
+      email_list: Email List

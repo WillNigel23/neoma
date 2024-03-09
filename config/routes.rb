@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     get 'close_modal', on: :collection
   end
 
+  Spina::Engine.routes.draw do
+    namespace :admin, path: Spina.config.backend_path do
+      resources :mailinglists
+    end
+  end
+
   mount Spina::Engine => '/'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
