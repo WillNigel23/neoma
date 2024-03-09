@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     get 'close_modal', on: :collection
   end
 
+  resources :neoma_mailers do
+    post 'add_to_mailinglist', on: :collection
+  end
+
   Spina::Engine.routes.draw do
     namespace :admin, path: Spina.config.backend_path do
       resources :mailinglists

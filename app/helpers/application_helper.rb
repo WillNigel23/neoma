@@ -117,4 +117,13 @@ module ApplicationHelper
   def navbar_color_scheme
     %w[Artists Exhibits Galleries Events News]
   end
+
+  def classes_for_flash(key)
+    case key
+    when :error
+      'bg-neoma-pink-1 text-neoma-pink-4'
+    else
+      'bg-neoma-blue-1 text-white'
+    end
+  end
 end
