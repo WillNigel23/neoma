@@ -1,0 +1,13 @@
+<%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+  <% header.with_after_breadcrumbs %>
+<% end %>
+
+<div class="p-8">
+  <% if @inquiries.any? %>
+    <div class="shadow-sm border border-gray-200 bg-white rounded-lg">
+      <%= render partial: 'inquiry', collection: @inquiries %>
+    </div>
+  <% else  %>
+    <%= t('spina.no_content_available') %>
+  <% end %>
+</div>

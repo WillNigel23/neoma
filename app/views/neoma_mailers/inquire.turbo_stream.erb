@@ -1,0 +1,21 @@
+<turbo-stream action='replace' target='flash'>
+  <template>
+    <%= turbo_frame_tag 'flash' %>
+
+    <% @flash.each do |key, value| %>
+      <div data-controller="flash" class="flex items-center fixed top-5 right-5 bg-white py-3 px-5 rounded-lg z-[200] shadow-lg">
+        <%= icons_for_flash(key) %>
+        <div class="mx-5"> <%= value %> </div>
+
+        <button type="button" data-action="flash#dismiss">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    <% end %>
+  </template>
+</turbo-stream>
+<turbo-stream action='replace' target='side-modal'>
+  <template>
+    <%= turbo_frame_tag 'side-modal' %>
+  </template>
+</turbo-stream>

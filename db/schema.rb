@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_202_125_619) do
+ActiveRecord::Schema[7.1].define(version: 20_240_309_160_957) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -130,6 +130,23 @@ ActiveRecord::Schema[7.1].define(version: 20_240_202_125_619) do
   create_table 'spina_lines', id: :serial, force: :cascade do |t|
     t.datetime 'created_at', precision: nil
     t.datetime 'updated_at', precision: nil
+  end
+
+  create_table 'spina_mailinglists', force: :cascade do |t|
+    t.string 'email', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
+  create_table 'spina_mails', force: :cascade do |t|
+    t.string 'first_name', null: false
+    t.string 'last_name', null: false
+    t.string 'email', null: false
+    t.string 'phone_number', null: false
+    t.text 'message', null: false
+    t.integer 'artwork_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
   create_table 'spina_media_folders', force: :cascade do |t|

@@ -1,0 +1,26 @@
+<turbo-stream action='replace' target='flash'>
+  <template>
+    <%= turbo_frame_tag 'flash' %>
+
+    <% @flash.each do |key, value| %>
+      <div data-controller="flash" class="flex items-center fixed top-5 right-5 bg-white py-3 px-5 rounded-lg z-[200] shadow-lg">
+        <%= icons_for_flash(key) %>
+        <div class="mx-5"> <%= value %> </div>
+
+        <button type="button" data-action="flash#dismiss">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    <% end %>
+  </template>
+</turbo-stream>
+<turbo-stream action='replace' target='mailinglist'>
+  <template>
+    <%= form_for(Spina::Mailinglist.new, url: main_app.add_to_mailinglist_neoma_mailers_path, html: { id: 'mailinglist', class: 'flex flex-row w-full border-b border-white pb-1 mb-3', data: { turbo: true, turbo_stream: true } }) do |f| %>
+      <%= f.email_field :email, class: 'flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 text-sm font-light', placeholder: t('form.mailing_list.placeholder') %>
+      <%= button_tag(type: 'submit') do %>
+        <i class='fa-solid fa-chevron-right font-light text-white text-sm'></i>
+      <% end %>
+    <% end %>
+  </template>
+</turbo-stream>

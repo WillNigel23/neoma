@@ -1,0 +1,38 @@
+<%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+  <% header.with_after_breadcrumbs %>
+<% end %>
+
+<div class='p-8'>
+  <div class='shadow-sm border border-gray-200 bg-white rounded-lg'>
+    <div class='border-b border-gray-200 flex flex-col px-4 py-3'>
+      <p class='font-normal text-gray-800 pb-5'> <%= @inquiry.created_at.strftime("%d %B %Y") %> </p>
+      <h1 class='font-medium'> <%= "#{@inquiry.first_name} #{@inquiry.last_name}" %> </h1>
+      <p class='font-normal text-gray-800 pb-5'> <%= @inquiry.email %> | <%= @inquiry.phone_number %> </p>
+      <span class='font-light pb-5'>
+        <%= @inquiry.message %>
+      </span>
+
+      <% if @artwork %>
+        <div class="flex items-center">
+          <%= image_tag main_app.url_for(@artwork.content(:image).variant({ resize_to_limit: [150, 150] })) %>
+          <div style='margin-left: 0.5rem;'>
+            <div class='font-medium'> <%= @artwork.content(:header) %></div>
+            <div class="text-sm"><%= @artwork.content(:featured_artist)[0].content(:header) %></div>
+            <div class="text-gray-500 text-sm"><%= @artwork.content(:price) %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="border-t border-gray-200 my-6"></div>
+
+  <div class="grid grid-cols-3 gap-x-6 mt-3">
+    <div class="col-span-1"></div>
+    <div class="col-span-2 flex justify-end">
+      <%= button_to spina.admin_mail_path(@inquiry), method: :delete, class: 'btn btn-default', form: {data: {controller: "confirm", confirm_message: t('spina.users.delete_confirmation_html', user: @inquiry.email)}} do %>
+        <%= heroicon('trash', class: 'w-4 h-4 mr-1 -ml-1') %>
+        <%= t('spina.mailinglists.delete') %>
+      <% end %>
+    </div>
+  </div>
+</div>

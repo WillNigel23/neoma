@@ -117,4 +117,22 @@ module ApplicationHelper
   def navbar_color_scheme
     %w[Artists Exhibits Galleries Events News]
   end
+
+  def classes_for_flash(key)
+    case key
+    when :error
+      'bg-neoma-pink-1 text-neoma-pink-4'
+    else
+      'bg-neoma-blue-1 text-white'
+    end
+  end
+
+  def icons_for_flash(key)
+    case key
+    when :error
+      content_tag(:i, nil, class: 'fa-solid fa-circle-exclamation text-neoma-pink-2 text-xl')
+    else
+      content_tag(:i, nil, class: 'fa-solid fa-circle-check text-neoma-blue-2 text-xl')
+    end
+  end
 end

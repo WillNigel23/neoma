@@ -29,15 +29,15 @@
               <div class="swiper-button-next"></div>
               <% @artworks.each do |artwork| %>
                 <div class='swiper-slide'>
-                  <div class='grid grid-cols-1 md:grid-cols-2 w-full container px-5'>
-                    <span class='w-full flex justify-center md:justify-start items-center'>
-                      <%= image_tag(url_for(artwork.content(:image).spina_image.file), class: 'object-contain max-h-[825.6px]') %>
+                  <div class='flex flex-col md:flex-row-reverse w-full container px-5'>
+                  <span class='w-full flex justify-start md:justify-end items-center'>
+                      <%= image_tag(url_for(artwork.content(:image).spina_image.file), class: 'object-contain max-h-[500px] md:max-h-[800px]') %>
                     </span>
-                    <span class='w-full flex flex-col justify-between items-start md:items-end py-10'>
+                    <span class='w-full flex flex-col justify-between items-start py-10'>
                       <h1 class='uppercase font-bold text-xl md:text-3xl'>
                         <%= artwork.content(:featured_artist)[0].content(:header) %>
                       </h1>
-                      <div class='flex flex-col items-start md:items-end'>
+                      <div class='flex flex-col items-start'>
                         <h2 class='italic text-xl md:text-3xl mb-2'>
                           <%= artwork.content(:header) %>
                         </h2>
@@ -46,12 +46,12 @@
                         <%= artwork.content(:price) %>
                         </p>
 
-                        <div class='text-sm flex flex-col items-start md:items-end'>
+                        <div class='text-sm flex flex-col items-start'>
                           <%= artwork.content.html(:body) %>
                         </div>
                       </div>
-                      <div class='flex flex-row mt-5'>
-                        <%= fe_banner_link(t('buttons.inquire_now'), '') %>
+                      <div class='flex flex-row mt-5 reveal' data-scroll-reveal-target='item'>
+                        <%= link_to t('buttons.inquire_now'), main_app.show_sidemodal_artwork_modals_path(artwork: artwork.id), class: 'text-center text-black transition-color duration-500 bg-neoma-pink-1 hover:bg-[#f7b1af] px-3 py-2 min-w-[120px]', data: { turbo: true, turbo_stream: true } %>
                       </div>
                     </span>
                   </div>

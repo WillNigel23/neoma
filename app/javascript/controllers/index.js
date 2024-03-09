@@ -28,3 +28,5 @@ application.register('slimselect', SlimselectController)
 import ScrollToController from './scroll_to_controller'
 application.register('scroll-to', ScrollToController)
 
+import FlashController from './flash_controller'
+application.register('flash', FlashController)

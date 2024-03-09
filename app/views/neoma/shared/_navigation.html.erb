@@ -12,9 +12,7 @@
     </span>
 
     <span class='flex justify-end'>
-      <%= button_to t('buttons.inquire_now'), '',
-        method: :post,
-        class: 'bg-neoma-pink-1 text-black text-nowrap font-montserrat text-xs text-right w-min px-4 py-1 transition-all duration-500 hover:bg-[#f7b1af]'%>
+      <%= link_to t('buttons.inquire_now'), main_app.show_sidemodal_artwork_modals_path, class: 'bg-neoma-pink-1 text-black text-nowrap font-montserrat text-xs text-right w-min px-4 py-1 transition-all duration-500 hover:bg-[#f7b1af]', data: { turbo: true, turbo_stream: true } %>
     </span>
   </div>
   <div class='absolute top-0 left-0 w-full h-screen max-w-[100%] md:max-w-[40%] lg:max-w-[20%] bg-neoma-blue-4 flex flex-col p-10 duration-500 transform -translate-x-full' data-navbar-target='menu'>

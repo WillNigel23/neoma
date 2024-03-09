@@ -1,5 +1,17 @@
 en:
   spina:
     website:
-      mailer: Mailer
-      mailing_list: Mailing List
+      inbox: Inbox
+    inbox:
+      email_list: Email List
+      inquiries: Inquiries
+    no_content_available: No available data
+    button:
+      save: Save
+    mailinglists:
+      new: New Email
+      edit: Edit Email
+      deleted: Email deleted
+      cannot_be_created: Failed to add email
+    inquiries:
+      show: View

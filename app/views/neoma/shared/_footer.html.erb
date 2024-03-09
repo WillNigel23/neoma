@@ -29,8 +29,8 @@
             <i class='fa-brands fa-instagram text-white text-xl'></i>
           <% end %>
         </span>
-        <%= form_tag('/', class: 'flex flex-row w-full border-b border-white pb-1 mb-3') do %>
-          <%= email_field_tag :email, '', class: 'flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 text-sm font-light', placeholder: t('form.mailing_list.placeholder') %>
+        <%= form_for(Spina::Mailinglist.new, url: main_app.add_to_mailinglist_neoma_mailers_path, html: { id: 'mailinglist', class: 'flex flex-row w-full border-b border-white pb-1 mb-3', data: { turbo: true, turbo_stream: true } }) do |f| %>
+          <%= f.email_field :email, required: true, class: 'flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 text-sm font-light', placeholder: t('form.mailing_list.placeholder') %>
           <%= button_tag(type: 'submit') do %>
             <i class='fa-solid fa-chevron-right font-light text-white text-sm'></i>
           <% end %>

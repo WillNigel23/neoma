@@ -1,0 +1,17 @@
+<%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+  <% header.with_after_breadcrumbs do %>
+    <%= link_to spina.new_admin_mailinglist_path, class: 'btn btn-default h-8 px-2 ml-3' do %>
+      <%= heroicon('plus', style: :mini, class: 'w-4 h-4') %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="p-8">
+  <% if @mails.any? %>
+    <div class="shadow-sm border border-gray-200 bg-white rounded-lg">
+      <%= render partial: 'mail', collection: @mails %>
+    </div>
+  <% else  %>
+    <%= t('spina.no_content_available') %>
+  <% end %>
+</div>

@@ -39,6 +39,7 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+!/app/assets/builds/spina/tailwind.css
 
 # Ignore node_modules
 **/node_modules/**
