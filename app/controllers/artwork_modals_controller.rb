@@ -12,6 +12,8 @@ class ArtworkModalsController < ApplicationController
     end
   end
 
+  def show_inquire_modal; end
+
   def close_modal
     respond_to(&:turbo_stream)
   end

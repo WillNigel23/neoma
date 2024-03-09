@@ -1,8 +1,8 @@
 <nav class='fixed top-0 left-0 max-w-[50px] h-screen hidden md:flex justify-center items-center z-40'>
   <ul class='flex flex-row rotate-90 transition-all duration-500 -translate-x-full' data-controller='scroll-to'>
-    <% menu_items.each do |id, value| %>
-      <li class='text-nowrap mx-2 cursor-pointer pb-2' data-scroll-to-target='item' data-action='click->scroll-to#click' data-scroll-id='<%= id %>'> 
-        <%= value %> 
+    <% menu_items&.each do |id, value| %>
+      <li class='text-nowrap mx-2 cursor-pointer pb-2' data-scroll-to-target='item' data-action='click->scroll-to#click' data-scroll-id='<%= id %>'>
+        <%= value %>
       </li>
     <% end %>
   </ul>

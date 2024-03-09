@@ -2,13 +2,13 @@
 
 <!-- Exhibits start here -->
 <section class='w-full bg-white z-20'>
-  <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white' data-controller='scroll-reveal'>
+  <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white min-h-screen' data-controller='scroll-reveal'>
     <h1 class='font-bold text-black text-4xl md:text-7xl lg:text-9xl mb-10 uppercase reveal ' data-scroll-reveal-target='item'> <%= t('title.exhibitions') %> </h1>
 
     <div id='#ongoing' class='w-full mb-10'>
       <h2 class='font-bold reveal' data-scroll-reveal-target='item'> <%= t('title.ongoing') %> </h2>
       <hr class='w-full my-5'>
-      <div class='grid grid-cols-1 md:grid-cols-2'>
+      <div class='grid grid-cols-1 md:grid-cols-2 gap-5'>
         <% ongoing_exhibits.each do |exhibit| %>
           <%= exhibit.content.image_tag(:banner, {}, { class: 'reveal', data: { scroll_reveal_target: 'item' } }) %>
 
@@ -31,7 +31,7 @@
     <div id='#past' class='w-full mb-10'>
       <h2 class='font-bold reveal' data-scroll-reveal-target='item'> <%= t('title.past') %> </h2>
       <hr class='w-full my-5'>
-      <div class='grid grid-cols-1 md:grid-cols-2'>
+      <div class='grid grid-cols-1 md:grid-cols-2 gap-5'>
         <% past_exhibits.each do |exhibit| %>
           <%= exhibit.content.image_tag(:banner, {}, { class: 'reveal', data: { scroll_reveal_target: 'item' } }) %>
 

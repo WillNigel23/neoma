@@ -1,1 +1,64 @@
-About Us
+<%= render partial: 'neoma/shared/scroll_nav', locals: { menu_items: scrollto_section_items(content(:section)) + [['#core_team', 'Core Team']] } %>
+
+<section class='w-full'>
+  <!-- Banner -->
+  <%= fe_banner do %>
+    <%= fe_banner_img(content(:banner).spina_image) if content(:banner) %>
+    <%= fe_banner_inner do %>
+      <%= fe_banner_header(t('title.about_us')) %>
+    <% end %>
+  <% end %>
+
+  <!-- Padding -->
+  <section class='w-full min-h-screen'>
+  </section>
+
+  <!-- Content -->
+  <section class='relative w-full bg-white pb-10 z-20 min-h-screen'>
+    <% repeater(:section) do |block| %>
+      <% if block.content(:carousel).present? %>
+        <%= fe_carousel do %>
+          <%= fe_carousel_wrapper do %>
+            <% block.content(:carousel).each do |img| %>
+              <%= fe_carousel_item do %>
+                <%= fe_banner do %>
+                  <%= fe_banner_img(img.spina_image, { opacity: '0.8' }) %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if block.content(:body) %>
+        <div id="#<%= block.content(:header).downcase.gsub(' ', '_') %>" class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
+          <h2 class='font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= block.content(:header) %></h2>
+          <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+          <div class='markdown reveal' data-scroll-reveal-target='item' data-delay='750ms'>
+            <%= block.content.html(:body)%>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if content(:featured_artists)[1].any? %>
+      <div id='#core_team' class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
+        <h2 class='font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.core_team') %> </h2>
+        <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+        <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal' data-scroll-reveal-target='item' data-delay='750ms'>
+          <% content(:featured_artists)[1].each do |artist| %>
+            <%= fe_featured_item_link(artist.materialized_path, { class: 'flex flex-col mx-auto' }) do %>
+              <%= fe_featured_item_content_wrapper() do %>
+                <div class='transition-all duration-500 hover:scale-110 mb-5'>
+                  <%= artist.content.image_tag(:portrait, resize_to_fill: [450, 500]) %>
+                </div>
+                <%= fe_featured_item_title(artist.content(:header)) %>
+                <%= fe_featured_item_subtitle(artist.content(:role)) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </section>
+</section>

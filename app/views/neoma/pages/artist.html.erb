@@ -1,3 +1,5 @@
+<%= render partial: 'neoma/shared/scroll_nav', locals: { menu_items: scrollto_section_items(content(:section)) } %>
+
 <section class='w-full'>
   <!-- Banner -->
   <%= fe_banner do %>
@@ -31,7 +33,7 @@
       <% end %>
 
       <% if block.content(:body) %>
-        <div class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
+        <div id="#<%= block.content(:header).downcase.gsub(' ', '_') %>" class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
           <h2 class='font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= block.content(:header) %></h2>
           <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
           <div class='markdown reveal' data-scroll-reveal-target='item' data-delay='750ms'>
@@ -47,13 +49,15 @@
         <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
         <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal' data-scroll-reveal-target='item' data-delay='750ms'>
           <% content(:featured_artworks).each do |artwork| %>
-            <%= link_to artwork.materialized_path, class: 'flex flex-col mx-auto' do %>
-              <div class='transition-all duration-500 hover:scale-110'>
-                <%= artwork.content.image_tag(:image, resize_to_fill: [450, 500]) %>
-              </div>
-              <h3 class='font-bold my-3'><%= artwork.content(:header) %></h3>
-              <p class='font-light text-sm'> <%= artwork.content(:subheader) %></p >
-              <p class='font-light text-sm text-gray-500'> <%= artwork.content(:price) %></p >
+            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: content(:featured_artworks).pluck(:id), active: artwork.id), { class: 'flex flex-col mx-auto', data: { turbo: true, turbo_stream: true } }) do %>
+              <%= fe_featured_item_content_wrapper() do %>
+                <div class='transition-all duration-500 hover:scale-110 mb-5'>
+                  <%= artwork.content.image_tag(:image, resize_to_fill: [450, 500]) %>
+                </div>
+                <%= fe_featured_item_title(artwork.content(:header)) %>
+                <%= fe_featured_item_subtitle(artwork.content(:featured_artist)[0]&.content(:header)) %>
+                <%= fe_featured_item_text(artwork.content(:price)) %>
+              <% end %>
             <% end %>
           <% end %>
         </div>
