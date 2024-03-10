@@ -41,7 +41,7 @@
       <% end %>
     <% end %>
 
-    <% if content(:featured_artists)[1]&.live.any? %>
+    <% if content(:featured_artists) && content(:featured_artists)[1]&.live.any? %>
       <div id='#core_team' class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
         <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.core_team') %> </h2>
         <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
