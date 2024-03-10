@@ -11,9 +11,8 @@
     <title><%= Spina.config.backend_title %></title>
 
     <!-- Stylesheets -->
-    <%#= stylesheet_link_tag "spina/tailwind", "spina/fonts", "spina/animate", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "spina/fonts", "spina/animate", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "admin", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "spina/admin", "data-turbo-track": "reload" %>
 
     <!-- Spina's importmap -->
     <%= spina_importmap_tags %>
@@ -24,7 +23,6 @@
   </head>
 
   <body>
-    <%= render "spina/admin/shared/version" %>
     <%= content_for?(:body) ? yield(:body) : yield %>
   </body>
 </html>
