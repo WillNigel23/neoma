@@ -30,7 +30,10 @@ jobs:
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
-          bundler-cache: false
+          bundler-cache: true
+      # Update Error Highlight v 0.6.0
+      - name: Update Error Highlight
+        run: gem install error_highlight -v 0.6.0
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:schema:load
