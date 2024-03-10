@@ -81,5 +81,6 @@ test:
 production:
   <<: *default
   database: neoma_production
-  username: neoma
-  password: <%= ENV["NEOMA_DATABASE_PASSWORD"] %>
+  host: <%= ENV["DATABASE_URL"] %>
+  username: <%= ENV["DATABASE_USER"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
