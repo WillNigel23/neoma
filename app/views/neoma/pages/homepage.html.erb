@@ -21,7 +21,7 @@
 
 <section class='w-full bg-white z-20 py-10' data-controller='scroll-reveal'>
   <div class='flex flex-col w-full container py-5 justify-center items-start mx-auto px-5 my-5'>
-    <% if content(:featured_exhibits)[0]&.live? %>
+    <% if content(:featured_exhibits) && content(:featured_exhibits)[0]&.live? %>
       <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.exhibits') %> </h2>
       <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
       <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
@@ -39,7 +39,7 @@
           <% end %>
         </div>
         <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full reveal' data-scroll-reveal-target='item'>
-          <% if content(:featured_exhibits)[1].live.any? %>
+          <% if content(:featured_exhibits)[1].live&.any? %>
             <% content(:featured_exhibits)[1]&.live.in_groups_of((content(:featured_exhibits)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>
                 <% group.compact.each do |exhibit| %>
@@ -60,7 +60,7 @@
       </div>
     <% end %>
 
-    <% if content(:featured_galleries)[0]&.live? %>
+    <% if content(:featured_galleries) && content(:featured_galleries)[0]&.live? %>
       <h2 class='font-restora font-bold reveal mt-10' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.galleries') %> </h2>
       <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
       <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
@@ -76,7 +76,7 @@
           <% end %>
         </div>
         <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full reveal' data-scroll-reveal-target='item'>
-          <% if content(:featured_galleries)[1]&.live.any? %>
+          <% if content(:featured_galleries)[1]&.live&.any? %>
             <% content(:featured_galleries)[1]&.live.in_groups_of((content(:featured_galleries)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>
                 <% group.compact.each do |gallery| %>
@@ -95,7 +95,7 @@
       </div>
     <% end %>
 
-    <% if content(:featured_artworks)&.live.any? %>
+    <% if content(:featured_artworks) && content(:featured_artworks)&.live&.any? %>
       <h2 class='font-restora font-bold reveal mt-10' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.artworks') %> </h2>
       <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
       <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal' data-scroll-reveal-target='item' data-delay='750ms'>
@@ -114,7 +114,7 @@
       </div>
     <% end %>
 
-    <% if content(:featured_artists)[1]&.live.any? %>
+    <% if content(:featured_artists) && content(:featured_artists)[1]&.live&.any? %>
       <h2 class='font-restora font-bold reveal mt-10' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.artists') %> </h2>
       <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
       <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal' data-scroll-reveal-target='item' data-delay='750ms'>
