@@ -27,22 +27,22 @@ module FeaturedItemHelper
   end
 
   def fe_featured_item_pretitle(content,
-                                opts = { class: 'text-gray-600 text-light text-sm' })
+                                opts = { class: 'font-montserrat text-gray-600 text-light text-sm' })
     content_tag(:p, content, **opts)
   end
 
   def fe_featured_item_title(content,
-                             opts = { class: 'font-bold text-xl mb-2' })
+                             opts = { class: 'font-restora font-bold text-xl mb-2' })
     content_tag(:h3, content, **opts)
   end
 
   def fe_featured_item_subtitle(content,
-                                opts = { class: 'font-light text-sm' })
+                                opts = { class: 'font-montserrat font-light text-sm' })
     content_tag(:p, content, **opts)
   end
 
   def fe_featured_item_text(content,
-                            opts = { class: 'font-light text-sm text-gray-800' })
+                            opts = { class: 'font-montserrat font-light text-sm text-gray-800' })
     content_tag(:p, content, **opts)
   end
 end

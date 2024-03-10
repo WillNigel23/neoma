@@ -12,37 +12,37 @@
           <% end %>
         </div>
         <%= form_for(@inquiry, url: main_app.inquire_neoma_mailers_path, html: { class: 'mb-20 py-10 md:pt-40', data: { controller: 'scroll-reveal', turbo: true, turbo_stream: true } }) do |f| %>
-          <h1 class='text-xl md:text-3xl mb-10'><%= t('form.inquiries.title') %></h1>
+          <h1 class='font-restora text-xl md:text-3xl mb-10'><%= t('form.inquiries.title') %></h1>
 
-          <%= f.text_field :first_name, required: true, class: 'flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 font-light w-full', placeholder: t('form.inquiries.placeholder.first_name') %>
+          <%= f.text_field :first_name, required: true, class: 'font-montserrat flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 font-light w-full', placeholder: t('form.inquiries.placeholder.first_name') %>
           <hr class='w-full my-5 pr-0 md:pr-10 opacity-10'>
 
-          <%= f.text_field :last_name, required: true, class: 'flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 font-light w-full', placeholder: t('form.inquiries.placeholder.last_name') %>
+          <%= f.text_field :last_name, required: true, class: 'font-montserrat flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 font-light w-full', placeholder: t('form.inquiries.placeholder.last_name') %>
           <hr class='w-full my-5 pr-0 md:pr-10 opacity-10'>
 
-          <%= f.email_field :email, required: true, class: 'flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 font-light w-full', placeholder: t('form.inquiries.placeholder.email') %>
+          <%= f.email_field :email, required: true, class: 'font-montserrat flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 font-light w-full', placeholder: t('form.inquiries.placeholder.email') %>
           <hr class='w-full my-5 pr-0 md:pr-10 opacity-10'>
 
-          <%= f.telephone_field :phone_number, required: true, class: 'flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 font-light w-full', placeholder: t('form.inquiries.placeholder.phone_number') %>
+          <%= f.telephone_field :phone_number, required: true, class: 'font-montserrat flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 font-light w-full', placeholder: t('form.inquiries.placeholder.phone_number') %>
           <hr class='w-full my-5 pr-0 md:pr-10 opacity-10'>
 
-          <%= f.text_area :message, required: true, class: 'flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 font-light w-full', placeholder: t('form.inquiries.placeholder.message'), rows: 3 %>
+          <%= f.text_area :message, required: true, class: 'font-montserrat flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 font-light w-full', placeholder: t('form.inquiries.placeholder.message'), rows: 3 %>
           <hr class='w-full mb-5 pr-0 md:pr-10 opacity-10'>
 
           <% if @artwork %>
             <%= f.hidden_field :artwork_id, value: @artwork.id %>
-            <div class="flex items-center reveal" data-scroll-reveal-target='item'>
+            <div class='flex items-center reveal' data-scroll-reveal-target='item'>
               <%= image_tag main_app.url_for(@artwork.content(:image).variant({ resize_to_limit: [150, 150] })) %>
               <div style='margin-left: 1.5rem;'>
-                <div class='font-medium'> <%= @artwork.content(:header) %></div>
-                <div class="text-sm"><%= @artwork.content(:featured_artist)[0].content(:header) %></div>
-                <div class="text-gray-500 text-sm"><%= @artwork.content(:price) %></div>
+                <div class='font-restora font-medium'> <%= @artwork.content(:header) %></div>
+                <div class='font-montserrat text-sm'><%= @artwork.content(:featured_artist)[0].content(:header) %></div>
+                <div class='font-montserrat text-gray-500 text-sm'><%= @artwork.content(:price) %></div>
               </div>
             </div>
             <hr class='w-full mt-5 mb-10 pr-0 md:pr-10 opacity-10'>
           <% end %>
 
-          <%= button_tag(type: 'submit', class: 'text-center text-black transition-color duration-500 bg-neoma-pink-1 hover:bg-[#f7b1af] px-3 py-2 min-w-[120px]') do %>
+          <%= button_tag(type: 'submit', class: 'font-montserrat text-center text-black transition-color duration-500 bg-neoma-pink-1 hover:bg-[#f7b1af] px-3 py-2 min-w-[120px]') do %>
             <%= t('form.inquiries.submit') %>
           <% end %>
         <% end %>

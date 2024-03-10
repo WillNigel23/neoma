@@ -12,11 +12,11 @@ module ApplicationHelper
   end
 
   def exhibits
-    @exhibits ||= Spina::Resource.find_by(name: 'exhibits').pages
+    @exhibits ||= Spina::Resource.find_by(name: 'exhibits').pages.live
   end
 
   def artworks
-    @artworks ||= Spina::Resource.find_by(name: 'artworks').pages
+    @artworks ||= Spina::Resource.find_by(name: 'artworks').pages.live
   end
 
   def ongoing_exhibits
@@ -48,19 +48,19 @@ module ApplicationHelper
   end
 
   def artists
-    @artists ||= Spina::Resource.find_by(name: 'artists').pages
+    @artists ||= Spina::Resource.find_by(name: 'artists').pages.live
   end
 
   def galleries
-    @galleries ||= Spina::Resource.find_by(name: 'galleries').pages
+    @galleries ||= Spina::Resource.find_by(name: 'galleries').pages.live
   end
 
   def events
-    @events ||= Spina::Resource.find_by(name: 'events').pages
+    @events ||= Spina::Resource.find_by(name: 'events').pages.live
   end
 
   def news
-    @news ||= Spina::Resource.find_by(name: 'articles').pages.to_a.sort_by do |article|
+    @news ||= Spina::Resource.find_by(name: 'articles').pages.live.to_a.sort_by do |article|
       Date.strptime(article.content(:date), '%d, %B %Y')
     end
   end

@@ -32,21 +32,21 @@
 
       <% if block.content(:body) %>
         <div id="#<%= block.content(:header).downcase.gsub(' ', '_') %>" class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
-          <h2 class='font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= block.content(:header) %></h2>
+          <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= block.content(:header) %></h2>
           <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
-          <div class='markdown reveal' data-scroll-reveal-target='item' data-delay='750ms'>
+          <div class='markdown font-montserrat reveal' data-scroll-reveal-target='item' data-delay='750ms'>
             <%= block.content.html(:body)%>
           </div>
         </div>
       <% end %>
     <% end %>
 
-    <% if content(:featured_artists)[1].any? %>
+    <% if content(:featured_artists)[1]&.live.any? %>
       <div id='#core_team' class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
-        <h2 class='font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.core_team') %> </h2>
+        <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.core_team') %> </h2>
         <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
         <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal' data-scroll-reveal-target='item' data-delay='750ms'>
-          <% content(:featured_artists)[1].each do |artist| %>
+          <% content(:featured_artists)[1]&.live.each do |artist| %>
             <%= fe_featured_item_link(artist.materialized_path, { class: 'flex flex-col mx-auto' }) do %>
               <%= fe_featured_item_content_wrapper() do %>
                 <div class='transition-all duration-500 hover:scale-110 mb-5'>
