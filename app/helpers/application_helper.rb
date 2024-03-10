@@ -6,9 +6,11 @@ module ApplicationHelper
   end
 
   def scrollto_section_items(content_sections)
-    content_sections&.map do |section|
+    items = content_sections&.map do |section|
       ["##{section.content(:header).downcase.gsub(' ', '_')}", section.content(:header)] if section.content(:header)
     end
+    items = [] if items.nil?
+    items
   end
 
   def exhibits
