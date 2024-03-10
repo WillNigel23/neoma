@@ -1,7 +1,7 @@
 <!-- Galleries start here -->
 <section class='w-full bg-white z-20'>
   <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white min-h-screen' data-controller='scroll-reveal'>
-    <h1 class='font-bold text-black text-4xl md:text-7xl lg:text-9xl mb-10 uppercase reveal' data-scroll-reveal-target='item'> <%= t('title.galleries') %> </h1>
+    <h1 class='font-restora font-bold text-black text-4xl md:text-7xl lg:text-9xl mb-10 uppercase reveal' data-scroll-reveal-target='item'> <%= t('title.galleries') %> </h1>
     <hr class='w-full my-5'>
 
     <div class='w-full mb-10'>
@@ -10,16 +10,16 @@
           <%= gallery.content.image_tag(:banner, {}, { class: 'reveal', data: { scroll_reveal_target: 'item' } }) %>
 
           <span class='flex flex-col w-full my-auto py-5 px-0 md:px-5'>
-            <p class='text-gray-600 text-light text-sm reveal' data-scroll-reveal-target='item'>
+            <p class='font-montserrat text-gray-600 text-light text-sm reveal' data-scroll-reveal-target='item'>
               <%= [gallery.content(:start_date), gallery.content(:end_date)].compact.join(' - ') %>
             </p>
-            <h4 class='font-bold text-xl md:text-3xl my-5 reveal' data-scroll-reveal-target='item'>
+            <h4 class='font-restora font-bold text-xl md:text-3xl my-5 reveal' data-scroll-reveal-target='item'>
               <%= gallery.content(:header) %>
             </h4>
-            <p class='text-light reveal' data-scroll-reveal-target='item'>
+            <p class='font-montserrat text-light reveal' data-scroll-reveal-target='item'>
               <%= gallery.content(:subheader) %>
             </p>
-            <%= simple_format gallery.content(:summary), { class: 'text-light text-xs my-5 reveal', data: { scroll_reveal_target: 'item' } } %>
+            <%= simple_format gallery.content(:summary), { class: 'font-montserrat text-light text-xs my-5 reveal', data: { scroll_reveal_target: 'item' } } %>
             <%= fe_banner_link('Explore Now', gallery.materialized_path) %>
           </span>
         <% end %>

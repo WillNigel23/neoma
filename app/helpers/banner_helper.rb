@@ -33,7 +33,7 @@ module BannerHelper
   def fe_banner_preheader(
     content,
     opts = {
-      class: 'text-xs text-white mb-5 reveal',
+      class: 'font-montserrat text-xs text-white mb-5 reveal',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }
   )
@@ -43,7 +43,7 @@ module BannerHelper
   def fe_banner_header(
     content,
     opts = {
-      class: 'font-bold text-white text-3xl sm:text-5xl md:text-7xl mb-5 uppercase reveal',
+      class: 'font-restora font-bold text-white text-3xl sm:text-5xl md:text-7xl mb-5 uppercase reveal',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }
   )
@@ -53,7 +53,7 @@ module BannerHelper
   def fe_banner_subheader(
     content,
     opts = {
-      class: 'font-light text-white text-normal md:text-xl mb-5 reveal',
+      class: 'font-montserrat font-light text-white text-normal md:text-xl mb-5 reveal',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }
   )
@@ -64,7 +64,7 @@ module BannerHelper
     content,
     link_url,
     opts = {
-      class: 'text-center text-black transition-color duration-500 bg-neoma-pink-1 hover:bg-[#f7b1af] px-3 py-2 min-w-[120px]',
+      class: 'font-montserrat text-center text-black transition-color duration-500 bg-neoma-pink-1 hover:bg-[#f7b1af] px-3 py-2 min-w-[120px]',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }
   )

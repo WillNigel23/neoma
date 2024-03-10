@@ -1,4 +1,4 @@
-<%= render partial: 'neoma/shared/scroll_nav', locals: { menu_items: scrollto_section_items(content(:section)) } %>
+<%= render partial: 'neoma/shared/scroll_nav', locals: { menu_items: scrollto_section_items(content(:section)) + [['#selected_works', t('title.selected_works')]] } %>
 
 <section class='w-full'>
   <!-- Banner -->
@@ -38,22 +38,22 @@
 
       <% if block.content(:body) %>
         <div id="#<%= block.content(:header).downcase.gsub(' ', '_') %>" class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
-          <h2 class='font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= block.content(:header) %></h2>
+          <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= block.content(:header) %></h2>
           <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
-          <div class='markdown reveal' data-scroll-reveal-target='item' data-delay='750ms'>
+          <div class='markdown font-montserrat reveal' data-scroll-reveal-target='item' data-delay='750ms'>
             <%= block.content.html(:body)%>
           </div>
         </div>
       <% end %>
     <% end %>
 
-    <% if content(:featured_artworks) %>
-      <div class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
-        <h2 class='font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'>Selected Works</h2>
+    <% if content(:featured_artworks)&.live.any? %>
+      <div id='#selected_works' class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
+        <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= t('title.selected_works') %></h2>
         <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
         <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal' data-scroll-reveal-target='item' data-delay='750ms'>
-          <% content(:featured_artworks).each do |artwork| %>
-            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: content(:featured_artworks).pluck(:id), active: artwork.id), { class: 'flex flex-col mx-auto', data: { turbo: true, turbo_stream: true } }) do %>
+          <% content(:featured_artworks)&.live.each do |artwork| %>
+            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: content(:featured_artworks)&.live.pluck(:id), active: artwork.id), { class: 'flex flex-col mx-auto', data: { turbo: true, turbo_stream: true } }) do %>
               <%= fe_featured_item_content_wrapper() do %>
                 <div class='transition-all duration-500 hover:scale-110 mb-5'>
                   <%= artwork.content.image_tag(:image, resize_to_fill: [450, 500]) %>
