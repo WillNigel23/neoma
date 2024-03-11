@@ -9,3 +9,14 @@
     opacity: 1;
     transform: none;
 }
+
+.reveal.modal-backdrop {
+    opacity: 0;
+    transition: 1s cubic-bezier(0.5, 0, 0, 1);
+    transition-property: opacity;
+}
+
+.reveal.modal-backdrop.in {
+    opacity: 0.3;
+    transform: none;
+}

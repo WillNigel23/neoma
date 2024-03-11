@@ -1,12 +1,12 @@
 <turbo-stream action='replace' target='modal'>
   <template>
-    <%= turbo_frame_tag 'modal' do %>
-      <div class='fixed top-5 right-5 z-[101]'>
-        <%= link_to main_app.close_modal_artwork_modals_path, data: { turbo: true, turbo_stream: true } do %>
+    <%= turbo_frame_tag 'modal', data: { controller: 'scroll-reveal modal' } do %>
+      <div class='fixed top-5 right-5 z-[101]' data-delay='100ms' data-scroll-reveal-target='item'>
+        <%= link_to main_app.close_modal_artwork_modals_path, data: { action: 'click->modal#close', turbo: true, turbo_stream: true } do %>
           <i class='text-xl text-black cursor-hover fa-solid fa-xmark'></i>
         <% end %>
       </div>
-      <div class='fixed top-0 left-0 z-[100] bg-white w-screen h-screen' data-controller='scroll-reveal'>
+      <div class='fixed top-0 left-0 z-[100] bg-white w-screen h-screen reveal' data-modal-target='body' data-delay='100ms' data-scroll-reveal-target='item'>
         <div class='flex flex-col justify-center items-center h-screen w-screen'>
           <div class='swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden container reveal'
             data-controller='carousel'

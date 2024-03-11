@@ -18,7 +18,7 @@
         <%= fe_featured_item_link(artist.materialized_path, { class: 'flex flex-col' }) do %>
           <%= fe_featured_item_content_wrapper() do %>
             <div class='transition-all duration-500 hover:scale-110 mb-5'>
-              <%= artist.content.image_tag(:banner, resize_to_fill: [500, 500]) %>
+              <%= artist.content.image_tag(:portrait, resize_to_fill: [500, 500]) %>
             </div>
             <%= fe_featured_item_title(artist.content(:header)) %>
             <%= fe_featured_item_subtitle(artist.content(:subheader)) %>

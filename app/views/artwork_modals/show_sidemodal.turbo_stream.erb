@@ -1,13 +1,13 @@
 <turbo-stream action='replace' target='side-modal'>
   <template>
-    <%= turbo_frame_tag 'side-modal' do %>
-      <div class='fixed top-0 left-0 w-screen h-screen bg-black opacity-30 z-[149]'></div>
-      <div class='fixed top-0 left-0 z-[150] bg-neoma-blue-4 text-white w-full p-8 overflow-y-scroll h-full min-h-full lg:w-1/2 lg:min-h-0 reveal' data-controller='scroll-reveal' data-scroll-reveal-target='item'>
+    <%= turbo_frame_tag 'side-modal', data: { controller: 'scroll-reveal modal' }  do %>
+      <div class='fixed top-0 left-0 w-screen h-screen bg-black opacity-30 z-[149] modal-backdrop reveal' data-scroll-reveal-target='item' data-modal-target='body' ></div>
+      <div class='fixed top-0 left-0 z-[150] bg-neoma-blue-4 text-white w-full p-8 overflow-y-scroll h-full min-h-full lg:w-1/2 lg:min-h-0 reveal' data-scroll-reveal-target='item' data-modal-target='body' >
         <div class='flex flex-row top-5 w-full'>
           <%= link_to '/', class: 'w-[200px] justify-center items-center' do %>
             <%= image_tag asset_path('text_horizontal_white.svg') %>
           <% end %>
-          <%= link_to main_app.close_sidemodal_artwork_modals_path, class: 'ml-auto', data: { turbo: true, turbo_stream: true } do %>
+          <%= link_to main_app.close_sidemodal_artwork_modals_path, class: 'ml-auto', data: { action: 'click->modal#close', turbo: true, turbo_stream: true } do %>
             <i class='text-xl text-white cursor-hover fa-solid fa-xmark'></i>
           <% end %>
         </div>

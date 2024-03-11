@@ -18,6 +18,7 @@ module FeaturedItemHelper
 
   def fe_featured_item_image(spina_image,
                              opts = { class: 'transition-all duration-500 hover:scale-110 mb-5' })
+    return if spina_image.nil?
     image_url = main_app.url_for(spina_image.file)
 
     image_tag(image_url,

@@ -83,7 +83,7 @@ Spina::Theme.register do |theme|
       parts: %w[header subheader summary start_date end_date banner section featured_artworks] },
     { name: 'event', title: 'Event', parts: %w[header subheader summary start_date end_date banner section] },
     { name: 'artist', title: 'Artist',
-      parts: %w[header subheader role banner portrait details section featured_artworks] }
+      parts: %w[header subheader role banner portrait section featured_artworks] }
   ]
 
   # Custom pages

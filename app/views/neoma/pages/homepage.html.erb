@@ -19,6 +19,7 @@
   <% end %>
 </section>
 
+<%= fe_banner_img(nil) %>
 <section class='w-full bg-white z-20 py-10' data-controller='scroll-reveal'>
   <div class='flex flex-col w-full container py-5 justify-center items-start mx-auto px-5 my-5'>
     <% if content(:featured_exhibits) && content(:featured_exhibits)[0]&.live? %>
