@@ -70,6 +70,6 @@ module BannerHelper
   )
     content_tag(:span,
                 link_to(content, link_url, { class: opts[:class] }),
-                { class: 'reveal', class: opts[:data] })
+                { class: 'reveal', data: opts[:data] })
   end
 end
