@@ -62,4 +62,22 @@
     color: #b57782;
 }
 
+/* WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: white;
+}
 
+::-webkit-scrollbar-thumb {
+  background-color: #456189;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #456189;
+}
+
+.hidden-scroll::-webkit-scrollbar {
+  width: 0; /* Hide the scrollbar track */
+}

@@ -11,6 +11,8 @@ module BannerHelper
   end
 
   def fe_banner_img(spina_image, opts = {})
+    return if spina_image.nil?
+
     opacity = opts[:opacity] || '.2'
 
     image_url = main_app.url_for(spina_image.file)
