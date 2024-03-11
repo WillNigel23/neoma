@@ -81,3 +81,5 @@ gem 'hotwire-livereload', '~> 1.3', group: :development
 gem 'devise', '~> 4.9'
 
 gem 'jsbundling-rails'
+
+gem "cloudinary", "~> 1.29"
