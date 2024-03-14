@@ -63,6 +63,10 @@ Neoma Galleria CMS is CMS built with Ruby on Rails for Neoma Galleria.
     - [x] Remove side scroll_to navigation to section titles
     - [x] Add fade out animations to modals
     - [x] Show portrait on artists page instead of banner
+- [x] Revisions & Performance Improvements - March 15
+    - [x] Prohibit image variant transformation (to prevent CDN overloading)
+    - [x] Image Lazyloading
+    - [x] Click outside close menu
 - [ ] Low prio
     - [ ] Move slim-select controller to admin
     - [ ] Clean-up parts in neoma spina template

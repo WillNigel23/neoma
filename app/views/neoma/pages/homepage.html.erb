@@ -103,9 +103,7 @@
         <% content(:featured_artworks).live.each do |artwork| %>
           <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: content(:featured_artworks)&.live.pluck(:id), active: artwork.id), { class: 'flex flex-col mx-auto', data: { turbo: true, turbo_stream: true } }) do %>
             <%= fe_featured_item_content_wrapper() do %>
-              <div class='transition-all duration-500 hover:scale-110 mb-5'>
-                <%= artwork.content.image_tag(:image, resize_to_fill: [450, 500]) %>
-              </div>
+              <%= fe_featured_item_image(artwork.content(:image).spina_image) %>
               <%= fe_featured_item_title(artwork.content(:header)) %>
               <%= fe_featured_item_subtitle(artwork.content(:featured_artist)[0]&.content(:header)) %>
               <%= fe_featured_item_text(artwork.content(:price)) %>
@@ -122,9 +120,7 @@
         <% content(:featured_artists)[1]&.live.each do |artist| %>
           <%= fe_featured_item_link(artist.materialized_path, { class: 'flex flex-col mx-auto' }) do %>
             <%= fe_featured_item_content_wrapper() do %>
-              <div class='transition-all duration-500 hover:scale-110 mb-5'>
-                <%= artist.content.image_tag(:portrait, resize_to_fill: [450, 500]) %>
-              </div>
+              <%= fe_featured_item_image(artist.content(:portrait).spina_image) %>
               <%= fe_featured_item_title(artist.content(:header)) %>
               <%= fe_featured_item_subtitle(artist.content(:subheader)) %>
             <% end %>

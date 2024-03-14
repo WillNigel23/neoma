@@ -17,7 +17,7 @@
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body class='flex flex-col w-full' data-controller='scroll-reveal'>
+  <body class='flex flex-col w-full' data-controller='scroll-reveal lazy'>
     <%= render 'neoma/shared/navigation' %>
     <%= yield %>
     <div class='min-h-screen w-full'></div> <!-- Spacer -->
