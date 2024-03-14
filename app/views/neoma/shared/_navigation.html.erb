@@ -20,7 +20,7 @@
       <%= button_tag '', class: 'text-xl text-white cursor-hover fa-solid fa-xmark', data: { action: 'click->navbar#toggleMenu' } %>
     </span>
 
-    <div class='px-4 min-h-screen flex items-center justify-center py-24 overflow-auto hidden-scroll'>
+    <div id='#menu' class='px-4 min-h-screen flex items-center justify-center py-24 overflow-auto hidden-scroll'>
       <span class='px-10 md:px-0'>
         <ul class='flex flex-col items-center md:items-start text-3xl text-center md:text-left [&_li]:transition-colors  [&_a]:block [&_a]:py-2'>
           <% main_nav_items.each do |nav_item| %>

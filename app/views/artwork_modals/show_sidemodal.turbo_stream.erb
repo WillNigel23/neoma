@@ -1,8 +1,8 @@
 <turbo-stream action='replace' target='side-modal'>
   <template>
-    <%= turbo_frame_tag 'side-modal', data: { controller: 'scroll-reveal modal' }  do %>
-      <div class='fixed top-0 left-0 w-screen h-screen bg-black opacity-30 z-[149] modal-backdrop reveal' data-scroll-reveal-target='item' data-modal-target='body' ></div>
-      <div class='fixed top-0 left-0 z-[150] bg-neoma-blue-4 text-white w-full p-8 overflow-y-scroll h-full min-h-full lg:w-1/2 lg:min-h-0 reveal' data-scroll-reveal-target='item' data-modal-target='body' >
+    <%= turbo_frame_tag 'side-modal', data: { controller: 'scroll-reveal modal lazy' }  do %>
+      <%= link_to '', main_app.close_sidemodal_artwork_modals_path, class: 'fixed top-0 left-0 w-screen h-screen bg-black opacity-30 z-[149] modal-backdrop reveal', data: { scroll_reveal_target: 'item', modal_target: 'body', action: 'click->modal#close', turbo: true, turbo_stream: true } %>
+      <div class='fixed top-0 left-0 z-[150] bg-neoma-blue-4 text-white w-full p-8 overflow-y-scroll h-full min-h-full lg:w-1/2 lg:min-h-0 side reveal' data-scroll-reveal-target='item' data-modal-target='body' >
         <div class='flex flex-row top-5 w-full'>
           <%= link_to '/', class: 'w-[200px] justify-center items-center' do %>
             <%= image_tag asset_path('text_horizontal_white.svg') %>
@@ -32,7 +32,7 @@
           <% if @artwork %>
             <%= f.hidden_field :artwork_id, value: @artwork.id %>
             <div class='flex items-center reveal' data-scroll-reveal-target='item'>
-              <%= image_tag main_app.url_for(@artwork.content(:image).variant({ resize_to_limit: [150, 150] })) %>
+              <%= image_tag main_app.url_for(@artwork.content(:image)), class: 'max-w-[150px] max-h-[150px] reveal' %>
               <div style='margin-left: 1.5rem;'>
                 <div class='font-restora font-medium'> <%= @artwork.content(:header) %></div>
                 <div class='font-montserrat text-sm'><%= @artwork.content(:featured_artist)[0].content(:header) %></div>

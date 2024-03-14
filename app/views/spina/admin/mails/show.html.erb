@@ -14,7 +14,7 @@
 
       <% if @artwork %>
         <div class="flex items-center">
-          <%= image_tag main_app.url_for(@artwork.content(:image).variant({ resize_to_limit: [150, 150] })) %>
+          <%= image_tag main_app.url_for(@artwork.content(:image)), style: 'object-fit: contain; max-width: 150px; max-height: 150px' %>
           <div style='margin-left: 0.5rem;'>
             <div class='font-medium'> <%= @artwork.content(:header) %></div>
             <div class="text-sm"><%= @artwork.content(:featured_artist)[0].content(:header) %></div>

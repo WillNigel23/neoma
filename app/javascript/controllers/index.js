@@ -33,3 +33,6 @@ application.register('flash', FlashController)
 
 import ModalController from './modal_controller'
 application.register('modal', ModalController)
+
+import LazyController from './lazy_controller'
+application.register('lazy', LazyController)

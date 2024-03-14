@@ -19,8 +19,8 @@ module BannerHelper
     image_tag(image_url,
               {
                 class: 'absolute top-0 left-0 w-full w-[100vw] min-h-[100vh]
-          object-cover',
-                style: "opacity: #{opacity};"
+          object-cover reveal',
+                style: "--reveal-opacity: #{opacity};"
               })
   end
 
