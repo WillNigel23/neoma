@@ -16,14 +16,22 @@ module FeaturedItemHelper
     end
   end
 
+  def fe_featured_item_image_wrapper(_content =nil,
+                                     opts = { class: 'transition-all duration-500 hover:scale-110 mb-5' }, &block)
+    content_tag(:div,
+                class: opts[:class]) do
+      concat(capture(&block)) if block_given?
+    end
+  end
+
   def fe_featured_item_image(spina_image,
-                             opts = { class: 'transition-all duration-500 hover:scale-110 mb-5 reveal object-cover w-[450px] h-[500px]' })
+                             opts = { class: 'reveal' })
     return if spina_image.nil?
     image_url = main_app.url_for(spina_image.file)
 
     image_tag(image_url,
               {
-                class: opts[:class]
+                class: opts[:class],
               })
   end
 

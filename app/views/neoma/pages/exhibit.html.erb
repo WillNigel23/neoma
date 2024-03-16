@@ -48,17 +48,17 @@
       <% end %>
     <% end %>
 
-    <% if content(:featured_artworks)&.live.any? %>
+    <% if content(:featured_artworks) && content(:featured_artworks)[1]&.live.any? %>
       <div id='#selected_works' class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
         <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.selected_works') %> </h2>
         <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
         <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal' data-scroll-reveal-target='item' data-delay='750ms'>
-          <% content(:featured_artworks)&.live.each do |artwork| %>
-            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: content(:featured_artworks)&.live.pluck(:id), active: artwork.id), { class: 'flex flex-col mx-auto', data: { turbo: true, turbo_stream: true } }) do %>
+          <% content(:featured_artworks)[1]&.live.each do |artwork| %>
+            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: content(:featured_artworks)[1]&.live.pluck(:id), active: artwork.id), { class: 'flex flex-col mx-auto', data: { turbo: true, turbo_stream: true } }) do %>
               <%= fe_featured_item_content_wrapper() do %>
-                <div class='transition-all duration-500 hover:scale-110 mb-5'>
-                  <%= artwork.content.image_tag(:image, resize_to_fill: [450, 500]) %>
-                </div>
+                <%= fe_featured_item_image_wrapper do %>
+                  <%= fe_featured_item_image(artwork.content(:image).spina_image, class: 'reveal object-cover w-[450px] h-[500px]') %>
+                <% end %>
                 <%= fe_featured_item_title(artwork.content(:header)) %>
                 <%= fe_featured_item_subtitle(artwork.content(:featured_artist)[0]&.content(:header)) %>
                 <%= fe_featured_item_text(artwork.content(:price)) %>
