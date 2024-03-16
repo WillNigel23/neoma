@@ -68,7 +68,7 @@ Spina::Theme.register do |theme|
   # by referencing them from the theme.parts configuration above.
   theme.view_templates = [
     { name: 'homepage', title: 'Homepage',
-      parts: %w[featured_exhibits featured_artworks featured_artists featured_events featured_galleries] },
+      parts: %w[featured_exhibits featured_artworks featured_artists featured_galleries] },
     { name: 'exhibits', title: 'Exhibits' },
     { name: 'artists', title: 'Artists' },
     { name: 'galleries', title: 'Galleries' },
