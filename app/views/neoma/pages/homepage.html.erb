@@ -109,7 +109,7 @@
       <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
         <div class='relative flex flex-col reveal' data-scroll-reveal-target='item'>
           <% if content(:featured_artworks)[0]&.live? %>
-            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: [content(:featured_artworks)[0]&.id] + content(:featured_artworks)[1]&.live.pluck(:id), active: content(:featured_artworks)[0]&.id), { class: 'flex flex-col mx-auto', data: { turbo: true, turbo_stream: true } }) do %>
+            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: [content(:featured_artworks)[0]&.id] + content(:featured_artworks)[1]&.live.pluck(:id), active: content(:featured_artworks)[0]&.id), { data: { turbo: true, turbo_stream: true } }) do %>
               <%= fe_featured_item_content_wrapper() do %>
                 <%= fe_featured_item_image_wrapper do %>
                   <%= fe_featured_item_image(content(:featured_artworks)[0].content(:image).spina_image) %>
@@ -126,7 +126,8 @@
             <% content(:featured_artworks)[1]&.live.in_groups_of((content(:featured_artworks)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>
                 <% group.compact.each do |artwork| %>
-                  <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: [content(:featured_artworks)[0]&.id] + content(:featured_artworks)[1]&.live.pluck(:id), active: artwork.id), { class: 'flex flex-col mx-auto mb-5', data: { turbo: true, turbo_stream: true } }) do %>
+
+                  <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: [content(:featured_artworks)[0]&.id] + content(:featured_artworks)[1]&.live.pluck(:id), active: artwork.id), { class: 'mb-5', data: { turbo: true, turbo_stream: true } }) do %>
                     <%= fe_featured_item_content_wrapper() do %>
                       <%= fe_featured_item_image_wrapper do %>
                         <%= fe_featured_item_image(artwork.content(:image).spina_image) %>
