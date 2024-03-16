@@ -15,8 +15,7 @@
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://neoma-art-f09cf502b2f9.herokuapp.com">View</a>
-    ·
+    <a href="https://neoma-art-f09cf502b2f9.herokuapp.com">View</a> ·
     <a href="https://github.com/WillNigel23/neoma/issues">Report Bug</a>
     ·
     <a href="https://github.com/WillNigel23/neoma/issues">Request Feature</a>
@@ -67,6 +66,7 @@ Neoma Galleria CMS is CMS built with Ruby on Rails for Neoma Galleria.
     - [x] Prohibit image variant transformation (to prevent CDN overloading)
     - [x] Image Lazyloading
     - [x] Click outside close menu
+    - [x] Staggered list on all items in homepage
 - [ ] Low prio
     - [ ] Move slim-select controller to admin
     - [ ] Clean-up parts in neoma spina template
