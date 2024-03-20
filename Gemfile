@@ -82,4 +82,4 @@ gem 'devise', '~> 4.9'
 
 gem 'jsbundling-rails'
 
-gem "cloudinary", "~> 1.29"
+gem 'cloudinary', '~> 1.29'
