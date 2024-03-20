@@ -11,8 +11,7 @@
 
   <p align="center">
     project_description
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <br /> <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://neoma-art-f09cf502b2f9.herokuapp.com">View</a> ·
@@ -72,6 +71,13 @@ Neoma Galleria CMS is CMS built with Ruby on Rails for Neoma Galleria.
     - [x] Artworks page
     - [x] Added home and artworks page on navigation
     - [x] Link custom domain
+- [x] Bug Fix - March 21
+    - [x] Date picker unhandled nil date
+    - [x] Text names wrapping on artists page
+    - [x] Removed list view on artworks page
+- [ ] Feature Requests
+    - [ ] Filters (for artworks, artists, etc)
+    - [ ] Explore more (artsits, exhibits, etc)
 - [ ] Low prio
     - [ ] Move slim-select controller to admin
     - [ ] Clean-up parts in neoma spina template

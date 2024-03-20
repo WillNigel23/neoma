@@ -5,12 +5,6 @@
 
     <hr class='w-full my-5'>
 
-    <div id='#list_view' class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 w-full mb-10 md:mb-20' data-scroll-reveal-target='item'>
-      <% artworks.each do |artwork| %>
-        <%= link_to artwork, artwork.materialized_path, class: 'font-restora text-nowrap font-bold text-base sm:text-xl md:text-3xl transition-all duration-300 hover:text-[#f7b1af]' %>
-      <% end %>
-    </div>
-
     <div id='#grid_view' class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full'>
       <% artworks.each do |artwork| %>
         <%= fe_featured_item_link(artwork.materialized_path, { class: 'flex flex-col' }) do %>
