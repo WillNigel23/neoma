@@ -67,6 +67,11 @@ Neoma Galleria CMS is CMS built with Ruby on Rails for Neoma Galleria.
     - [x] Image Lazyloading
     - [x] Click outside close menu
     - [x] Staggered list on all items in homepage
+- [x] Emergency Bug Fix - March 20
+    - [x] Fix: scroll-reveal not working on mobile for multiple images
+    - [x] Artworks page
+    - [x] Added home and artworks page on navigation
+    - [x] Link custom domain
 - [ ] Low prio
     - [ ] Move slim-select controller to admin
     - [ ] Clean-up parts in neoma spina template

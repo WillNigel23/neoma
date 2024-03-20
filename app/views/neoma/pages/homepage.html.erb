@@ -25,7 +25,7 @@
       <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.exhibits') %> </h2>
       <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
       <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
-        <div class='relative flex flex-col reveal' data-scroll-reveal-target='item'>
+        <div class='relative flex flex-col'>
           <% if content(:featured_exhibits)[0].live? %>
             <%= fe_featured_item_link(content(:featured_exhibits)[0]&.materialized_path) do %>
               <%= fe_featured_item_content_wrapper() do %>
@@ -40,7 +40,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full reveal' data-scroll-reveal-target='item'>
+        <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full'>
           <% if content(:featured_exhibits)[1].live&.any? %>
             <% content(:featured_exhibits)[1]&.live.in_groups_of((content(:featured_exhibits)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>
@@ -68,7 +68,7 @@
       <h2 class='font-restora font-bold reveal mt-10' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.galleries') %> </h2>
       <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
       <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
-        <div class='relative flex flex-col reveal' data-scroll-reveal-target='item'>
+        <div class='relative flex flex-col'>
           <% if content(:featured_galleries)[0]&.live? %>
             <%= fe_featured_item_link(content(:featured_galleries)[0]&.materialized_path) do %>
               <%= fe_featured_item_content_wrapper() do %>
@@ -81,7 +81,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full reveal' data-scroll-reveal-target='item'>
+        <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full'>
           <% if content(:featured_galleries)[1]&.live&.any? %>
             <% content(:featured_galleries)[1]&.live.in_groups_of((content(:featured_galleries)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>
@@ -107,7 +107,7 @@
       <h2 class='font-restora font-bold reveal mt-10' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.artworks') %> </h2>
       <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
       <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
-        <div class='relative flex flex-col reveal' data-scroll-reveal-target='item'>
+        <div class='relative flex flex-col'>
           <% if content(:featured_artworks)[0]&.live? %>
             <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: [content(:featured_artworks)[0]&.id] + content(:featured_artworks)[1]&.live.pluck(:id), active: content(:featured_artworks)[0]&.id), { class: 'sticky top-5 md:top-1/4', data: { turbo: true, turbo_stream: true } }) do %>
               <%= fe_featured_item_content_wrapper() do %>
@@ -121,12 +121,11 @@
             <% end %>
           <% end %>
         </div>
-        <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full reveal' data-scroll-reveal-target='item'>
+        <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full'>
           <% if content(:featured_artworks)[1]&.live&.any? %>
             <% content(:featured_artworks)[1]&.live.in_groups_of((content(:featured_artworks)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>
                 <% group.compact.each do |artwork| %>
-
                   <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: [content(:featured_artworks)[0]&.id] + content(:featured_artworks)[1]&.live.pluck(:id), active: artwork.id), { class: 'mb-5', data: { turbo: true, turbo_stream: true } }) do %>
                     <%= fe_featured_item_content_wrapper() do %>
                       <%= fe_featured_item_image_wrapper do %>
@@ -149,7 +148,7 @@
       <h2 class='font-restora font-bold reveal mt-10' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.artists') %> </h2>
       <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
       <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
-        <div class='relative flex flex-col reveal' data-scroll-reveal-target='item'>
+        <div class='relative flex flex-col'>
           <% if content(:featured_artists)[0]&.live? %>
             <%= fe_featured_item_link(content(:featured_artists)[0]&.materialized_path) do %>
               <%= fe_featured_item_content_wrapper() do %>
@@ -162,7 +161,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full reveal' data-scroll-reveal-target='item'>
+        <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full'>
           <% if content(:featured_artists)[1]&.live&.any? %>
             <% content(:featured_artists)[1]&.live.in_groups_of((content(:featured_artists)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>

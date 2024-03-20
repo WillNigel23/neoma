@@ -70,6 +70,7 @@ Spina::Theme.register do |theme|
     { name: 'homepage', title: 'Homepage',
       parts: %w[featured_exhibits featured_artworks featured_artists featured_galleries] },
     { name: 'exhibits', title: 'Exhibits' },
+    { name: 'artworks', title: 'Artworks' },
     { name: 'artists', title: 'Artists' },
     { name: 'galleries', title: 'Galleries' },
     { name: 'news', title: 'News' },
@@ -92,6 +93,7 @@ Spina::Theme.register do |theme|
   theme.custom_pages = [
     { name: 'homepage', title: 'Homepage', deletable: false, view_template: 'homepage' },
     { name: 'exhibits', title: 'Exhibits', deletable: false, view_template: 'exhibits' },
+    { name: 'artworks', title: 'Artworks', deletable: false, view_template: 'artworks' },
     { name: 'artists', title: 'Artists', deletable: false, view_template: 'artists' },
     { name: 'galleries', title: 'Galleries', deletable: false, view_template: 'galleries' },
     { name: 'news', title: 'News', deletable: false, view_template: 'news' },

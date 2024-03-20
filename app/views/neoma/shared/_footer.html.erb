@@ -6,14 +6,14 @@
         <h1 class='font-restora font-medium text-3xl text-white mb-5'> <%= t('footer.neoma_galleria') %> </h1>
 
         <p class='font-montserrat font-light text-sm text-white mb-2'> <%= t('footer.phone_number') %> </p>
-        <a href="mailto:#{t('footer.email')}" class='font-montserrat font-light text-sm text-white mb-2'> <%= t('footer.email') %> </a>
+        <a href='<%= "mailto:#{t('footer.email')}" %>' class='font-montserrat font-light text-sm text-white mb-2'> <%= t('footer.email') %> </a>
       </div>
 
       <div class='flex flex-1 flex-col mb-5'>
         <h1 class='font-restora font-medium text-3xl text-white mb-5'> <%= t('footer.title.galleries') %> </h1>
 
         <% galleries.limit(3).each do |gallery| %>
-          <%= link_to "#{gallery.content(:header)}, #{gallery.content(:subheader)}",
+          <%= link_to gallery.content(:header),
             gallery.materialized_path, class: 'font-montserrat font-light text-sm text-white mb-2' %>
         <% end %>
       </div>
@@ -25,7 +25,7 @@
           <%= link_to 'https://www.facebook.com/neomagalleria', class: 'mr-5', target: '_blank' do %>
             <i class='fa-brands fa-facebook-f text-white text-lg'></i>
           <% end %>
-          <%= link_to 'http://www.intagram.com/neomagalleria', class: 'mr-5', target: '_blank' do %>
+          <%= link_to 'http://www.instagram.com/neomagalleria', class: 'mr-5', target: '_blank' do %>
             <i class='fa-brands fa-instagram text-white text-xl'></i>
           <% end %>
         </span>
