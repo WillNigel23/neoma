@@ -5,7 +5,7 @@
 
     <hr class='w-full my-5'>
 
-    <div id='#grid_view' class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full'>
+    <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full'>
       <% artworks.each do |artwork| %>
         <%= fe_featured_item_link(artwork.materialized_path, { class: 'flex flex-col' }) do %>
           <%= fe_featured_item_content_wrapper() do %>
