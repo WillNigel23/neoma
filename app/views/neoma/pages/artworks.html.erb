@@ -1,0 +1,29 @@
+<!-- Artworks start here -->
+<section class='w-full bg-white z-20'>
+  <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white min-h-screen' data-controller='scroll-reveal'>
+    <h1 class='font-restora font-bold text-black text-4xl md:text-7xl lg:text-9xl mb-5 md:mb-10 uppercase reveal' data-scroll-reveal-target='item'> <%= t('title.artworks') %> </h2>
+
+    <hr class='w-full my-5'>
+
+    <div id='#list_view' class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 w-full mb-10 md:mb-20' data-scroll-reveal-target='item'>
+      <% artworks.each do |artwork| %>
+        <%= link_to artwork, artwork.materialized_path, class: 'font-restora text-nowrap font-bold text-base sm:text-xl md:text-3xl transition-all duration-300 hover:text-[#f7b1af]' %>
+      <% end %>
+    </div>
+
+    <div id='#grid_view' class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full'>
+      <% artworks.each do |artwork| %>
+        <%= fe_featured_item_link(artwork.materialized_path, { class: 'flex flex-col' }) do %>
+          <%= fe_featured_item_content_wrapper() do %>
+            <%= fe_featured_item_image_wrapper do %>
+              <%= fe_featured_item_image(artwork.content(:image).spina_image, class: 'reveal object-cover w-[500px] h-[500px]') %>
+            <% end %>
+            <%= fe_featured_item_title(artwork.content(:header)) %>
+            <%= fe_featured_item_subtitle(artwork.content(:subheader)) %>
+            <%= fe_featured_item_text(artwork.content(:price)) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
+</section>

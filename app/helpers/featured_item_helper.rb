@@ -9,9 +9,11 @@ module FeaturedItemHelper
   end
 
   def fe_featured_item_content_wrapper(_content = nil,
-                                       opts = { class: 'flex flex-col items-start justify-start' }, &block)
+                                       opts = { class: 'flex flex-col items-start justify-start reveal',
+                                                data: { scroll_reveal_target: 'item', data_delay: '250ms' }
+                                       }, &block)
     content_tag(:span,
-                class: opts[:class]) do
+                class: opts[:class], data: opts[:data]) do
       concat(capture(&block)) if block_given?
     end
   end
