@@ -7,7 +7,7 @@
 
     <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full'>
       <% artworks.each do |artwork| %>
-        <%= fe_featured_item_link(artwork.materialized_path, { class: 'flex flex-col' }) do %>
+        <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: artworks.pluck(:id), active: artwork.id), { class: 'flex flex-col', data: { turbo: true, turbo_stream: true } }) do %>
           <%= fe_featured_item_content_wrapper() do %>
             <%= fe_featured_item_image_wrapper do %>
               <%= fe_featured_item_image(artwork.content(:image).spina_image, class: 'reveal object-cover w-[500px] h-[500px]') %>
