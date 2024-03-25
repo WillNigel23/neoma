@@ -75,6 +75,8 @@ Neoma Galleria CMS is CMS built with Ruby on Rails for Neoma Galleria.
     - [x] Date picker unhandled nil date
     - [x] Text names wrapping on artists page
     - [x] Removed list view on artworks page
+- [x] Bug Fix - March 25
+    - [x] Artworks page modal fix 
 - [ ] Feature Requests
     - [ ] Filters (for artworks, artists, etc)
     - [ ] Explore more (artsits, exhibits, etc)
