@@ -3,7 +3,7 @@
   <div class='grid grid-cols-3 gap-5 mt-1'>
     <div class='flex flex-col' style='padding-right: 1.5rem;'>
       <label class='block text-sm leading-5 font-light text-gray-700'> Main Gallery </label>
-      <%= f.select :main_gallery_id, nil, { multiple: false }, class: 'mainGallery', style: 'min-height: 49.33px;' do %>
+      <%= f.select :main_gallery_id, nil, { multiple: false }, data: { controller: 'slimselect' }, style: 'min-height: 49.33px;' do %>
         <option value=''></option>
         <% Spina::Resource.find_by(name: 'galleries').pages&.each do |gallery| %>
           <option value='<%= gallery.id %>' <%= 'selected' if f.object.main_gallery_id == gallery.id %>><%= gallery %></option>
@@ -13,7 +13,7 @@
 
     <div class='flex flex-col col-span-2' style='padding-right: 1.5rem;'>
       <label class='block text-sm leading-5 font-light text-gray-700'> Featured Galleries </label>
-      <%= f.select :gallery_ids, nil, { multiple: true }, class: 'galleries', style: 'min-height: 49.33px;' do %>
+      <%= f.select :gallery_ids, nil, { multiple: true }, data: { controller: 'slimselect', slimselect_close_on_select_value: false }, style: 'min-height: 49.33px;' do %>
         <option value=''></option>
         <% Spina::Resource.find_by(name: 'galleries').pages&.each do |gallery| %>
           <option value='<%= gallery.id %>' <%= 'selected' if f.object.gallery_ids.include?(gallery.id) %>><%= gallery %></option>
@@ -22,45 +22,3 @@
     </div>
   </div>
 </div>
-
-<link href='https://unpkg.com/slim-select@latest/dist/slimselect.css' rel='stylesheet'>
-
-<script>
-  function loadScript(url, callback) {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-
-    if (script.readyState) {  // IE
-      script.onreadystatechange = function() {
-        if (script.readyState === 'loaded' || script.readyState === 'complete') {
-          script.onreadystatechange = null;
-          callback();
-        }
-      };
-    } else {  // Others
-      script.onload = function() {
-        callback();
-      };
-    }
-
-    script.src = url;
-    document.head.appendChild(script);
-  }
-
-  // Load SlimSelect script dynamically
-  loadScript('https://unpkg.com/slim-select@latest/dist/slimselect.min.js', function() {
-    new SlimSelect({
-      select: '.mainGallery',
-      settings: {
-        allowDeselect: true,
-      }
-    });
-
-    new SlimSelect({
-      select: '.galleries',
-      settings: {
-        allowDeselect: true,
-      }
-    });
-  });
-</script>

@@ -13,4 +13,4 @@ Rails.application.config.assets.version = '1.0'
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-Rails.application.config.assets.precompile += %w[restora.css montserrat.css *.eot *.ttf *.woff *.woff2]
+Rails.application.config.assets.precompile += %w[restora.css montserrat.css slimselect.css *.eot *.ttf *.woff *.woff2]
