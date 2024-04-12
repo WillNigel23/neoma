@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import SlimSelect from "../libraries/slimselectjs@2.8.2.js"
+import SlimSelect from "libraries/slimselectjs"
 
 // Connects to data-controller="slimselect"
 export default class extends Controller {
