@@ -19,12 +19,6 @@ application.register('scroll-reveal', ScrollReveal)
 import ReadMore from 'stimulus-read-more'
 application.register('read-more', ReadMore)
 
-import SlimSelect from 'slim-select'
-application.register('slim-select', SlimSelect)
-
-import SlimselectController from './slimselect_controller'
-application.register('slimselect', SlimselectController)
-
 import ScrollToController from './scroll_to_controller'
 application.register('scroll-to', ScrollToController)
 

@@ -76,12 +76,13 @@ Neoma Galleria CMS is CMS built with Ruby on Rails for Neoma Galleria.
     - [x] Text names wrapping on artists page
     - [x] Removed list view on artworks page
 - [x] Bug Fix - March 25
-    - [x] Artworks page modal fix 
+    - [x] Artworks page modal fix
+- [x] Bug Fix - April 12
+    - [x] Move slim-select controller to admin
 - [ ] Feature Requests
     - [ ] Filters (for artworks, artists, etc)
     - [ ] Explore more (artsits, exhibits, etc)
 - [ ] Low prio
-    - [ ] Move slim-select controller to admin
     - [ ] Clean-up parts in neoma spina template
 
 See the [open issues](https://github.com/WillNigel23/neoma/issues) for a full list of proposed features (and known issues).

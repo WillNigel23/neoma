@@ -6,13 +6,14 @@
     <meta name="turbo-cache-control" content="no-preview" />
     <%= csrf_meta_tags %>
 
-    <link rel="icon" href="<%= image_url('spina/favicon.png') %>" />
+    <link rel="icon" href="<%= image_url("spina/favicon.png") %>" />
 
     <title><%= Spina.config.backend_title %></title>
 
     <!-- Stylesheets -->
     <%= stylesheet_link_tag "spina/fonts", "spina/animate", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "spina/admin", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "slimselect", media: "all", "data-turbolinks-track": "reload" %>
 
     <!-- Spina's importmap -->
     <%= spina_importmap_tags %>
