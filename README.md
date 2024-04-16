@@ -80,6 +80,8 @@ Neoma Galleria CMS is CMS built with Ruby on Rails for Neoma Galleria.
 - [x] Bug Fix - April 12
     - [x] Move slim-select controller to admin
     - [x] Only ongoing exhibits on banner
+- [x] Feature Requests - April 17
+    - [x] Unique name validation for pages
 - [ ] Feature Requests
     - [ ] Filters (for artworks, artists, etc)
     - [ ] Explore more (artsits, exhibits, etc)
