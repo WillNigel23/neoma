@@ -33,6 +33,7 @@ module ApplicationHelper
         [0, Date.strptime(exhibit.content(:start_date), '%d, %B %Y')]
       end
     end
+    ongoing&.reverse!
   end
 
   def past_exhibits
@@ -47,6 +48,7 @@ module ApplicationHelper
         [0, Date.strptime(exhibit.content(:start_date), '%d, %B %Y')]
       end
     end
+    past&.reverse!
   end
 
   def artists
@@ -61,12 +63,6 @@ module ApplicationHelper
     @events ||= Spina::Resource.find_by(name: 'events').pages.live
   end
 
-  def news
-    @news ||= Spina::Resource.find_by(name: 'articles').pages.live.to_a.sort_by do |article|
-      Date.strptime(article.content(:date), '%d, %B %Y')
-    end
-  end
-
   def ongoing_events
     ongoing = events.select do |event|
       event.content(:end_date).present? && Date.strptime(event.content(:end_date), '%d, %B %Y') >= Date.current
@@ -79,6 +75,7 @@ module ApplicationHelper
         [0, Date.strptime(event.content(:start_date), '%d, %B %Y')]
       end
     end
+    ongoing&.reverse!
   end
 
   def past_events
@@ -93,6 +90,7 @@ module ApplicationHelper
         [0, Date.strptime(event.content(:start_date), '%d, %B %Y')]
       end
     end
+    past&.reverse!
   end
 
   def exhibit_scroll_nav_items
@@ -117,7 +115,7 @@ module ApplicationHelper
   end
 
   def navbar_color_scheme
-    %w[Artists Exhibits Galleries Events News]
+    %w[Artists Exhibits Galleries Events]
   end
 
   def classes_for_flash(key)

@@ -2,6 +2,7 @@
   <label class='block text-sm leading-5 font-medium text-gray-700'><%= f.object.title %></label>
   <div class='grid grid-cols-3 gap-5 mt-1'>
     <div class='flex flex-col' style='padding-right: 1.5rem;'>
+      <label class='block text-sm leading-5 font-light text-gray-700'> Main Artist </label>
       <%= f.select :main_artist_id, nil, { multiple: false }, data: { controller: 'slimselect' }, style: 'min-height: 49.33px;' do %>
         <option value=''></option>
         <% Spina::Resource.find_by(name: 'artists').pages&.each do |artist| %>
@@ -10,6 +11,7 @@
       <% end %>
     </div>
     <div class='flex flex-col col-span-2' style='padding-right: 1.5rem;'>
+      <label class='block text-sm leading-5 font-light text-gray-700'> Featured Artists </label>
       <%= f.select :artist_ids, nil, { multiple: true }, data: { controller: 'slimselect', slimselect_close_on_select_value: false }, style: 'min-height: 49.33px;' do %>
         <option value=''></option>
         <% Spina::Resource.find_by(name: 'artists').pages&.each do |artist| %>

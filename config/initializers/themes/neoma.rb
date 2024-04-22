@@ -32,8 +32,8 @@ Spina::Theme.register do |theme|
 
     # Homepage
     { name: 'featured_exhibits', title: 'Featured Exhibits', part_type: 'Spina::Parts::FeaturedExhibit' },
-    { name: 'featured_artists', title: 'Featured Artists', part_type: 'Spina::Parts::FeaturedArtist' },
     { name: 'featured_artworks', title: 'Featured Artworks', part_type: 'Spina::Parts::FeaturedArtwork' },
+    { name: 'featured_artists', title: 'Featured Artists', part_type: 'Spina::Parts::FeaturedArtist' },
     { name: 'featured_events', title: 'Featured Events', part_type: 'Spina::Parts::FeaturedEvent' },
     { name: 'featured_galleries', title: 'Featured Galleries', part_type: 'Spina::Parts::FeaturedGallery' },
 
@@ -68,18 +68,16 @@ Spina::Theme.register do |theme|
   # by referencing them from the theme.parts configuration above.
   theme.view_templates = [
     { name: 'homepage', title: 'Homepage',
-      parts: %w[featured_exhibits featured_artworks featured_artists featured_galleries] },
+      parts: %w[featured_exhibits featured_artworks featured_artists featured_events featured_galleries] },
     { name: 'exhibits', title: 'Exhibits' },
     { name: 'artworks', title: 'Artworks' },
     { name: 'artists', title: 'Artists' },
     { name: 'galleries', title: 'Galleries' },
-    { name: 'news', title: 'News' },
     { name: 'events', title: 'Events' },
     { name: 'about_us', title: 'About Us', parts: %w[banner section featured_artists] },
     { name: 'exhibit', title: 'Exhibit',
       parts: %w[header subheader summary start_date end_date featured_artist banner poster section featured_artworks] },
     { name: 'artwork', title: 'Artwork', parts: %w[header date featured_artist image body price status] },
-    { name: 'article', title: 'Article', parts: %w[header subheader date summary banner section] },
     { name: 'gallery', title: 'Gallery',
       parts: %w[header subheader summary start_date end_date banner section featured_artworks] },
     { name: 'event', title: 'Event', parts: %w[header subheader summary start_date end_date banner section] },
@@ -96,7 +94,6 @@ Spina::Theme.register do |theme|
     { name: 'artworks', title: 'Artworks', deletable: false, view_template: 'artworks' },
     { name: 'artists', title: 'Artists', deletable: false, view_template: 'artists' },
     { name: 'galleries', title: 'Galleries', deletable: false, view_template: 'galleries' },
-    { name: 'news', title: 'News', deletable: false, view_template: 'news' },
     { name: 'events', title: 'Events', deletable: false, view_template: 'events' },
     { name: 'about_us', title: 'About Us', deletable: false, view_template: 'about_us' }
   ]
@@ -119,8 +116,7 @@ Spina::Theme.register do |theme|
   theme.resources = [
     { name: 'exhibits', label: 'Exhibits', view_template: 'exhibit', slug: 'exhibit' },
     { name: 'artworks', label: 'Artworks', view_template: 'artwork', slug: 'artwork' },
-    { name: 'articles', label: 'News', view_template: 'article', slug: 'article' },
-    { name: 'events', label: 'Events', view_template: 'event', slug: 'event' },
+    { name: 'events', label: 'News & Events', view_template: 'event', slug: 'event' },
     { name: 'galleries', label: 'Galleries', view_template: 'gallery', slug: 'gallery' },
     { name: 'artists', label: 'Artists', view_template: 'artist', slug: 'artist' }
   ]
