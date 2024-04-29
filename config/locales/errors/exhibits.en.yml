@@ -1,0 +1,4 @@
+en:
+  errors:
+    exhibits:
+      invalid_dates: "End date must be greater than Start date" 

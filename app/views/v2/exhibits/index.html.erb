@@ -1,0 +1,57 @@
+<%= render partial: 'neoma/shared/scroll_nav', locals: { menu_items: exhibit_scroll_nav_items } %>
+
+<!-- Exhibits start here -->
+<section class='w-full bg-white z-20'>
+  <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white min-h-screen' data-controller='scroll-reveal'>
+    <h1 class='font-restora font-bold text-black text-4xl md:text-7xl lg:text-9xl mb-10 uppercase reveal ' data-scroll-reveal-target='item'> <%= t('title.exhibitions') %> </h1>
+
+    <div id='#ongoing' class='w-full mb-10'>
+      <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item'> <%= t('title.ongoing') %> </h2>
+      <hr class='w-full my-5'>
+      <div class='grid grid-cols-1 md:grid-cols-2 gap-5'>
+        <% @ongoing_exhibits.each do |exhibit| %>
+          <%= fe_featured_item_image_wrapper(opts: { class: 'reveal', data: { scroll_reveal_target: 'item' } }) do %>
+            <%= fe_featured_item_image_v2(exhibit.banner) %>
+          <% end %>
+
+          <%= fe_featured_item_content_wrapper(opts: {
+            class: 'flex flex-col w-full my-auto py-5 px-0 md:px-5 reveal',
+            data: { scroll_reveal_target: 'item' } }) do %>
+
+            <%= fe_featured_item_pretitle(format_date_range(exhibit.start_date, exhibit.end_date), opts: {
+              class: 'font-montserrat text-gray-600 text-light text-sm'
+            }) %>
+            <%= fe_featured_item_title(exhibit.title, opts: { class: 'font-restora font-bold text-xl md:text-3xl my-5' }) %>
+            <%= fe_featured_item_subtitle(exhibit.subtitle, opts: { class: 'font-montserrat text-light' }) %>
+            <%= fe_featured_item_text(exhibit.summary, opts: { class: 'font-montserrat text-light text-xs my-5' }) %>
+            <%= fe_banner_link('Explore Now', v2_exhibit_path(exhibit)) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div id='#past' class='w-full mb-10'>
+      <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item'> <%= t('title.past') %> </h2>
+      <hr class='w-full my-5'>
+      <div class='grid grid-cols-1 md:grid-cols-2 gap-5'>
+        <% @past_exhibits.each do |exhibit| %>
+          <%= fe_featured_item_image_wrapper(opts: { class: 'reveal', data: { scroll_reveal_target: 'item' } }) do %>
+            <%= fe_featured_item_image_v2(exhibit.banner) %>
+          <% end %>
+
+          <%= fe_featured_item_content_wrapper(opts: {
+            class: 'flex flex-col w-full my-auto py-5 px-0 md:px-5 reveal',
+            data: { scroll_reveal_target: 'item' } }) do %>
+
+            <%= fe_featured_item_pretitle(format_date_range(exhibit.start_date, exhibit.end_date), opts: {
+              class: 'font-montserrat text-gray-600 text-light text-sm'
+            }) %>
+            <%= fe_featured_item_title(exhibit.title, opts: { class: 'font-restora font-bold text-xl md:text-3xl my-5' }) %>
+            <%= fe_featured_item_subtitle(exhibit.subtitle, opts: { class: 'font-montserrat text-light' }) %>
+            <%= fe_featured_item_text(exhibit.summary, opts: { class: 'font-montserrat text-light text-xs my-5' }) %>
+            <%= fe_banner_link('Explore Now', v2_exhibit_path(exhibit)) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</section>

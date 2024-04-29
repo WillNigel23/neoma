@@ -10,7 +10,7 @@ module BannerHelper
     end
   end
 
-  def fe_banner_img(spina_image, opts = {})
+  def fe_banner_img(spina_image, opts: {})
     return if spina_image.nil?
 
     opacity = opts[:opacity] || '.2'
@@ -24,6 +24,15 @@ module BannerHelper
               })
   end
 
+  def fe_banner_img_v2(image, opts: {
+    class: 'absolute top-0 left-0 w-full w-[100vw] min-h-[100vh] object-cover reveal',
+    opacity: '.2'
+  })
+    return unless image.attached?
+
+    image_tag(image, { class: opts[:class], style: "--reveal-opacity: #{opts[:opacity]};" })
+  end
+
   def fe_banner_inner(_content = nil, &block)
     content_tag(:div,
                 class: 'container mx-auto px-5 z-10 text-center',
@@ -34,7 +43,7 @@ module BannerHelper
 
   def fe_banner_preheader(
     content,
-    opts = {
+    opts: {
       class: 'font-montserrat text-xs text-white mb-5 reveal',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }
@@ -44,7 +53,7 @@ module BannerHelper
 
   def fe_banner_header(
     content,
-    opts = {
+    opts: {
       class: 'font-restora font-bold text-white text-3xl sm:text-5xl md:text-7xl mb-5 uppercase reveal',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }
@@ -54,7 +63,7 @@ module BannerHelper
 
   def fe_banner_subheader(
     content,
-    opts = {
+    opts: {
       class: 'font-montserrat font-light text-white text-normal md:text-xl mb-5 reveal',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }
@@ -65,7 +74,7 @@ module BannerHelper
   def fe_banner_link(
     content,
     link_url,
-    opts = {
+    opts: {
       class: 'font-montserrat text-center text-black transition-color duration-500 bg-neoma-pink-1 hover:bg-[#f7b1af] px-3 py-2 min-w-[120px]',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }

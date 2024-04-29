@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :v2 do
+    resources :exhibits, only: %i[index show]
+  end
+
   devise_for :customers, controllers: {
     sessions: 'customers/sessions'
   }

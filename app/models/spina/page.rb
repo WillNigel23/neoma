@@ -1,5 +1,33 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: spina_pages
+#
+#  id                      :integer          not null, primary key
+#  active                  :boolean          default(TRUE)
+#  ancestry                :string
+#  ancestry_children_count :integer
+#  ancestry_depth          :integer          default(0)
+#  deletable               :boolean          default(TRUE)
+#  draft                   :boolean          default(FALSE)
+#  json_attributes         :jsonb
+#  layout_template         :string
+#  link_url                :string
+#  name                    :string
+#  position                :integer
+#  show_in_menu            :boolean          default(TRUE)
+#  skip_to_first_child     :boolean          default(FALSE)
+#  slug                    :string
+#  view_template           :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  resource_id             :integer
+#
+# Indexes
+#
+#  index_spina_pages_on_resource_id  (resource_id)
+#
 module Spina
   class Page < ApplicationRecord
     extend Mobility
