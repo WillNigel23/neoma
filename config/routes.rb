@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   namespace :v2 do
+    resources :artists,  only: %i[index show]
     resources :exhibits, only: %i[index show]
   end
 

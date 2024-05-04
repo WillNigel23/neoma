@@ -46,6 +46,14 @@ describe Exhibit do
         expect(exhibit.poster.attached?).to be true
       end
     end
+
+    describe 'artists' do
+      let(:exhibit) { create(:exhibit, :with_artists) }
+
+      it 'has artists' do
+        expect(exhibit.artists.count).to eq(1)
+      end
+    end
   end
 
   describe 'validations' do

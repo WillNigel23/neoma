@@ -1,0 +1,30 @@
+<%= render partial: 'neoma/shared/scroll_nav', locals: { menu_items: artist_scroll_nav_items } %>
+
+<!-- Artists start here -->
+<section class='w-full bg-white z-20'>
+  <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white min-h-screen' data-controller='scroll-reveal'>
+    <h1 class='font-restora font-bold text-black text-4xl md:text-7xl lg:text-9xl mb-5 md:mb-10 uppercase reveal' data-scroll-reveal-target='item'> <%= t('title.artists') %> </h2>
+
+    <hr class='w-full my-5'>
+
+    <div id='#list_view' class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 w-full mb-10 md:mb-20' data-scroll-reveal-target='item'>
+      <% @artists.each do |artist| %>
+        <%= link_to artist.name, v2_artist_path(artist), class: 'font-restora font-bold text-base sm:text-xl md:text-3xl transition-all duration-300 hover:text-[#f7b1af]' %>
+      <% end %>
+    </div>
+
+    <div id='#grid_view' class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full'>
+      <% @artists.each do |artist| %>
+        <%= fe_featured_item_link(v2_artist_path(artist), opts: { class: 'flex flex-col' }) do %>
+          <%= fe_featured_item_content_wrapper() do %>
+            <%= fe_featured_item_image_wrapper do %>
+              <%= fe_featured_item_image_v2(artist.portrait, opts: { class: 'reveal object-cover w-[500px] h-[500px]' }) %>
+            <% end %>
+            <%= fe_featured_item_title(artist.name) %>
+            <%= fe_featured_item_subtitle(artist.description) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
+</section>

@@ -26,6 +26,9 @@ class Exhibit < ApplicationRecord
   has_one_attached :banner
   has_one_attached :poster
 
+  has_many :exhibit_artists, dependent: :nullify
+  has_many :artists, through: :exhibit_artists
+
   validates :title, presence: true, uniqueness: true
   validates :start_date, presence: true
   validates :end_date, comparison: {
