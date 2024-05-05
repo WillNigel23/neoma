@@ -47,8 +47,17 @@ describe Exhibit do
       end
     end
 
+    describe 'artworks' do
+      let(:exhibit) { create(:exhibit, :with_artworks) }
+
+      it 'has artworks' do
+        expect(exhibit.artworks.count).to eq(1)
+      end
+    end
+
     describe 'artists' do
-      let(:exhibit) { create(:exhibit, :with_artists) }
+      let!(:artwork) { create(:artwork, :with_artist) }
+      let!(:exhibit) { create(:exhibit, artworks: [artwork]) }
 
       it 'has artists' do
         expect(exhibit.artists.count).to eq(1)

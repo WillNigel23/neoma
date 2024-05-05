@@ -1,4 +1,4 @@
-<%#= render partial: 'neoma/shared/scroll_nav', locals: { menu_items: [['#selected_works', t('title.selected_works')]] } %>
+<%= render partial: 'neoma/shared/scroll_nav', locals: { menu_items: [['#selected_works', t('title.selected_works')]] } %>
 
 <section class='w-full'>
   <!-- Banner -->
@@ -19,7 +19,6 @@
   <!-- Content -->
   <section class='relative w-full bg-white pb-10 z-20'>
     <% if 1 == 0 %>
-
     <% repeater(:section) do |block| %>
       <% if block.content(:carousel).present? %>
         <%= fe_carousel do %>
@@ -45,25 +44,22 @@
         </div>
       <% end %>
     <% end %>
-
     <% end %>
 
-    <% if 1 == 0 %>
-
-    <% if content(:featured_artworks) && content(:featured_artworks)[1]&.live.any? %>
+    <% if @artworks.any? %>
       <div id='#selected_works' class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
         <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'> <%= t('title.selected_works') %> </h2>
         <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
         <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-          <% content(:featured_artworks)[1]&.live.each do |artwork| %>
-            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: content(:featured_artworks)[1]&.live.pluck(:id), active: artwork.id), { class: 'flex flex-col mx-auto', data: { turbo: true, turbo_stream: true } }) do %>
+          <% @artworks.each do |artwork| %>
+            <%= fe_featured_item_link(v2_artwork_path(artwork, artwork_ids: @artwork_ids), opts: { class: 'flex flex-col mx-auto', data: { turbo: true, turbo_stream: true } }) do %>
               <%= fe_featured_item_content_wrapper() do %>
                 <%= fe_featured_item_image_wrapper do %>
-                  <%= fe_featured_item_image(artwork.content(:image).spina_image, class: 'reveal object-cover w-[450px] h-[500px]') %>
+                  <%= fe_featured_item_image_v2(artwork.image, opts: { class: 'reveal object-cover w-[450px] h-[500px]' }) %>
                 <% end %>
-                <%= fe_featured_item_title(artwork.content(:header)) %>
-                <%= fe_featured_item_subtitle(artwork.content(:featured_artist)[0]&.content(:header)) %>
-                <%= fe_featured_item_text(artwork.content(:price)) %>
+                <%= fe_featured_item_title(artwork.title) %>
+                <%= fe_featured_item_subtitle(artwork.artist.name) if artwork.artist %>
+                <%= fe_featured_item_text(format_price(artwork.price)) if artwork.price %>
               <% end %>
             <% end %>
           <% end %>
@@ -71,6 +67,28 @@
       </div>
     <% end %>
 
+    <% if @suggested_exhibits.any? %>
+      <div id='#suggested_exhibits' class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
+        <div class='w-full flex items-center justify-between reveal' data-scroll-reveal-target='item' data-delay='250ms'>
+          <h2 class='font-restora font-bold flex-1'> <%= t('title.suggested_exhibits') %> </h2>
+          <%= link_to t('buttons.view_all'), v2_exhibits_path, class: 'text-xs font-medium hover:text-[#f7b1af] transition-all duration-500' %>
+        </div>
+        <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+        <div class='w-full flex flex-row flex-nowrap justify-start overflow-x-auto overflow-y-clip'>
+          <% @suggested_exhibits.each do |exhibit| %>
+            <%= fe_featured_item_link(v2_exhibit_path(exhibit), opts: { class: 'flex flex-col mr-5 min-w-[295px] w-[295px]' }) do %>
+              <%= fe_featured_item_content_wrapper() do %>
+                <%= fe_featured_item_image_wrapper do %>
+                  <%= fe_featured_item_image_v2(exhibit.banner, opts: { class: 'reveal object-cover w-[295px] h-[175px]' }) %>
+                <% end %>
+                <%= fe_featured_item_title(exhibit.title) %>
+                <%= fe_featured_item_subtitle(exhibit.subtitle) if exhibit.subtitle %>
+                <%= fe_featured_item_text(format_date_range(exhibit.start_date, exhibit.end_date)) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
   </section>
 </section>

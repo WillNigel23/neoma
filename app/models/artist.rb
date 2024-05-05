@@ -25,8 +25,8 @@ class Artist < ApplicationRecord
   has_one_attached :banner
   has_one_attached :portrait
 
-  has_many :exhibit_artists, dependent: :nullify
-  has_many :exhibits, through: :exhibit_artists
+  has_many :artworks, dependent: :nullify
+  has_many :exhibits, -> { distinct }, through: :artworks
 
   validates :name, presence: true, uniqueness: true
 

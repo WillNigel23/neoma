@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_04_210943) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_05_084637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,12 +54,36 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_210943) do
     t.index ["name"], name: "unique_slug_per_artist", unique: true
   end
 
+  create_table "artworks", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug"
+    t.bigint "artist_id"
+    t.string "size"
+    t.string "medium"
+    t.integer "year"
+    t.text "description"
+    t.integer "price"
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_artworks_on_artist_id"
+    t.index ["title"], name: "unique_slug_per_artwork", unique: true
+  end
+
   create_table "exhibit_artists", force: :cascade do |t|
     t.bigint "exhibit_id"
     t.bigint "artist_id"
     t.index ["artist_id"], name: "index_exhibit_artists_on_artist_id"
     t.index ["exhibit_id", "artist_id"], name: "index_exhibit_artists", unique: true
     t.index ["exhibit_id"], name: "index_exhibit_artists_on_exhibit_id"
+  end
+
+  create_table "exhibit_artworks", force: :cascade do |t|
+    t.bigint "exhibit_id"
+    t.bigint "artwork_id"
+    t.index ["artwork_id"], name: "index_exhibit_artworks_on_artwork_id"
+    t.index ["exhibit_id", "artwork_id"], name: "index_exhibit_artworks", unique: true
+    t.index ["exhibit_id"], name: "index_exhibit_artworks_on_exhibit_id"
   end
 
   create_table "exhibits", force: :cascade do |t|
@@ -328,6 +352,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_210943) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "artworks", "artists"
   add_foreign_key "exhibit_artists", "artists"
   add_foreign_key "exhibit_artists", "exhibits"
+  add_foreign_key "exhibit_artworks", "artworks"
+  add_foreign_key "exhibit_artworks", "exhibits"
 end

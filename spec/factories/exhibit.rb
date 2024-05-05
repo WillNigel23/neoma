@@ -16,13 +16,13 @@ FactoryBot.define do
       poster { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/portraits/portrait.jpg').to_s) }
     end
 
-    trait :with_artists do
+    trait :with_artworks do
       transient do
-        artists_count { 1 }
+        artworks_count { 1 }
       end
 
       after(:create) do |exhibit, evaluator|
-        create_list(:artist, evaluator.artists_count, exhibits: [exhibit])
+        create_list(:artwork, evaluator.artworks_count, exhibits: [exhibit])
       end
     end
   end

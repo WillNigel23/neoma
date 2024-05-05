@@ -9,6 +9,9 @@ module V2
 
     def show
       @exhibit = Exhibit.friendly.find(params[:id])
+      @artworks = @exhibit.artworks.live
+      @artwork_ids = @artworks.pluck(:id)
+      @suggested_exhibits = Exhibit.live.where.not(id: @exhibit.id).order('RANDOM()').limit(5)
     end
   end
 end
