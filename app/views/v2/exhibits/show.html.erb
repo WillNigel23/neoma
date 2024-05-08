@@ -18,15 +18,14 @@
 
   <!-- Content -->
   <section class='relative w-full bg-white pb-10 z-20'>
-    <% if 1 == 0 %>
-    <% repeater(:section) do |block| %>
-      <% if block.content(:carousel).present? %>
+    <% @exhibit.content_sections.each do |block| %>
+      <% if block.images.attached? %>
         <%= fe_carousel do %>
           <%= fe_carousel_wrapper do %>
-            <% block.content(:carousel).each do |img| %>
+            <% block.images.each do |img| %>
               <%= fe_carousel_item do %>
                 <%= fe_banner do %>
-                  <%= fe_banner_img(img.spina_image, { opacity: '0.8' }) %>
+                  <%= fe_banner_img_v2(img, opts: { class: 'absolute top-0 left-0 w-full w-[100vw] min-h-[100vh] object-cover reveal', opacity: '0.8' }, check_attached: false) %>
                 <% end %>
               <% end %>
             <% end %>
@@ -34,16 +33,15 @@
         <% end %>
       <% end %>
 
-      <% if block.content(:body) %>
+      <% if block.content.body %>
         <div class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
-          <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= block.content(:header) %></h2>
+          <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= block.header %></h2>
           <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
           <div class='markdown font-montserrat reveal' data-scroll-reveal-target='item' data-delay='750ms'>
-            <%= block.content.html(:body)%>
+            <%= block.content %>
           </div>
         </div>
       <% end %>
-    <% end %>
     <% end %>
 
     <% if @artworks.any? %>

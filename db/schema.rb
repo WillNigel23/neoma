@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_05_084637) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_08_175018) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -68,6 +78,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_084637) do
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_artworks_on_artist_id"
     t.index ["title"], name: "unique_slug_per_artwork", unique: true
+  end
+
+  create_table "content_sections", force: :cascade do |t|
+    t.bigint "artist_id"
+    t.bigint "exhibit_id"
+    t.string "header"
+    t.index ["artist_id"], name: "index_content_sections_on_artist_id"
+    t.index ["exhibit_id"], name: "index_content_sections_on_exhibit_id"
   end
 
   create_table "exhibit_artists", force: :cascade do |t|
@@ -353,6 +371,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_084637) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artworks", "artists"
+  add_foreign_key "content_sections", "artists"
+  add_foreign_key "content_sections", "exhibits"
   add_foreign_key "exhibit_artists", "artists"
   add_foreign_key "exhibit_artists", "exhibits"
   add_foreign_key "exhibit_artworks", "artworks"

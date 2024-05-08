@@ -27,8 +27,8 @@ module BannerHelper
   def fe_banner_img_v2(image, opts: {
     class: 'absolute top-0 left-0 w-full w-[100vw] min-h-[100vh] object-cover reveal',
     opacity: '.2'
-  })
-    return unless image.attached?
+  }, check_attached: true)
+    return if check_attached && !image.attached?
 
     image_tag(image, { class: opts[:class], style: "--reveal-opacity: #{opts[:opacity]};" })
   end

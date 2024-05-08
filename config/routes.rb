@@ -7,10 +7,6 @@ Rails.application.routes.draw do
     resources :exhibits, only: %i[index show]
   end
 
-  devise_for :customers, controllers: {
-    sessions: 'customers/sessions'
-  }
-
   resources :artwork_modals do
     get 'show_modal', on: :collection
     get 'show_sidemodal', on: :collection

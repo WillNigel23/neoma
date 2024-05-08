@@ -63,6 +63,14 @@ describe Exhibit do
         expect(exhibit.artists.count).to eq(1)
       end
     end
+
+    describe 'content_sections' do
+      let(:exhibit) { create(:artist, :with_content_sections) }
+
+      it 'has content sections' do
+        expect(exhibit.content_sections.count).to eq(1)
+      end
+    end
   end
 
   describe 'validations' do

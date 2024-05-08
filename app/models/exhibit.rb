@@ -30,6 +30,8 @@ class Exhibit < ApplicationRecord
   has_many :artworks, through: :exhibit_artworks
   has_many :artists, -> { distinct }, through: :artworks, source: :artist
 
+  has_many :content_sections, dependent: :destroy
+
   validates :title, presence: true, uniqueness: true
   validates :start_date, presence: true
   validates :end_date, comparison: {

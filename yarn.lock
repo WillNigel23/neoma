@@ -140,6 +140,20 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.1.3.tgz#4db480347775aeecd4dde2405659eef74a458881"
   integrity sha512-ojNvnoZtPN0pYvVFtlO7dyEN9Oml1B6IDM+whGKVak69MMYW99lC2NOWXWeE3bmwEydbP/nn6ERcpfjHVjYQjA==
 
+"@rails/actiontext@^7.1.3-2":
+  version "7.1.3-2"
+  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-7.1.3-2.tgz#eac549f9e7ca43bd233e2672274b7e83e6a692e1"
+  integrity sha512-acUfffH6HeY9tPQiY6eKsUu/QqfrcIMD1edyHalW0hq+l25o4Ff9K//b9wyDWf/BKEIVi7GLNOBhwopRN8wV5Q==
+  dependencies:
+    "@rails/activestorage" ">= 7.1.0-alpha"
+
+"@rails/activestorage@>= 7.1.0-alpha":
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-7.1.3.tgz#e83ece6c5fd94b3ddf30a8cf3b8f78cad049e596"
+  integrity sha512-B+RFYAU8vdTPFg0IJcRp2ey0Qw9hpcUOqHHcWqftDJ76ZMBi9+m/UUeMJlNsSd0l9eD+1HLlFSo1X//cY4yiDw==
+  dependencies:
+    spark-md5 "^3.0.1"
+
 activestorage@^5.2.8-1:
   version "5.2.8-1"
   resolved "https://registry.yarnpkg.com/activestorage/-/activestorage-5.2.8-1.tgz#18cca0d7f81da42ebaf3ec04b393209d740f4fa0"
@@ -225,7 +239,7 @@ slim-select@^2.8.1:
     react "^18.2.0"
     react-dom "^18.2.0"
 
-spark-md5@^3.0.0:
+spark-md5@^3.0.0, spark-md5@^3.0.1:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
   integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
@@ -264,3 +278,8 @@ swiper@^8.4.5:
   dependencies:
     dom7 "^4.0.4"
     ssr-window "^4.0.2"
+
+trix@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-2.1.1.tgz#688f1213601316cf8b92c5e625d2f562c118c780"
+  integrity sha512-IljOMGOlRUPg1i5Pk/+x/Ia65ZY7Gw5JxxKCh/4caxG5ZaKuFJCKdn1+TF0efUYfdg+bqWenB/mAYCHjZu0zpQ==

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :artwork do
-    title { Faker::Movie.unique.title }
+    title { "#{Faker::Movie.unique.title} #{Time.current.to_i}" }
     description { Faker::Quote.famous_last_words }
 
     size { '12 x 12 inches' }

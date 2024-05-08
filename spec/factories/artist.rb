@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :artist do
-    name { Faker::Artist.unique.name }
+    name { "#{Faker::Artist.unique.name} #{Time.current.to_i}" }
     description { Faker::Quote.famous_last_words }
     role { 'Artist' }
 
@@ -21,7 +21,17 @@ FactoryBot.define do
       end
 
       after(:create) do |artist, evaluator|
-        create_list(:artwork, evaluator.artworks_count, artist: artist)
+        create_list(:artwork, evaluator.artworks_count, artist:)
+      end
+    end
+
+    trait :with_content_sections do
+      transient do
+        content_sections_count { 1 }
+      end
+
+      after(:create) do |artist, evaluator|
+        create_list(:content_section, evaluator.content_sections_count, artist:)
       end
     end
   end

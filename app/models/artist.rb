@@ -28,6 +28,8 @@ class Artist < ApplicationRecord
   has_many :artworks, dependent: :nullify
   has_many :exhibits, -> { distinct }, through: :artworks
 
+  has_many :content_sections, dependent: :destroy
+
   validates :name, presence: true, uniqueness: true
 
   enum status: { draft: 0, live: 1, archived: 2 }
