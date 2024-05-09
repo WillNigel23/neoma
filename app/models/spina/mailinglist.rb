@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: spina_mailinglists
@@ -11,6 +9,8 @@
 #
 module Spina
   class Mailinglist < ApplicationRecord
+
     validates :email, presence: true, uniqueness: true, format: { with: /\A[^@]+@[^@]+\z/ }
+
   end
 end

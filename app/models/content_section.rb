@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: content_sections
@@ -20,6 +18,7 @@
 #  fk_rails_...  (exhibit_id => exhibits.id)
 #
 class ContentSection < ApplicationRecord
+
   belongs_to :artist, optional: true
   belongs_to :exhibit, optional: true
 
@@ -31,8 +30,9 @@ class ContentSection < ApplicationRecord
   private
 
   def has_valid_contents
-    if images.empty? && content.body.nil? && header.blank?
-      errors.add(:header, :no_value, message: I18n.t('errors.content_sections.no_value'))
-    end
+    return unless images.empty? && content.body.nil? && header.blank?
+
+    errors.add(:header, :no_value, message: I18n.t('errors.content_sections.no_value'))
   end
+
 end

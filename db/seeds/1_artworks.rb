@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Artwork.destroy_all
 
 5.times do

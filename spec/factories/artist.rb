@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 FactoryBot.define do
   factory :artist do
     name { "#{Faker::Artist.unique.name} #{Time.current.to_i}" }

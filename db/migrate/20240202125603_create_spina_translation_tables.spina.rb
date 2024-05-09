@@ -1,7 +1,6 @@
-# frozen_string_literal: true
-
 # This migration comes from spina (originally 2)
 class CreateSpinaTranslationTables < ActiveRecord::Migration[4.2]
+
   def up
     create_table 'spina_page_translations', force: :cascade do |t|
       t.integer 'spina_page_id', null: false
@@ -43,4 +42,5 @@ class CreateSpinaTranslationTables < ActiveRecord::Migration[4.2]
     drop_table 'spina_text_translations'
     drop_table 'spina_line_translations'
   end
+
 end

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: spina_mails
@@ -16,6 +14,8 @@
 #
 module Spina
   class Mail < ApplicationRecord
+
     validates :first_name, :last_name, :email, :phone_number, :message, presence: true
+
   end
 end

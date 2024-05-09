@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 class CreateContentSectionTables < ActiveRecord::Migration[7.1]
+
   def change
     create_table :content_sections do |t|
       t.references :artist, foreign_key: true
@@ -9,4 +8,5 @@ class CreateContentSectionTables < ActiveRecord::Migration[7.1]
       t.string :header
     end
   end
+
 end

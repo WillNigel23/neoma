@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 module FeaturedItemHelper
+
   def fe_featured_item_link(link_path,
                             opts: { class: 'sticky top-5 md:top-1/4' }, &block)
     link_to(link_path, method: :get, class: opts[:class], data: opts[:data]) do
@@ -9,19 +8,23 @@ module FeaturedItemHelper
   end
 
   def fe_featured_item_content_wrapper(_content = nil,
-                                       opts: { class: 'flex flex-col items-start justify-start reveal',
-                                               data: { scroll_reveal_target: 'item', data_delay: '250ms' } }, &block)
+                                       opts: {
+                                         class: 'flex flex-col items-start justify-start reveal',
+                                         data: { scroll_reveal_target: 'item', data_delay: '250ms' }
+                                       }, &block)
     content_tag(:span,
-                class: opts[:class], data: opts[:data]) do
+      class: opts[:class], data: opts[:data]) do
       concat(capture(&block)) if block_given?
     end
   end
 
   def fe_featured_item_image_wrapper(_content = nil,
-                                     opts: { class: 'transition-all duration-500 hover:scale-110 mb-5',
-                                             data: nil }, &block)
+                                     opts: {
+                                       class: 'transition-all duration-500 hover:scale-110 mb-5',
+                                       data: nil
+                                     }, &block)
     content_tag(:div,
-                class: opts[:class], data: opts[:data]) do
+      class: opts[:class], data: opts[:data]) do
       concat(capture(&block)) if block_given?
     end
   end
@@ -33,9 +36,9 @@ module FeaturedItemHelper
     image_url = main_app.url_for(spina_image.file)
 
     image_tag(image_url,
-              {
-                class: opts[:class]
-              })
+      {
+        class: opts[:class]
+      })
   end
 
   def fe_featured_item_image_v2(image, opts: { class: 'reveal' })
@@ -63,4 +66,5 @@ module FeaturedItemHelper
                             opts: { class: 'font-montserrat font-light text-sm text-gray-800' })
     content_tag(:p, content, **opts)
   end
+
 end

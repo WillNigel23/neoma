@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Theme configuration file
 # ========================
 # This file is used for all theme configuration.
@@ -49,7 +47,7 @@ Spina::Theme.register do |theme|
       name: 'section',
       title: 'Section',
       hint: 'Section for content block',
-      parts: %w[header body carousel],
+      parts: ['header', 'body', 'carousel'],
       part_type: 'Spina::Parts::Repeater'
     },
 
@@ -58,8 +56,13 @@ Spina::Theme.register do |theme|
     { name: 'image', title: 'Image', part_type: 'Spina::Parts::Image' },
     { name: 'details', title: 'Details', hint: 'Details', part_type: 'Spina::Parts::Text' },
     { name: 'price', title: 'Price', hint: 'Price', part_type: 'Spina::Parts::Line' },
-    { name: 'status', title: 'Status', hint: 'Status', options: %w[for_sale not_for_sale sold],
-      part_type: 'Spina::Parts::Option' }
+    {
+      name: 'status',
+      title: 'Status',
+      hint: 'Status',
+      options: ['for_sale', 'not_for_sale', 'sold'],
+      part_type: 'Spina::Parts::Option'
+    }
   ]
 
   # View templates
@@ -67,22 +70,53 @@ Spina::Theme.register do |theme|
   # You define which parts you want to enable for every view template
   # by referencing them from the theme.parts configuration above.
   theme.view_templates = [
-    { name: 'homepage', title: 'Homepage',
-      parts: %w[featured_exhibits featured_artworks featured_artists featured_events featured_galleries] },
+    {
+      name: 'homepage',
+      title: 'Homepage',
+      parts: ['featured_exhibits', 'featured_artworks', 'featured_artists', 'featured_events', 'featured_galleries']
+    },
     { name: 'exhibits', title: 'Exhibits' },
     { name: 'artworks', title: 'Artworks' },
     { name: 'artists', title: 'Artists' },
     { name: 'galleries', title: 'Galleries' },
     { name: 'events', title: 'Events' },
-    { name: 'about_us', title: 'About Us', parts: %w[banner section featured_artists] },
-    { name: 'exhibit', title: 'Exhibit',
-      parts: %w[header subheader summary start_date end_date featured_artist banner poster section featured_artworks] },
-    { name: 'artwork', title: 'Artwork', parts: %w[header date featured_artist image body price status] },
-    { name: 'gallery', title: 'Gallery',
-      parts: %w[header subheader summary start_date end_date banner section featured_artworks] },
-    { name: 'event', title: 'Event', parts: %w[header subheader summary start_date end_date banner section] },
-    { name: 'artist', title: 'Artist',
-      parts: %w[header subheader role banner portrait section featured_artworks] }
+    { name: 'about_us', title: 'About Us', parts: ['banner', 'section', 'featured_artists'] },
+    {
+      name: 'exhibit',
+      title: 'Exhibit',
+      parts: [
+        'header',
+        'subheader',
+        'summary',
+        'start_date',
+        'end_date',
+        'featured_artist',
+        'banner',
+        'poster',
+        'section',
+        'featured_artworks'
+      ]
+    },
+    {
+      name: 'artwork',
+      title: 'Artwork',
+      parts: ['header', 'date', 'featured_artist', 'image', 'body', 'price', 'status']
+    },
+    {
+      name: 'gallery',
+      title: 'Gallery',
+      parts: ['header', 'subheader', 'summary', 'start_date', 'end_date', 'banner', 'section', 'featured_artworks']
+    },
+    {
+      name: 'event',
+      title: 'Event',
+      parts: ['header', 'subheader', 'summary', 'start_date', 'end_date', 'banner', 'section']
+    },
+    {
+      name: 'artist',
+      title: 'Artist',
+      parts: ['header', 'subheader', 'role', 'banner', 'portrait', 'section', 'featured_artworks']
+    }
   ]
 
   # Custom pages

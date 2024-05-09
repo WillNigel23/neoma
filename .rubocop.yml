@@ -1,11 +1,5 @@
-require:
-  - rubocop-rspec
-  - rubocop-rails
+inherit_mode:
+  merge:
+    - Exclude
 
-Metrics/BlockLength:
-  AllowedMethods: ['describe', 'context']
-
-Style/SymbolProc:
-  Exclude:
-    - 'app/**/*' # Exclude the warning in all files under the app directory
-    - 'spec/**/*' # Exclude the warning in all files under the spec directory
+inherit_from: config/rubocop/.rubocop.yml

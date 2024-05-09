@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Theme configuration file
 # ========================
 # This file is used for all theme configuration.
@@ -31,8 +29,8 @@ Spina::Theme.register do |theme|
   # You define which parts you want to enable for every view template
   # by referencing them from the theme.parts configuration above.
   theme.view_templates = [
-    { name: 'homepage', title: 'Homepage', parts: %w[text] },
-    { name: 'show', title: 'Page', parts: %w[text] }
+    { name: 'homepage', title: 'Homepage', parts: ['text'] },
+    { name: 'show', title: 'Page', parts: ['text'] }
   ]
 
   # Custom pages

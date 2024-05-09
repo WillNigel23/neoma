@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: artworks
@@ -27,6 +25,7 @@
 #  fk_rails_...  (artist_id => artists.id)
 #
 class Artwork < ApplicationRecord
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 
@@ -40,4 +39,5 @@ class Artwork < ApplicationRecord
   validates :title, presence: true, uniqueness: true
 
   enum status: { draft: 0, live: 1, archived: 2 }
+
 end

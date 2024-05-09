@@ -1,9 +1,8 @@
-# frozen_string_literal: true
-
 module BannerHelper
+
   def fe_banner(_content = nil, &block)
     content_tag(:section,
-                class: 'sticky top-0 left-0 flex items-center justify-center
+      class: 'sticky top-0 left-0 flex items-center justify-center
         w-full h-screen overflow-hidden bg-gradient-to-t
         from-black to-[#303030] p-0 m-0 z-20') do
       concat(capture(&block)) if block_given?
@@ -17,11 +16,11 @@ module BannerHelper
 
     image_url = main_app.url_for(spina_image.file)
     image_tag(image_url,
-              {
-                class: 'absolute top-0 left-0 w-full w-[100vw] min-h-[100vh]
+      {
+        class: 'absolute top-0 left-0 w-full w-[100vw] min-h-[100vh]
           object-cover reveal',
-                style: "--reveal-opacity: #{opacity};"
-              })
+        style: "--reveal-opacity: #{opacity};"
+      })
   end
 
   def fe_banner_img_v2(image, opts: {
@@ -35,8 +34,8 @@ module BannerHelper
 
   def fe_banner_inner(_content = nil, &block)
     content_tag(:div,
-                class: 'container mx-auto px-5 z-10 text-center',
-                data: { controller: 'scroll-reveal' }) do
+      class: 'container mx-auto px-5 z-10 text-center',
+      data: { controller: 'scroll-reveal' }) do
       concat(capture(&block)) if block_given?
     end
   end
@@ -75,12 +74,14 @@ module BannerHelper
     content,
     link_url,
     opts: {
-      class: 'font-montserrat text-center text-black transition-color duration-500 bg-neoma-pink-1 hover:bg-[#f7b1af] px-3 py-2 min-w-[120px]',
+      class: 'font-montserrat text-center text-black transition-color duration-500 bg-neoma-pink-1 ' \
+             'hover:bg-[#f7b1af] px-3 py-2 min-w-[120px]',
       data: { scroll_reveal_target: 'item', delay: '250ms' }
     }
   )
     content_tag(:span,
-                link_to(content, link_url, { class: opts[:class] }),
-                { class: 'reveal', data: opts[:data] })
+      link_to(content, link_url, { class: opts[:class] }),
+      { class: 'reveal', data: opts[:data] })
   end
+
 end

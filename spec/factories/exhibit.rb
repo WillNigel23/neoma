@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 FactoryBot.define do
   factory :exhibit do
     title { "#{Faker::Movie.unique.title} #{Time.current.to_i}" }

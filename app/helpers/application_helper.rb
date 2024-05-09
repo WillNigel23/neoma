@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 module ApplicationHelper
+
   def main_nav_items
     @main_nav_items ||= Spina::Navigation.find_by(name: 'main').navigation_items.roots.sorted
   end
@@ -27,8 +26,10 @@ module ApplicationHelper
     end
     ongoing.sort_by! do |exhibit|
       if exhibit.content(:start_date).nil?
-        [1,
-         Date.current]
+        [
+          1,
+          Date.current
+        ]
       else
         [0, Date.strptime(exhibit.content(:start_date), '%d, %B %Y')]
       end
@@ -42,8 +43,10 @@ module ApplicationHelper
     end
     past.sort_by! do |exhibit|
       if exhibit.content(:start_date).nil?
-        [1,
-         Date.current]
+        [
+          1,
+          Date.current
+        ]
       else
         [0, Date.strptime(exhibit.content(:start_date), '%d, %B %Y')]
       end
@@ -69,8 +72,10 @@ module ApplicationHelper
     end
     ongoing.sort_by! do |event|
       if event.content(:start_date).nil?
-        [1,
-         Date.current]
+        [
+          1,
+          Date.current
+        ]
       else
         [0, Date.strptime(event.content(:start_date), '%d, %B %Y')]
       end
@@ -84,8 +89,10 @@ module ApplicationHelper
     end
     past.sort_by! do |event|
       if event.content(:start_date).nil?
-        [1,
-         Date.current]
+        [
+          1,
+          Date.current
+        ]
       else
         [0, Date.strptime(event.content(:start_date), '%d, %B %Y')]
       end
@@ -115,7 +122,7 @@ module ApplicationHelper
   end
 
   def navbar_color_scheme
-    %w[Artists Exhibits Galleries Events]
+    ['Artists', 'Exhibits', 'Galleries', 'Events']
   end
 
   def classes_for_flash(key)
@@ -135,4 +142,5 @@ module ApplicationHelper
       content_tag(:i, nil, class: 'fa-solid fa-circle-check text-neoma-blue-2 text-xl')
     end
   end
+
 end

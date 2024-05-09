@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 class CreateArtistsTable < ActiveRecord::Migration[7.1]
+
   def change
     create_table :artists do |t|
       t.string      :name, null: false
@@ -15,4 +14,5 @@ class CreateArtistsTable < ActiveRecord::Migration[7.1]
       t.index [:name], name: 'unique_slug_per_artist', unique: true
     end
   end
+
 end

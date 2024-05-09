@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: spina_images
@@ -15,6 +13,7 @@
 #
 module Spina
   class Image < ApplicationRecord
+
     include Attachable
 
     belongs_to :media_folder, optional: true
@@ -45,5 +44,6 @@ module Spina
         }
       )
     end
+
   end
 end

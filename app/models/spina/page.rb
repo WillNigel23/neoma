@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: spina_pages
@@ -30,6 +28,7 @@
 #
 module Spina
   class Page < ApplicationRecord
+
     extend Mobility
     include AttrJson::Record
     include AttrJson::NestedAttributes
@@ -41,8 +40,8 @@ module Spina
 
     # Orphaned pages are adopted by parent pages if available, otherwise become root
     has_ancestry orphan_strategy: :adopt,
-                 counter_cache: :ancestry_children_count,
-                 cache_depth: true
+      counter_cache: :ancestry_children_count,
+      cache_depth: true
 
     # Pages can belong to navigations (optional)
     has_many :navigation_items, dependent: :destroy
@@ -59,19 +58,16 @@ module Spina
     scope :live, -> { active.where(draft: false) }
     scope :in_menu, -> { where(show_in_menu: true) }
 
-    before_create :set_default_position
-
+    before_validation :set_materialized_path
     # Copy resource from parent
     before_save :set_resource_from_parent, if: -> { parent.present? }
+    before_create :set_default_position
 
-    # Save children to update all materialized_paths
+    # Create a 301 redirect if materialized_path changed
+    after_update :rewrite_rule # Save children to update all materialized_paths
     after_save :save_children
     after_save :touch_navigations
 
-    # Create a 301 redirect if materialized_path changed
-    after_update :rewrite_rule
-
-    before_validation :set_materialized_path
     validates :title, presence: true
     validate :unique_title
 
@@ -157,11 +153,11 @@ module Spina
     end
 
     def localized_materialized_path
-      segments = if Mobility.locale == I18n.default_locale
-                   [Spina.mounted_at, generate_materialized_path]
-                 else
-                   [Spina.mounted_at, Mobility.locale, generate_materialized_path]
-                 end
+      if Mobility.locale == I18n.default_locale
+        segments = [Spina.mounted_at, generate_materialized_path]
+      else
+        segments = [Spina.mounted_at, Mobility.locale, generate_materialized_path]
+      end
       File.join(*segments.map(&:to_s).compact)
     end
 
@@ -173,7 +169,8 @@ module Spina
     end
 
     def duplicate_materialized_path?
-      self.class.where.not(id:).i18n.where(materialized_path:).exists?
+      self.class.where.not(id:).i18n.exists?(materialized_path:)
     end
+
   end
 end

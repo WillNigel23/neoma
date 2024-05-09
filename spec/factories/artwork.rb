@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 FactoryBot.define do
   factory :artwork do
     title { "#{Faker::Movie.unique.title} #{Time.current.to_i}" }
@@ -16,7 +14,7 @@ FactoryBot.define do
     end
 
     trait :with_artist do
-      association :artist
+      artist
     end
   end
 end

@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 class CreateExhibitsTable < ActiveRecord::Migration[7.1]
+
   def change
     create_table :exhibits do |t|
       t.string      :title, null: false
@@ -17,4 +16,5 @@ class CreateExhibitsTable < ActiveRecord::Migration[7.1]
       t.index [:title], name: 'unique_slug_per_exhibit', unique: true
     end
   end
+
 end

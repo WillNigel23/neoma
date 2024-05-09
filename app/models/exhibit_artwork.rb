@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: exhibit_artworks
@@ -20,6 +18,8 @@
 #  fk_rails_...  (exhibit_id => exhibits.id)
 #
 class ExhibitArtwork < ApplicationRecord
+
   belongs_to :exhibit
   belongs_to :artwork
+
 end

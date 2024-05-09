@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: artists
@@ -19,6 +17,7 @@
 #  unique_slug_per_artist  (name) UNIQUE
 #
 class Artist < ApplicationRecord
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 
@@ -33,4 +32,5 @@ class Artist < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   enum status: { draft: 0, live: 1, archived: 2 }
+
 end

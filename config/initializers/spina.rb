@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Spina.configure do |config|
   # Locales
   # ===============

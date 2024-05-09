@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: exhibits
@@ -20,6 +18,7 @@
 #  unique_slug_per_exhibit  (title) UNIQUE
 #
 class Exhibit < ApplicationRecord
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 
@@ -41,15 +40,16 @@ class Exhibit < ApplicationRecord
 
   enum status: { draft: 0, live: 1, archived: 2 }
 
-  scope :past, lambda {
+  scope :past, -> {
     where('end_date < :date', date: Date.current)
   }
 
-  scope :ongoing, lambda {
+  scope :ongoing, -> {
     where('start_date <= :date AND (end_date IS NULL OR end_date >= :date)', date: Date.current)
   }
 
-  scope :future, lambda {
+  scope :future, -> {
     where('start_date > :date', date: Date.current)
   }
+
 end
