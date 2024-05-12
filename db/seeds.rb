@@ -7,9 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
+#
 Dir[Rails.root.join('db/seeds/*.rb')].each do |file|
-  # Execute each seed file
-  # Rails.logger.debug { "Executing seed file: #{file}" }
-  # load file
+  Rails.logger.debug { "Executing seed file: #{file}" }
+  load file
 end
