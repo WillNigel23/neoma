@@ -29,7 +29,7 @@ module BannerHelper
   }, check_attached: true)
     return if check_attached && !image.attached?
 
-    image_tag(image, { class: opts[:class], style: "--reveal-opacity: #{opts[:opacity]};" })
+    image_tag(image.file, { class: opts[:class], style: "--reveal-opacity: #{opts[:opacity]};" })
   end
 
   def fe_banner_inner(_content = nil, &block)
