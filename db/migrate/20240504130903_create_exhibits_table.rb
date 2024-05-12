@@ -8,6 +8,9 @@ class CreateExhibitsTable < ActiveRecord::Migration[7.1]
       t.text        :summary
       t.integer     :status, null: false, default: 0
 
+      t.references  :banner, foreign_key: { to_table: :images }
+      t.references  :poster, foreign_key: { to_table: :images }
+
       t.date        :start_date, null: false
       t.date        :end_date
 

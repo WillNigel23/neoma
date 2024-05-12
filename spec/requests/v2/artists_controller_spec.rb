@@ -4,7 +4,7 @@ describe V2::ArtistsController do
   describe '#index' do
     subject { get action_path }
 
-    let(:artist) { create(:artist, :with_images) }
+    let(:artist) { create(:artist, :with_banner, :with_portrait) }
     let(:action_path) { v2_artists_path }
 
     it 'renders status and template' do
@@ -17,7 +17,7 @@ describe V2::ArtistsController do
   describe '#show' do
     subject { get action_path }
 
-    let(:artist) { create(:artist, :with_images) }
+    let(:artist) { create(:artist, :with_banner, :with_portrait) }
     let(:action_path) { v2_artist_path(artist) }
 
     it 'renders status and template' do

@@ -1,29 +1,3 @@
-# == Schema Information
-#
-# Table name: artworks
-#
-#  id          :bigint           not null, primary key
-#  description :text
-#  medium      :string
-#  price       :integer
-#  size        :string
-#  slug        :string
-#  status      :integer          default("draft"), not null
-#  title       :string           not null
-#  year        :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  artist_id   :bigint
-#
-# Indexes
-#
-#  index_artworks_on_artist_id  (artist_id)
-#  unique_slug_per_artwork      (title) UNIQUE
-#
-# Foreign Keys
-#
-#  fk_rails_...  (artist_id => artists.id)
-#
 require 'rails_helper'
 
 describe Artwork do
@@ -44,7 +18,7 @@ describe Artwork do
       let(:artwork) { create(:artwork, :with_image) }
 
       it 'has attached image' do
-        expect(artwork.image.attached?).to be true
+        expect(artwork.image).not_to be_nil
       end
     end
 

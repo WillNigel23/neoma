@@ -14,6 +14,8 @@ class CreateArtworksTable < ActiveRecord::Migration[7.1]
 
       t.integer     :status, null: false, default: 0
 
+      t.references  :image, foreign_key: { to_table: :images }
+
       t.timestamps
 
       t.index [:title], name: 'unique_slug_per_artwork', unique: true

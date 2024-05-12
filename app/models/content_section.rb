@@ -2,28 +2,23 @@
 #
 # Table name: content_sections
 #
-#  id         :bigint           not null, primary key
-#  header     :string
-#  artist_id  :bigint
-#  exhibit_id :bigint
+#  id               :bigint           not null, primary key
+#  contentable_type :string
+#  header           :string
+#  contentable_id   :bigint
 #
 # Indexes
 #
-#  index_content_sections_on_artist_id   (artist_id)
-#  index_content_sections_on_exhibit_id  (exhibit_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (artist_id => artists.id)
-#  fk_rails_...  (exhibit_id => exhibits.id)
+#  index_content_sections_on_contentable  (contentable_type,contentable_id)
 #
 class ContentSection < ApplicationRecord
 
-  belongs_to :artist, optional: true
-  belongs_to :exhibit, optional: true
+  belongs_to :contentable, polymorphic: true, optional: true
+
+  has_many :content_images, dependent: :destroy
+  has_many :images, through: :content_images
 
   has_rich_text :content
-  has_many_attached :images
 
   validate :has_valid_contents
 

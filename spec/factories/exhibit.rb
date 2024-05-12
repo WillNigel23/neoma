@@ -9,9 +9,12 @@ FactoryBot.define do
       end_date { start_date + 30.days }
     end
 
-    trait :with_images do
-      banner { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/banners/banner.jpg').to_s) }
-      poster { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/portraits/portrait.jpg').to_s) }
+    trait :with_banner do
+      banner { create(:image, :skip_validate_to_create) }
+    end
+
+    trait :with_poster do
+      poster { create(:image, :skip_validate_to_create) }
     end
 
     trait :with_artworks do
@@ -30,7 +33,7 @@ FactoryBot.define do
       end
 
       after(:create) do |exhibit, evaluator|
-        create_list(:content_section, evaluator.content_sections_count, exhibit:)
+        exhibit.content_sections << create_list(:content_section, evaluator.content_sections_count)
       end
     end
   end

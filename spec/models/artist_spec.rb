@@ -1,21 +1,3 @@
-# == Schema Information
-#
-# Table name: artists
-#
-#  id          :bigint           not null, primary key
-#  description :string
-#  full_name   :string
-#  name        :string           not null
-#  role        :string
-#  slug        :string
-#  status      :integer          default("draft"), not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#
-# Indexes
-#
-#  unique_slug_per_artist  (name) UNIQUE
-#
 require 'rails_helper'
 
 describe Artist do
@@ -33,14 +15,14 @@ describe Artist do
     end
 
     describe 'images' do
-      let(:artist) { create(:artist, :with_images) }
+      let(:artist) { create(:artist, :with_banner, :with_portrait) }
 
       it 'has attached banner' do
-        expect(artist.banner.attached?).to be true
+        expect(artist.banner).not_to be_nil
       end
 
       it 'has attached portrait' do
-        expect(artist.portrait.attached?).to be true
+        expect(artist.portrait).not_to be_nil
       end
     end
 

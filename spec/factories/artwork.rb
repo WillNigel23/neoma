@@ -10,11 +10,11 @@ FactoryBot.define do
     price { rand(1000..100_000) }
 
     trait :with_image do
-      image { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/portraits/portrait.jpg').to_s) }
+      image { create(:image, :skip_validate_to_create) }
     end
 
     trait :with_artist do
-      artist
+      artist { create(:artist) }
     end
   end
 end

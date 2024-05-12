@@ -32,9 +32,6 @@ jobs:
         with:
           ruby-version: 3.1.4
           bundler-cache: true
-      # Update Error Highlight
-      - name: Update Error Highlight
-        run: gem install error_highlight
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:schema:load

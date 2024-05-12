@@ -1,14 +1,15 @@
+---
 en:
   form:
-    mailing_list:
-      placeholder: Join our mailing list
-      privacy_policy: By signing up you agree to our privacy policy. You can unsubscribe or change your preferences at any time by clicking the link in any emails.
     inquiries:
-      title: How can we help?
       placeholder:
         email: Email
         first_name: First name
         last_name: Last name
-        phone_number: Phone number
         message: Message
+        phone_number: Phone number
       submit: Submit
+      title: How can we help?
+    mailing_list:
+      placeholder: Join our mailing list
+      privacy_policy: By signing up you agree to our privacy policy. You can unsubscribe or change your preferences at any time by clicking the link in any emails.

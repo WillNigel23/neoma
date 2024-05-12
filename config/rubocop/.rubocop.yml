@@ -17,6 +17,7 @@ AllCops:
   TargetRubyVersion: 3.1.4
   Exclude:
     - vendor/bundle/**/*
+    - lib/tasks/**/*
     - !ruby/regexp /bin\//
     - !ruby/regexp /Rakefile/
     - !ruby/regexp /initializers/

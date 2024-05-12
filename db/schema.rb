@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_08_175018) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_12_200053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,9 +59,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_175018) do
     t.string "description"
     t.string "role"
     t.integer "status", default: 0, null: false
+    t.bigint "banner_id"
+    t.bigint "portrait_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["banner_id"], name: "index_artists_on_banner_id"
     t.index ["name"], name: "unique_slug_per_artist", unique: true
+    t.index ["portrait_id"], name: "index_artists_on_portrait_id"
   end
 
   create_table "artworks", force: :cascade do |t|
@@ -74,26 +78,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_175018) do
     t.text "description"
     t.integer "price"
     t.integer "status", default: 0, null: false
+    t.bigint "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_artworks_on_artist_id"
+    t.index ["image_id"], name: "index_artworks_on_image_id"
     t.index ["title"], name: "unique_slug_per_artwork", unique: true
   end
 
-  create_table "content_sections", force: :cascade do |t|
-    t.bigint "artist_id"
-    t.bigint "exhibit_id"
-    t.string "header"
-    t.index ["artist_id"], name: "index_content_sections_on_artist_id"
-    t.index ["exhibit_id"], name: "index_content_sections_on_exhibit_id"
+  create_table "content_images", force: :cascade do |t|
+    t.bigint "image_id"
+    t.bigint "content_section_id"
+    t.index ["content_section_id"], name: "index_content_images_on_content_section_id"
+    t.index ["image_id"], name: "index_content_images_on_image_id"
   end
 
-  create_table "exhibit_artists", force: :cascade do |t|
-    t.bigint "exhibit_id"
-    t.bigint "artist_id"
-    t.index ["artist_id"], name: "index_exhibit_artists_on_artist_id"
-    t.index ["exhibit_id", "artist_id"], name: "index_exhibit_artists", unique: true
-    t.index ["exhibit_id"], name: "index_exhibit_artists_on_exhibit_id"
+  create_table "content_sections", force: :cascade do |t|
+    t.string "contentable_type"
+    t.bigint "contentable_id"
+    t.string "header"
+    t.index ["contentable_type", "contentable_id"], name: "index_content_sections_on_contentable"
   end
 
   create_table "exhibit_artworks", force: :cascade do |t|
@@ -110,11 +114,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_175018) do
     t.string "subtitle"
     t.text "summary"
     t.integer "status", default: 0, null: false
+    t.bigint "banner_id"
+    t.bigint "poster_id"
     t.date "start_date", null: false
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["banner_id"], name: "index_exhibits_on_banner_id"
+    t.index ["poster_id"], name: "index_exhibits_on_poster_id"
     t.index ["title"], name: "unique_slug_per_exhibit", unique: true
+  end
+
+  create_table "images", force: :cascade do |t|
   end
 
   create_table "spina_accounts", id: :serial, force: :cascade do |t|
@@ -370,11 +381,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_175018) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "artists", "images", column: "banner_id"
+  add_foreign_key "artists", "images", column: "portrait_id"
   add_foreign_key "artworks", "artists"
-  add_foreign_key "content_sections", "artists"
-  add_foreign_key "content_sections", "exhibits"
-  add_foreign_key "exhibit_artists", "artists"
-  add_foreign_key "exhibit_artists", "exhibits"
+  add_foreign_key "artworks", "images"
+  add_foreign_key "content_images", "content_sections"
+  add_foreign_key "content_images", "images"
   add_foreign_key "exhibit_artworks", "artworks"
   add_foreign_key "exhibit_artworks", "exhibits"
+  add_foreign_key "exhibits", "images", column: "banner_id"
+  add_foreign_key "exhibits", "images", column: "poster_id"
 end

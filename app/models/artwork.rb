@@ -14,22 +14,25 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  artist_id   :bigint
+#  image_id    :bigint
 #
 # Indexes
 #
 #  index_artworks_on_artist_id  (artist_id)
+#  index_artworks_on_image_id   (image_id)
 #  unique_slug_per_artwork      (title) UNIQUE
 #
 # Foreign Keys
 #
 #  fk_rails_...  (artist_id => artists.id)
+#  fk_rails_...  (image_id => images.id)
 #
 class Artwork < ApplicationRecord
 
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  has_one_attached :image
+  belongs_to :image, class_name: 'Image', optional: true
 
   belongs_to :artist, optional: true
 

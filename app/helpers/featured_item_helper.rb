@@ -42,9 +42,9 @@ module FeaturedItemHelper
   end
 
   def fe_featured_item_image_v2(image, opts: { class: 'reveal' })
-    return unless image.attached?
+    return unless image&.attached?
 
-    image_tag(image, { class: opts[:class] })
+    image_tag(image.file, { class: opts[:class] })
   end
 
   def fe_featured_item_pretitle(content,

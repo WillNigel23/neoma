@@ -17,7 +17,7 @@
   <!-- Content -->
   <section class='relative w-full bg-white pb-10 z-20'>
     <% @artist.content_sections.each do |block| %>
-      <% if block.images.attached? %>
+      <% if block.images.any? %>
         <%= fe_carousel do %>
           <%= fe_carousel_wrapper do %>
             <% block.images.each do |img| %>
