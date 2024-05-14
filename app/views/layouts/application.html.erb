@@ -21,5 +21,6 @@
 
   <body class='flex flex-col w-full' data-controller='scroll-reveal lazy'>
     <%= yield %>
+    <%= turbo_frame_tag 'modal' %>
   </body>
 </html>
