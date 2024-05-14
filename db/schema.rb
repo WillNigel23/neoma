@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_12_200053) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_14_104917) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_200053) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug"
+    t.string "subtitle"
+    t.text "description"
+    t.integer "status", default: 0, null: false
+    t.date "date", null: false
+    t.bigint "banner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["banner_id"], name: "index_articles_on_banner_id"
+    t.index ["title"], name: "unique_slug_per_article", unique: true
   end
 
   create_table "artists", force: :cascade do |t|
@@ -112,7 +126,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_200053) do
     t.string "title", null: false
     t.string "slug"
     t.string "subtitle"
-    t.text "summary"
+    t.text "description"
     t.integer "status", default: 0, null: false
     t.bigint "banner_id"
     t.bigint "poster_id"
@@ -123,6 +137,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_200053) do
     t.index ["banner_id"], name: "index_exhibits_on_banner_id"
     t.index ["poster_id"], name: "index_exhibits_on_poster_id"
     t.index ["title"], name: "unique_slug_per_exhibit", unique: true
+  end
+
+  create_table "galleries", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug"
+    t.string "location"
+    t.text "description"
+    t.integer "status", default: 0, null: false
+    t.bigint "banner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["banner_id"], name: "index_galleries_on_banner_id"
+    t.index ["title"], name: "unique_slug_per_gallery", unique: true
+  end
+
+  create_table "gallery_artworks", force: :cascade do |t|
+    t.bigint "gallery_id"
+    t.bigint "artwork_id"
+    t.index ["artwork_id"], name: "index_gallery_artworks_on_artwork_id"
+    t.index ["gallery_id", "artwork_id"], name: "index_gallery_artworks", unique: true
+    t.index ["gallery_id"], name: "index_gallery_artworks_on_gallery_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -381,6 +416,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_200053) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "images", column: "banner_id"
   add_foreign_key "artists", "images", column: "banner_id"
   add_foreign_key "artists", "images", column: "portrait_id"
   add_foreign_key "artworks", "artists"
@@ -391,4 +427,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_200053) do
   add_foreign_key "exhibit_artworks", "exhibits"
   add_foreign_key "exhibits", "images", column: "banner_id"
   add_foreign_key "exhibits", "images", column: "poster_id"
+  add_foreign_key "galleries", "images", column: "banner_id"
+  add_foreign_key "gallery_artworks", "artworks"
+  add_foreign_key "gallery_artworks", "galleries"
 end

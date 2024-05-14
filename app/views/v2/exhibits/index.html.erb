@@ -23,7 +23,7 @@
             }) %>
             <%= fe_featured_item_title(exhibit.title, opts: { class: 'font-restora font-bold text-xl md:text-3xl my-5' }) %>
             <%= fe_featured_item_subtitle(exhibit.subtitle, opts: { class: 'font-montserrat text-light' }) %>
-            <%= fe_featured_item_text(exhibit.summary, opts: { class: 'font-montserrat text-light text-xs my-5' }) %>
+            <%= fe_featured_item_text(exhibit.description, opts: { class: 'font-montserrat text-light text-xs my-5' }) %>
             <%= fe_banner_link('Explore Now', v2_exhibit_path(exhibit)) %>
           <% end %>
         <% end %>
@@ -47,7 +47,7 @@
             }) %>
             <%= fe_featured_item_title(exhibit.title, opts: { class: 'font-restora font-bold text-xl md:text-3xl my-5' }) %>
             <%= fe_featured_item_subtitle(exhibit.subtitle, opts: { class: 'font-montserrat text-light' }) %>
-            <%= fe_featured_item_text(exhibit.summary, opts: { class: 'font-montserrat text-light text-xs my-5' }) %>
+            <%= fe_featured_item_text(exhibit.description, opts: { class: 'font-montserrat text-light text-xs my-5' }) %>
             <%= fe_banner_link('Explore Now', v2_exhibit_path(exhibit)) %>
           <% end %>
         <% end %>

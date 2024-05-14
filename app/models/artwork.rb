@@ -36,8 +36,11 @@ class Artwork < ApplicationRecord
 
   belongs_to :artist, optional: true
 
-  has_many :exhibit_artworks, dependent: :nullify
+  has_many :exhibit_artworks, dependent: :destroy
   has_many :exhibits, through: :exhibit_artworks
+
+  has_many :gallery_artworks, dependent: :destroy
+  has_many :galleries, through: :gallery_artworks
 
   validates :title, presence: true, uniqueness: true
 

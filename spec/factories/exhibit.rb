@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :exhibit do
     title { "#{Faker::Movie.unique.title} #{Time.current.to_i}" }
     subtitle { Faker::Movie.quote }
-    summary { Faker::Movie.quote }
+    description { Faker::Movie.quote }
     start_date { Date.current }
 
     trait :with_end_date do

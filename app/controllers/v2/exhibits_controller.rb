@@ -2,8 +2,8 @@ module V2
   class ExhibitsController < ApplicationController
 
     def index
-      @past_exhibits = Exhibit.live.past
-      @ongoing_exhibits = Exhibit.live.ongoing
+      @past_exhibits = Exhibit.live.past.order(start_date: :desc, end_date: :asc)
+      @ongoing_exhibits = Exhibit.live.ongoing.order(start_date: :desc, end_date: :asc)
     end
 
     def show

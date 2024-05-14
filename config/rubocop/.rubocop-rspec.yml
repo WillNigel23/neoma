@@ -243,3 +243,8 @@ RSpec/MetadataStyle:
 
 RSpec/SpecFilePathFormat:
   Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: true
+  Exclude:
+    - !ruby/regexp /lint_spec.rb/

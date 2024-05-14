@@ -5,7 +5,7 @@ class CreateExhibitsTable < ActiveRecord::Migration[7.1]
       t.string      :title, null: false
       t.string      :slug
       t.string      :subtitle
-      t.text        :summary
+      t.text        :description
       t.integer     :status, null: false, default: 0
 
       t.references  :banner, foreign_key: { to_table: :images }

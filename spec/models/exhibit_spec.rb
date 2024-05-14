@@ -77,4 +77,32 @@ describe Exhibit do
       end
     end
   end
+
+  describe 'scopes' do
+    let(:exhibit_1) { create(:exhibit, start_date: 10.days.ago, end_date: 5.days.ago, status: :archived) }
+    let(:exhibit_2) { create(:exhibit, start_date: Date.current, status: :live) }
+    let(:exhibit_3) { create(:exhibit, start_date: 10.days.from_now, status: :draft) }
+
+    it 'by status' do
+      result = Exhibit.archived
+      expect(result).to contain_exactly(exhibit_1)
+
+      result = Exhibit.live
+      expect(result).to contain_exactly(exhibit_2)
+
+      result = Exhibit.draft
+      expect(result).to contain_exactly(exhibit_3)
+    end
+
+    it 'by past' do
+      result = Exhibit.past
+      expect(result).to contain_exactly(exhibit_1)
+
+      result = Exhibit.ongoing
+      expect(result).to contain_exactly(exhibit_2)
+
+      result = Exhibit.future
+      expect(result).to contain_exactly(exhibit_3)
+    end
+  end
 end

@@ -2,7 +2,7 @@ module V2
   class ArtistsController < ApplicationController
 
     def index
-      @artists = Artist.live
+      @artists = Artist.live.order(name: :asc)
     end
 
     def show

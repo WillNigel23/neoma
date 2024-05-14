@@ -2,18 +2,18 @@
 #
 # Table name: exhibits
 #
-#  id         :bigint           not null, primary key
-#  end_date   :date
-#  slug       :string
-#  start_date :date             not null
-#  status     :integer          default("draft"), not null
-#  subtitle   :string
-#  summary    :text
-#  title      :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  banner_id  :bigint
-#  poster_id  :bigint
+#  id          :bigint           not null, primary key
+#  description :text
+#  end_date    :date
+#  slug        :string
+#  start_date  :date             not null
+#  status      :integer          default("draft"), not null
+#  subtitle    :string
+#  title       :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  banner_id   :bigint
+#  poster_id   :bigint
 #
 # Indexes
 #
@@ -34,7 +34,7 @@ class Exhibit < ApplicationRecord
   belongs_to :banner, class_name: 'Image', optional: true
   belongs_to :poster, class_name: 'Image', optional: true
 
-  has_many :exhibit_artworks, dependent: :nullify
+  has_many :exhibit_artworks, dependent: :destroy
   has_many :artworks, through: :exhibit_artworks
   has_many :artists, -> { distinct }, through: :artworks, source: :artist
 

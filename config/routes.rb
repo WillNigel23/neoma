@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   namespace :v2 do
+    resources :articles, only: [:index, :show]
     resources :artists, only: [:index, :show]
     resources :artworks, only: [:index, :show]
     resources :exhibits, only: [:index, :show]
+    resources :galleries, only: [:index, :show]
   end
 
   resources :artwork_modals do

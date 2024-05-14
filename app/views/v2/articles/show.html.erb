@@ -1,0 +1,67 @@
+<section class='w-full'>
+  <!-- Banner -->
+  <%= fe_banner do %>
+    <%= fe_banner_img_v2(@article.banner) %>
+    <%= fe_banner_inner do %>
+      <%= fe_banner_header(@article.title) %>
+      <%= fe_banner_subheader(@article.subtitle) %>
+    <% end %>
+  <% end %>
+
+  <!-- Padding -->
+  <section class='w-full min-h-screen'>
+  </section>
+
+  <!-- Content -->
+  <section class='relative w-full bg-white pb-10 z-20'>
+    <% @article.content_sections.each do |block| %>
+      <% if block.images.any? %>
+        <%= fe_carousel do %>
+          <%= fe_carousel_wrapper do %>
+            <% block.images.each do |img| %>
+              <%= fe_carousel_item do %>
+                <%= fe_banner do %>
+                  <%= fe_banner_img_v2(img, opts: { class: 'absolute top-0 left-0 w-full w-[100vw] min-h-[100vh] object-cover reveal', opacity: '0.8' }, check_attached: false) %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if block.content.body %>
+        <div class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
+          <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= block.header %></h2>
+          <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+          <div class='markdown font-montserrat reveal' data-scroll-reveal-target='item' data-delay='750ms'>
+            <%= block.content %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if @suggested_articles.any? %>
+      <div id='#suggested_articles' class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
+        <div class='w-full flex items-center justify-between reveal' data-scroll-reveal-target='item' data-delay='250ms'>
+          <h2 class='font-restora font-bold flex-1'> <%= t('title.suggested_articles') %> </h2>
+          <%= link_to t('buttons.view_all'), v2_articles_path, class: 'text-xs font-medium hover:text-[#f7b1af] transition-all duration-500' %>
+        </div>
+        <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+        <div class='w-full flex flex-row flex-nowrap justify-start overflow-x-auto overflow-y-clip'>
+          <% @suggested_articles.each do |article| %>
+            <%= fe_featured_item_link(v2_article_path(article), opts: { class: 'flex flex-col mr-5 min-w-[295px] w-[295px]' }) do %>
+              <%= fe_featured_item_content_wrapper() do %>
+                <%= fe_featured_item_image_wrapper do %>
+                  <%= fe_featured_item_image_v2(article.banner, opts: { class: 'reveal object-cover w-[295px] h-[175px]' }) %>
+                <% end %>
+                <%= fe_featured_item_pretitle(format_date(article.date)) %>
+                <%= fe_featured_item_title(article.title) %>
+                <%= fe_featured_item_subtitle(article.subtitle) if article.subtitle %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </section>
+</section>
