@@ -28,7 +28,6 @@
 #
 module Spina
   class Page < ApplicationRecord
-
     extend Mobility
     include AttrJson::Record
     include AttrJson::NestedAttributes
@@ -40,15 +39,15 @@ module Spina
 
     # Orphaned pages are adopted by parent pages if available, otherwise become root
     has_ancestry orphan_strategy: :adopt,
-      counter_cache: :ancestry_children_count,
-      cache_depth: true
+                 counter_cache: :ancestry_children_count,
+                 cache_depth: true
 
     # Pages can belong to navigations (optional)
     has_many :navigation_items, dependent: :destroy
     has_many :navigations, through: :navigation_items
 
     # Pages can belong to a resource
-    belongs_to :resource, optional: true, touch: true, class_name: 'Spina::Resource'
+    belongs_to :resource, optional: true, touch: true, class_name: "Spina::Resource"
 
     scope :main, -> { where(resource_id: nil) }
     scope :regular_pages, -> { main }
@@ -58,16 +57,19 @@ module Spina
     scope :live, -> { active.where(draft: false) }
     scope :in_menu, -> { where(show_in_menu: true) }
 
-    before_validation :set_materialized_path
-    # Copy resource from parent
-    before_save :set_resource_from_parent, if: -> { parent.present? }
     before_create :set_default_position
 
-    # Create a 301 redirect if materialized_path changed
-    after_update :rewrite_rule # Save children to update all materialized_paths
+    # Copy resource from parent
+    before_save :set_resource_from_parent, if: -> { parent.present? }
+
+    # Save children to update all materialized_paths
     after_save :save_children
     after_save :touch_navigations
 
+    # Create a 301 redirect if materialized_path changed
+    after_update :rewrite_rule
+
+    before_validation :set_materialized_path
     validates :title, presence: true
     validate :unique_title
 
@@ -88,7 +90,7 @@ module Spina
     end
 
     def homepage?
-      name == 'homepage'
+      name == "homepage"
     end
 
     def custom_page?
@@ -104,11 +106,11 @@ module Spina
     end
 
     def previous_sibling
-      siblings.where('position < ?', position).sorted.last
+      siblings.where("position < ?", position).sorted.last
     end
 
     def next_sibling
-      siblings.where('position > ?', position).sorted.first
+      siblings.where("position > ?", position).sorted.first
     end
 
     def set_materialized_path
@@ -124,7 +126,7 @@ module Spina
     end
 
     def cache_key
-      "#{super}_#{Mobility.locale}"
+      super + "_" + Mobility.locale.to_s
     end
 
     private
@@ -149,14 +151,14 @@ module Spina
     end
 
     def rewrite_rule
-      RewriteRule.where(old_path:).first_or_create.update(new_path: materialized_path) if old_path != materialized_path
+      RewriteRule.where(old_path: old_path).first_or_create.update(new_path: materialized_path) if old_path != materialized_path
     end
 
     def localized_materialized_path
-      if Mobility.locale == I18n.default_locale
-        segments = [Spina.mounted_at, generate_materialized_path]
+      segments = if Mobility.locale == I18n.default_locale
+        [Spina.mounted_at, generate_materialized_path]
       else
-        segments = [Spina.mounted_at, Mobility.locale, generate_materialized_path]
+        [Spina.mounted_at, Mobility.locale, generate_materialized_path]
       end
       File.join(*segments.map(&:to_s).compact)
     end
@@ -165,12 +167,11 @@ module Spina
       path_fragments = [resource&.slug]
       path_fragments.append(*ancestors.collect(&:slug))
       path_fragments.append(slug) unless homepage?
-      path_fragments.compact.map(&:parameterize).join('/')
+      path_fragments.compact.map(&:parameterize).join("/")
     end
 
     def duplicate_materialized_path?
-      self.class.where.not(id:).i18n.exists?(materialized_path:)
+      self.class.where.not(id: id).i18n.where(materialized_path: materialized_path).exists?
     end
-
   end
 end

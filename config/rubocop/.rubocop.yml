@@ -18,6 +18,7 @@ AllCops:
   Exclude:
     - vendor/bundle/**/*
     - lib/tasks/**/*
+    - !ruby/regexp /spina/
     - !ruby/regexp /bin\//
     - !ruby/regexp /Rakefile/
     - !ruby/regexp /initializers/
