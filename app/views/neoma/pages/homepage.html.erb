@@ -1,7 +1,7 @@
 <section class='w-full bg-white z-20'>
   <%= fe_carousel do %>
     <%= fe_carousel_wrapper do %>
-      <% ongoing_exhibits.each do |exhibit| %>
+      <% exhibits.each do |exhibit| %>
         <%= fe_carousel_item do %>
           <%= fe_banner do %>
             <%= fe_banner_img(exhibit.content(:banner).spina_image) %>
