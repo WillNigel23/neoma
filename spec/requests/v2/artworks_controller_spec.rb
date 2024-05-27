@@ -12,6 +12,16 @@ describe V2::ArtworksController do
       expect(response).to have_http_status(:ok)
       expect(response).to render_template(:index)
     end
+
+    context 'when sorting applied' do
+      it 'renders status and template' do
+        get action_path, as: :turbo_stream,
+          params: { sort_by: 'price_asc' }
+
+        expect(response).to have_http_status(:ok)
+        expect(response).to render_template(:index)
+      end
+    end
   end
 
   describe '#show' do

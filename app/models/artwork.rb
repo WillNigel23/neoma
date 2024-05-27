@@ -46,4 +46,12 @@ class Artwork < ApplicationRecord
 
   enum status: { draft: 0, live: 1, archived: 2 }
 
+  SORTING_PARAMS = {
+    title: 'title ASC',
+    artist: 'artists.name ASC',
+    price_asc: 'price ASC',
+    price_desc: 'price DESC',
+    year: 'year ASC'
+  }
+
 end

@@ -2,8 +2,13 @@ module V2
   class ArtworksController < ApplicationController
 
     def index
-      @artworks = Artwork.live.includes(:artist).order(year: :desc)
+      @artworks = Artwork.live.includes(:artist).order(build_sorting_params)
       @artwork_ids = @artworks.to_a.pluck(:id)
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html
+      end
     end
 
     def show
@@ -35,6 +40,13 @@ module V2
       end
 
       artworks
+    end
+
+    def build_sorting_params
+      params[:sort_by] ||= 'title'
+      sort_by = params[:sort_by]&.to_sym
+
+      Artwork::SORTING_PARAMS[sort_by] || 'title ASC'
     end
 
   end

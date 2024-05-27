@@ -1,9 +1,6 @@
-<!-- Artworks start here -->
-<section class='w-full bg-white z-20'>
-  <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white min-h-screen' data-controller='scroll-reveal'>
-    <h1 class='font-restora font-bold text-black text-4xl md:text-7xl lg:text-9xl mb-5 md:mb-10 uppercase reveal' data-scroll-reveal-target='item'> <%= t('title.artworks') %> </h2>
-
-    <%= turbo_frame_tag 'artworks' do %>
+<turbo-stream action='replace' target='artworks'>
+  <template>
+    <%= turbo_frame_tag 'artworks', data: { controller: 'scroll-reveal modal lazy' } do %>
       <hr class='w-full my-5'>
 
       <div class='w-full flex items-center justify-end mb-5 reveal' data-scroll-reveal-target='item' data-delay='250ms'>
@@ -25,5 +22,5 @@
         <% end %>
       </div>
     <% end %>
-  </section>
-</section>
+  <template>
+</turbo-stream>
