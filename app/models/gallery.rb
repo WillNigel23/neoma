@@ -33,6 +33,7 @@ class Gallery < ApplicationRecord
   has_many :artists, -> { distinct }, through: :artworks, source: :artist
 
   has_many :content_sections, as: :contentable, dependent: :destroy
+  has_one :featured_item, as: :featureable, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
 

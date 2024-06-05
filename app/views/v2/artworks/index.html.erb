@@ -6,7 +6,7 @@
     <%= turbo_frame_tag 'artworks' do %>
       <hr class='w-full my-5'>
 
-      <div class='w-full flex items-center justify-end mb-5 reveal' data-scroll-reveal-target='item' data-delay='250ms'>
+      <div class='w-full hidden sm:flex items-center justify-end mb-5 reveal' data-scroll-reveal-target='item' data-delay='250ms'>
         <%= fe_sort_dropdown(v2_artworks_path, params[:sort_by], Artwork::SORTING_PARAMS, model: 'artwork') %>
       </div>
 

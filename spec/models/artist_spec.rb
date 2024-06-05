@@ -50,6 +50,14 @@ describe Artist do
         expect(artist.content_sections.count).to eq(1)
       end
     end
+
+    describe 'featured_item' do
+      let(:artist) { create(:artist, :as_featured) }
+
+      it 'has featured_item' do
+        expect(artist.featured_item).not_to be_nil
+      end
+    end
   end
 
   describe 'validations' do

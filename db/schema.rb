@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_14_104917) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_05_183143) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -137,6 +137,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_14_104917) do
     t.index ["banner_id"], name: "index_exhibits_on_banner_id"
     t.index ["poster_id"], name: "index_exhibits_on_poster_id"
     t.index ["title"], name: "unique_slug_per_exhibit", unique: true
+  end
+
+  create_table "featured_items", force: :cascade do |t|
+    t.string "featureable_type"
+    t.bigint "featureable_id"
+    t.integer "position", default: 0, null: false
+    t.index ["featureable_type", "featureable_id"], name: "index_featured_items_on_featureable"
   end
 
   create_table "galleries", force: :cascade do |t|

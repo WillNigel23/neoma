@@ -35,6 +35,9 @@ module V2
         artworks = Exhibit.friendly.find(reference_id).artworks.live.includes(:artist)
       when 'gallery'
         artworks = Gallery.friendly.find(reference_id).artworks.live.includes(:artist)
+      when 'homepage'
+        artworks = FeaturedItem.artworks.order(position: :asc).
+          map { |item| item.featureable if item.featureable.status == 'live' }
       else
         artworks = Artwork.live.includes(:artist)
       end

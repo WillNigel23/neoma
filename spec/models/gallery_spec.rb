@@ -46,6 +46,14 @@ describe Gallery do
         expect(gallery.content_sections.count).to eq(1)
       end
     end
+
+    describe 'featured_item' do
+      let(:gallery) { create(:gallery, :as_featured) }
+
+      it 'has featured_item' do
+        expect(gallery.featured_item).not_to be_nil
+      end
+    end
   end
 
   describe 'validations' do

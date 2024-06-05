@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     resources :artworks, only: [:index, :show]
     resources :exhibits, only: [:index, :show]
     resources :galleries, only: [:index, :show]
+    resources :homepage, only: [:index]
+
+    root to: 'homepage#index'
   end
 
   resources :artwork_modals do

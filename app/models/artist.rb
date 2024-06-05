@@ -37,6 +37,7 @@ class Artist < ApplicationRecord
   has_many :exhibits, -> { distinct }, through: :artworks
 
   has_many :content_sections, as: :contentable, dependent: :destroy
+  has_one :featured_item, as: :featureable, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
 

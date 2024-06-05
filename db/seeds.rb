@@ -8,7 +8,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 #
-Dir[Rails.root.join('db/seeds/*.rb')].each do |file|
-  Rails.logger.debug { "Executing seed file: #{file}" }
-  load file
+
+if ENV['RAILS_ENV'] == 'development' || ENV['FORCE_SEED'] == 'true'
+  Dir[Rails.root.join('db/seeds/*.rb')].each do |file|
+    Rails.logger.debug { "Executing seed file: #{file}" }
+    load file
+  end
 end

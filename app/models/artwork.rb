@@ -42,6 +42,8 @@ class Artwork < ApplicationRecord
   has_many :gallery_artworks, dependent: :destroy
   has_many :galleries, through: :gallery_artworks
 
+  has_one :featured_item, as: :featureable, dependent: :destroy
+
   validates :title, presence: true, uniqueness: true
 
   enum status: { draft: 0, live: 1, archived: 2 }

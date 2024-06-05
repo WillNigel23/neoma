@@ -18,5 +18,9 @@ FactoryBot.define do
         article.content_sections << create_list(:content_section, evaluator.content_sections_count)
       end
     end
+
+    trait :as_featured do
+      featured_item { create(:featured_item) }
+    end
   end
 end

@@ -16,5 +16,9 @@ FactoryBot.define do
     trait :with_artist do
       artist { create(:artist) }
     end
+
+    trait :as_featured do
+      featured_item { create(:featured_item) }
+    end
   end
 end
