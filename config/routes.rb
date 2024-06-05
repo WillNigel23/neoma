@@ -8,6 +8,13 @@ Rails.application.routes.draw do
     resources :homepage, only: [:index]
 
     root to: 'homepage#index'
+
+    namespace :admin do
+      resources :homepage, only: [:index]
+      resources :exhibits, only: [:index]
+
+      root to: 'homepage#index'
+    end
   end
 
   resources :artwork_modals do

@@ -5,6 +5,10 @@ describe 'Lint Specs' do
     excluded_files = [
       # Application Controller
       Rails.root.join('app/controllers/application_controller.rb').to_s,
+      Rails.root.join('app/controllers/v2/admin/base_controller.rb').to_s,
+
+      # Admin Controllers
+      Rails.root.join('app/controllers/v2/admin').to_s,
 
       # Spina Controllers
       Rails.root.join('app/controllers/spina').to_s,
