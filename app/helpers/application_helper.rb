@@ -140,7 +140,7 @@ module ApplicationHelper
   def v2_admin_content_nav_items
     [
       [:homepage, v2_admin_root_path],
-      [:exhibits, v2_admin_exhibits_path],
+      [:exhibits, v2_admin_exhibits_path]
       # [:artworks, v2_admin_artworks_path]
       # [:artists, v2_artists_path],
       # [:articles, v2_articles_path],
@@ -152,7 +152,7 @@ module ApplicationHelper
   def v2_admin_inbox_nav_items
     [
       [:email_list, '#'],
-      [:inquiries, '#'],
+      [:inquiries, '#']
       # [:artworks, v2_admin_artworks_path]
       # [:artists, v2_artists_path],
       # [:articles, v2_articles_path],
@@ -163,13 +163,7 @@ module ApplicationHelper
 
   def v2_admin_manage_nav_items
     [
-      [:users, '#'],
-      [:logout, '#'],
-      # [:artworks, v2_admin_artworks_path]
-      # [:artists, v2_artists_path],
-      # [:articles, v2_articles_path],
-      # [:galleries, v2_galleries_path],
-      # [:about, v2_root_path]
+      [:users, '#']
     ]
   end
 

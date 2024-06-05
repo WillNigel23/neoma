@@ -1,4 +1,4 @@
-<div class="fixed top-0 left-0 z-40 flex h-screen w-full max-w-[300px] flex-col justify-between overflow-y-auto bg-neoma-blue-4 duration-200 xl:translate-x-0 -translate-x-full" :class="sidebarOpen ? '-translate-x-full' : 'translate-x-0'">
+<div class='fixed top-0 left-0 z-40 flex h-screen w-full max-w-[300px] flex-col justify-between overflow-y-auto bg-neoma-blue-4 duration-200'>
   <div>
     <div class="flex justify-center p-10 pb-9">
       <%= link_to v2_admin_root_path, class: 'block' do %>
@@ -44,6 +44,9 @@
                 class: "flex w-full items-center rounded py-[10px] px-[15px] text-base font-medium text-white #{controller_name == title.to_s ? '': 'text-opacity-50'} hover:bg-white hover:bg-opacity-10 hover:text-opacity-100" %>
             </li>
           <% end %>
+          <li>
+            <%= button_to 'Logout', destroy_session_path(current_v2_admin_user), method: :delete, class: 'flex w-full items-center rounded py-[10px] px-[15px] text-base font-medium text-white text-opacity-50 hover:bg-white hover:bg-opacity-10 hover:text-opacity-100' %>
+          </li>
         </ul>
       </nav>
     </div>
@@ -55,10 +58,10 @@
       </div>
       <div>
         <p class='text-base font-medium text-white text-opacity-80'>
-          User
+          <%= current_v2_admin_user.role.titleize %>
         </p>
         <p class='text-sm text-white text-opacity-50'>
-          user@email.com
+          <%= current_v2_admin_user.email %>
         </p>
       </div>
     </div>

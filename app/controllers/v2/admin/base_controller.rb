@@ -4,6 +4,8 @@ module V2
 
       layout 'admin/application'
 
+      before_action :authenticate_v2_admin_user!
+
     end
   end
 end

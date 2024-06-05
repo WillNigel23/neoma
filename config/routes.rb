@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     root to: 'homepage#index'
 
     namespace :admin do
+      devise_for :users, controllers: { sessions: 'v2/admin/users/sessions' }
       resources :homepage, only: [:index]
       resources :exhibits, only: [:index]
 
