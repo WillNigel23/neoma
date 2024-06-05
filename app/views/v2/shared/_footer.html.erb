@@ -1,0 +1,43 @@
+<!-- Footer starts here -->
+<section class='fixed top-0 left-0 w-full h-screen bg-neoma-blue-4 flex justify-center'>
+  <div class='flex flex-col w-full container pt-16 lg:pt-40 px-5 md:px-24 justify-between'>
+    <div class='flex flex-col lg:flex-row md:justify-between w-full'>
+      <div class='flex flex-1 flex-col mb-5'>
+        <h1 class='font-restora font-medium text-3xl text-white mb-5'> <%= t('footer.neoma_galleria') %> </h1>
+
+        <p class='font-montserrat font-light text-sm text-white mb-2'> <%= t('footer.phone_number') %> </p>
+        <a href='<%= "mailto:#{t('footer.email')}" %>' class='font-montserrat font-light text-sm text-white mb-2'> <%= t('footer.email') %> </a>
+      </div>
+
+      <div class='flex flex-1 flex-col mb-5'>
+        <h1 class='font-restora font-medium text-3xl text-white mb-5'> <%= t('footer.title.galleries') %> </h1>
+
+        <% Gallery.limit(3).each do |gallery| %>
+          <%= link_to gallery.title,
+            v2_gallery_path(gallery), class: 'font-montserrat font-light text-sm text-white mb-2' %>
+        <% end %>
+      </div>
+
+      <div class='flex flex-1 flex-col mb-5'>
+        <h1 class='font-restora font-medium text-3xl text-white mb-5'> <%= t('footer.stay_in_touch') %> </h1>
+
+        <span class='flex flex-row w-full justify-start items-end mb-3'>
+          <%= link_to 'https://www.facebook.com/neomagalleria', class: 'mr-5', target: '_blank' do %>
+            <i class='fa-brands fa-facebook-f text-white text-lg'></i>
+          <% end %>
+          <%= link_to 'http://www.instagram.com/neomagalleria', class: 'mr-5', target: '_blank' do %>
+            <i class='fa-brands fa-instagram text-white text-xl'></i>
+          <% end %>
+        </span>
+        <%= form_for(Spina::Mailinglist.new, url: main_app.add_to_mailinglist_neoma_mailers_path, html: { id: 'mailinglist', class: 'flex flex-row w-full border-b border-white pb-1 mb-3', data: { turbo: true, turbo_stream: true } }) do |f| %>
+          <%= f.email_field :email, required: true, class: 'font-montserrat flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 text-sm font-light', placeholder: t('form.mailing_list.placeholder') %>
+          <%= button_tag(type: 'submit') do %>
+            <i class='fa-solid fa-chevron-right font-light text-white text-sm'></i>
+          <% end %>
+        <% end %>
+        <p class='font-montserrat text-[9px] font-light text-gray-300'> <%= t('form.mailing_list.privacy_policy') %> </p>
+      </div>
+    </div>
+    <p class='font-restora w-full text-light text-gray-500 text-center text-sm py-5'> <%= t('footer.copyright') %> </p>
+  </div>
+</section>

@@ -30,16 +30,16 @@ module V2
     def artworks_by_class_reference(reference_id, class_name)
       case class_name
       when 'artist'
-        artworks = Artist.friendly.find(reference_id).artworks.live.includes(:artist)
+        artworks = Artist.friendly.find(reference_id).artworks.live.includes(:artist).order(build_sorting_params)
       when 'exhibit'
-        artworks = Exhibit.friendly.find(reference_id).artworks.live.includes(:artist)
+        artworks = Exhibit.friendly.find(reference_id).artworks.live.includes(:artist).order(build_sorting_params)
       when 'gallery'
-        artworks = Gallery.friendly.find(reference_id).artworks.live.includes(:artist)
+        artworks = Gallery.friendly.find(reference_id).artworks.live.includes(:artist).order(build_sorting_params)
       when 'homepage'
         artworks = FeaturedItem.artworks.order(position: :asc).
           map { |item| item.featureable if item.featureable.status == 'live' }
       else
-        artworks = Artwork.live.includes(:artist)
+        artworks = Artwork.live.includes(:artist).order(build_sorting_params)
       end
 
       artworks

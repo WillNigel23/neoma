@@ -20,7 +20,13 @@
   </head>
 
   <body class='flex flex-col w-full' data-controller='scroll-reveal lazy'>
+    <%= render 'v2/shared/navigation' %>
     <%= yield %>
+    <div class='min-h-screen w-full'></div> <!-- Spacer -->
+    <%= render 'v2/shared/footer' %>
+
+    <%= turbo_frame_tag 'flash' %>
     <%= turbo_frame_tag 'modal' %>
+    <%= turbo_frame_tag 'side-modal' %>
   </body>
 </html>

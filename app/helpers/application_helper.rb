@@ -122,7 +122,19 @@ module ApplicationHelper
   end
 
   def navbar_color_scheme
-    ['Artists', 'Exhibits', 'Galleries', 'Events']
+    ['Artists', 'Artworks', 'Exhibits', 'Galleries', 'Events']
+  end
+
+  def v2_main_nav_items
+    [
+      [:home, v2_root_path],
+      [:exhibits, v2_exhibits_path],
+      [:artworks, v2_artworks_path],
+      [:artists, v2_artists_path],
+      [:articles, v2_articles_path],
+      [:galleries, v2_galleries_path],
+      [:about, v2_root_path]
+    ]
   end
 
   def classes_for_flash(key)
