@@ -9,8 +9,8 @@
     activeClasses: 'border-blue-600 text-primary bg-white',
     inactiveClasses: 'border-gray-200 hover:bg-gray-300'
     }
-    " class='mb-14 w-full'>
-    <div class='flex flex-row flex-nowrap bg-gray-100'>
+    " class='mb-14 w-full relative'>
+    <div class='flex flex-row flex-nowrap bg-gray-100 absolute top-0 left-0 py-2 z-20'>
       <a href='javascript:void(0)' @click='openTab = 1' :class='openTab === 1 ? activeClasses : inactiveClasses' class='border-b py-4 px-5 text-sm font-medium'>
         Exhibits
       </a>
@@ -28,7 +28,7 @@
       </a>
     </div>
 
-    <div>
+    <div class='w-full absolute top-0 left-0'>
       <div x-show='openTab === 1' class='w-full p-3'>
         <%= form_with(url: set_featured_items_v2_admin_homepage_index_path(active_tab: 1), method: :post,
             id: 'exhibits',
