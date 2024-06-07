@@ -1,4 +1,4 @@
-<div class='fixed top-0 left-0 z-40 flex h-screen w-full max-w-[300px] flex-col justify-between overflow-y-auto bg-neoma-blue-4 duration-200'>
+<div class='fixed top-0 left-0 z-40 flex h-screen w-full max-w-[300px] flex-col justify-between overflow-y-auto bg-spina-dark md:bg-gradient-to-b from-spina-dark to-spina-light duration-200'>
   <div>
     <div class="flex justify-center p-10 pb-9">
       <%= link_to v2_admin_root_path, class: 'block' do %>
@@ -17,7 +17,7 @@
           <% v2_admin_content_nav_items.each do |title, path| %>
             <li>
               <%= link_to title.to_s.titleize, path,
-                class: "flex w-full items-center rounded py-[10px] px-[15px] text-base font-medium text-white #{controller_name == title.to_s ? '': 'text-opacity-50'} hover:bg-white hover:bg-opacity-10 hover:text-opacity-100" %>
+                class: "flex w-full items-center rounded py-[10px] px-[15px] text-base font-medium #{controller_name == title.to_s ? 'text-white': 'text-gray-400'} hover:bg-white hover:bg-opacity-10 hover:text-gray-500" %>
             </li>
           <% end %>
           <li>
@@ -29,7 +29,7 @@
           <% v2_admin_inbox_nav_items.each do |title, path| %>
             <li>
               <%= link_to title.to_s.titleize, path,
-                class: "flex w-full items-center rounded py-[10px] px-[15px] text-base font-medium text-white #{controller_name == title.to_s ? '': 'text-opacity-50'} hover:bg-white hover:bg-opacity-10 hover:text-opacity-100" %>
+                class: "flex w-full items-center rounded py-[10px] px-[15px] text-base font-medium #{controller_name == title.to_s ? 'text-white': 'text-gray-400'} hover:bg-white hover:bg-opacity-10 hover:text-gray-500" %>
             </li>
           <% end %>
           <li>
@@ -41,11 +41,11 @@
           <% v2_admin_manage_nav_items.each do |title, path| %>
             <li>
               <%= link_to title.to_s.titleize, path,
-                class: "flex w-full items-center rounded py-[10px] px-[15px] text-base font-medium text-white #{controller_name == title.to_s ? '': 'text-opacity-50'} hover:bg-white hover:bg-opacity-10 hover:text-opacity-100" %>
+                class: "flex w-full items-center rounded py-[10px] px-[15px] text-base font-medium #{controller_name == title.to_s ? 'text-white': 'text-gray-400'} hover:bg-white hover:bg-opacity-10 hover:text-gray-500" %>
             </li>
           <% end %>
           <li>
-            <%= button_to 'Logout', destroy_session_path(current_v2_admin_user), method: :delete, class: 'flex w-full items-center rounded py-[10px] px-[15px] text-base font-medium text-white text-opacity-50 hover:bg-white hover:bg-opacity-10 hover:text-opacity-100' %>
+            <%= button_to 'Logout', destroy_session_path(current_v2_admin_user), method: :delete, class: 'flex w-full items-center rounded py-[10px] px-[15px] text-base font-medium text-gray-400 hover:bg-white hover:bg-opacity-10 hover:text-gray-500' %>
           </li>
         </ul>
       </nav>

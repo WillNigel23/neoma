@@ -30,3 +30,12 @@ application.register('modal', ModalController)
 
 import LazyController from './lazy_controller'
 application.register('lazy', LazyController)
+
+import RailsNestedForm from './nested_form_controller'
+application.register('nested-form', RailsNestedForm)
+
+import Sortable from './sortable_controller'
+application.register('sortable', Sortable)
+
+import Slimselect from './slimselect_controller'
+application.register('slimselect', Slimselect)

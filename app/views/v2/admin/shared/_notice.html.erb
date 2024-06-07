@@ -1,0 +1,13 @@
+<div
+  x-show='openNotice'
+  class='border-stroke shadow relative flex max-w-[422px] items-center rounded-lg border bg-white p-4'>
+  <div class='flex w-full items-center justify-between'>
+    <p class='text-body-color text-sm font-medium mr-5'>
+    <%= flash[:notice] %>
+    </p>
+
+    <a href='javascript:void(0)' @click='openNotice = false'>
+      <i class='text-xl text-black cursor-hover fa-solid fa-xmark'></i>
+    </a>
+  </div>
+</div>

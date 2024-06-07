@@ -1,0 +1,27 @@
+<template data-nested-form-target="template">
+  <%= f.fields_for :featured_items, FeaturedItem.new, child_index: 'NEW_RECORD' do |item_fields| %>
+    <%= render 'nested_form', f: item_fields, options: options %>
+  <% end %>
+</template>
+
+<div class='mx-auto w-full'>
+  <div class='justify-end items-center sm:flex mb-5'>
+    <button type='button' class='text-gray-400 pl-2 hover:text-gray-900 rounded-md truncate text-sm font-medium flex items-center h-10 mr-5' data-action='nested-form#add'>
+      <i class='fa-solid fa-plus ms-5 mr-2'></i>
+      New entry
+    </button>
+
+    <%= f.hidden_field :featureable_type, value: featureable_type %>
+    <%= f.submit 'Save changes', class: 'btn btn-primary w-1/2 md:w-auto' %>
+  </div>
+  <div class='w-full overflow-x-auto border border-stroke bg-white py-[15px] shadow-three'>
+    <div class='w-full' data-controller='sortable' data-sortable-handle-value='.handle'>
+      <% featured_items&.each do |item| %>
+        <%= f.fields_for item do |item_fields| %>
+          <%= render 'nested_form', f: item_fields, options: options %>
+        <% end %>
+      <% end %>
+      <div data-nested-form-target="target"></div>
+    </div>
+  </div>
+</div>

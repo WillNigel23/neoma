@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
     namespace :admin do
       devise_for :users, controllers: { sessions: 'v2/admin/users/sessions' }
-      resources :homepage, only: [:index]
+      resources :homepage, only: [:index] do
+        post 'set_featured_items', on: :collection
+      end
       resources :exhibits, only: [:index]
 
       root to: 'homepage#index'

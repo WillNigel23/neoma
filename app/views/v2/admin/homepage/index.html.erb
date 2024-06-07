@@ -1,0 +1,79 @@
+<%= content_for :header do %>
+  <h1 class='text-2xl font-normal items-center'> Homepage </h1>
+<% end %>
+
+<%= content_for :content do %>
+  <div x-data="
+    {
+    openTab: <%= params[:active_tab] || 1 %>,
+    activeClasses: 'border-blue-600 text-primary bg-white',
+    inactiveClasses: 'border-gray-200 hover:bg-gray-300'
+    }
+    " class='mb-14 w-full'>
+    <div class='flex flex-row flex-nowrap bg-gray-100'>
+      <a href='javascript:void(0)' @click='openTab = 1' :class='openTab === 1 ? activeClasses : inactiveClasses' class='border-b py-4 px-5 text-sm font-medium'>
+        Exhibits
+      </a>
+      <a href='javascript:void(0)' @click='openTab = 2' :class='openTab === 2 ? activeClasses : inactiveClasses' class='border-b py-4 px-5 text-sm font-medium'>
+        Artworks
+      </a>
+      <a href='javascript:void(0)' @click='openTab = 3' :class='openTab === 3 ? activeClasses : inactiveClasses' class='border-b py-4 px-5 text-sm font-medium'>
+        Artists
+      </a>
+      <a href='javascript:void(0)' @click='openTab = 4' :class='openTab === 4 ? activeClasses : inactiveClasses' class='border-b py-4 px-5 text-sm font-medium'>
+        Articles
+      </a>
+      <a href='javascript:void(0)' @click='openTab = 5' :class='openTab === 5 ? activeClasses : inactiveClasses' class='border-b py-4 px-5 text-sm font-medium'>
+        Galleries
+      </a>
+    </div>
+
+    <div>
+      <div x-show='openTab === 1' class='w-full p-3'>
+        <%= form_with(url: set_featured_items_v2_admin_homepage_index_path(active_tab: 1), method: :post,
+            id: 'exhibits',
+            class: 'container mb-5',
+            data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |f| %>
+
+          <%= render partial: 'form', locals: { f: f, featured_items: @exhibits, featureable_type: 'Exhibit', options: Exhibit.live.pluck(:title, :id) } %>
+        <% end %>
+      </div>
+      <div x-show='openTab === 2' class='w-full p-3'>
+        <%= form_with(url: set_featured_items_v2_admin_homepage_index_path(active_tab: 2), method: :post,
+            id: 'artworks',
+            class: 'container  mb-5',
+            data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |f| %>
+
+          <%= render partial: 'form', locals: { f: f, featured_items: @artworks, featureable_type: 'Artwork', options: Artwork.live.pluck(:title, :id) } %>
+        <% end %>
+      </div>
+      <div x-show='openTab === 3' class='w-full p-3'>
+        <%= form_with(url: set_featured_items_v2_admin_homepage_index_path(active_tab: 3), method: :post,
+            id: 'artists',
+            class: 'container  mb-5',
+            data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |f| %>
+
+          <%= render partial: 'form', locals: { f: f, featured_items: @artists, featureable_type: 'Artist', options: Artist.live.pluck(:name, :id) } %>
+        <% end %>
+      </div>
+      <div x-show='openTab === 4' class='w-full p-3'>
+        <%= form_with(url: set_featured_items_v2_admin_homepage_index_path(active_tab: 4), method: :post,
+            id: 'articles',
+            class: 'container  mb-5',
+            data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |f| %>
+
+          <%= render partial: 'form', locals: { f: f, featured_items: @articles, featureable_type: 'Article', options: Article.live.pluck(:title, :id) } %>
+        <% end %>
+      </div>
+      <div x-show='openTab === 5' class='w-full p-3'>
+        <%= form_with(url: set_featured_items_v2_admin_homepage_index_path(active_tab: 5), method: :post,
+            id: 'galleries',
+            class: 'container  mb-5',
+            data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |f| %>
+
+          <%= render partial: 'form', locals: { f: f, featured_items: @galleries, featureable_type: 'Gallery', options: Gallery.live.pluck(:title, :id) } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

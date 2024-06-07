@@ -10,8 +10,9 @@
 
     <%= stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload' %>
     <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
-    <%= stylesheet_link_tag 'restora', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'montserrat', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "spina/fonts", "spina/animate", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'spina/admin', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag "slimselect", media: "all", "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
 
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' integrity='sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==' crossorigin='anonymous' referrerpolicy='no-referrer' />
@@ -21,10 +22,25 @@
   </head>
 
   <body>
-    <section class='relative flex min-h-screen w-full items-start bg-gray-2' x-data="{ openDropDown: false, sidebarOpen: true }">
+    <section class='relative flex min-h-screen w-full items-start bg-gray-100' x-data="{ openDropDown: false, sidebarOpen: true }">
       <%= render 'v2/admin/shared/navigation' %>
       <div class='w-full pl-[300px]'>
-        <%= yield %>
+        <div class='bg-white border-b border-gray-200 p-4 md:p-6 md:pl-8 sticky top-0 z-20'>
+          <%= yield(:header) %>
+        </div>
+
+        <div class='p-4 md:p-8'>
+          <%= yield(:content) %>
+        </div>
+      </div>
+
+      <div
+        x-data="
+        {
+          openNotice: <%= flash[:notice].present? %>
+        }
+        " class='absolute bottom-0 right-0 p-5 z-50'>
+        <%= render 'v2/admin/shared/notice' %>
       </div>
     </section>
   </body>

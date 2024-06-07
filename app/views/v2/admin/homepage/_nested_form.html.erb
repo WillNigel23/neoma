@@ -1,0 +1,13 @@
+<div class='grid grid-cols-6 gap-5 py-2 pl-5 nested-form-wrapper' data-new-record='<%= f.object.new_record? ? true : f.object.featureable_id %>'>
+  <div class='col-span-5'>
+    <%= f.select :featureable_id, options_for_select(options, f.object.featureable_id), { include_blank: true }, {
+      name: 'featured_item[featureable_id][]',
+      data: { controller: 'slimselect' }, class: 'w-full mr-5',
+      autocomplete: 'off' } %>
+  </div>
+  <div class='col-span-1'>
+    <button type='button' data-action='nested-form#remove'><i class='fa-solid fa-trash text-red-500 mr-5'></i></button>
+    <i class='fa-solid fa-grip-vertical handle cursor-pointer'></i>
+    <%= f.hidden_field :_destroy, name: 'featured_item[_destroy][]' %>
+  </div>
+</div>
