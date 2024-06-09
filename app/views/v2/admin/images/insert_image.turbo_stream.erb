@@ -1,0 +1,13 @@
+<turbo-stream action='replace' target='modal'>
+  <template>
+    <%= turbo_frame_tag 'modal' %>
+  </template>
+</turbo-stream>
+
+<turbo-stream action='replace' target='<%= @element_id %>'>
+  <template>
+    <%= render partial: '/v2/admin/images/image_picker', locals: {
+      id: @element_id, object: @image,
+      form_id: @form_id, form_name: @form_name }, formats: [:html] %>
+  </template>
+</turbo-stream>

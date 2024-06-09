@@ -1,0 +1,72 @@
+<turbo-frame id='media_picker'>
+  <div class='flex flex-col md:flex-row h-full w-full'>
+    <div class='flex-1 bg-white flex flex-col max-h-full relative overflow-hidden'>
+      <div data-controller='selectable' class='p-6 h-full w-full overflow-scroll'>
+        <div class='grid grid-cols-2 md:grid-cols-4 gap-6 auto-rows-min'>
+          <%= render partial: 'media_image', collection: @images, as: 'image' %>
+        </div>
+      </div>
+    </div>
+
+    <div class='md:w-72 p-4 border-t rounded-b-lg md:rounded-none md:border-t-0 border-gray-200 flex flex-col justify-between bg-gray-100 md:bg-opacity-50 md:rounded-l-lg'>
+      <div class='mb-4'>
+        <form data-controller='form' data-turbo-frame='images' action='/admin/media_picker' accept-charset='UTF-8' method='get'>
+          <input autocomplete='off' type='hidden' name='media_folder_id' id='media_folder_id'>
+          <div class='flex items-center relative'>
+            <div class='absolute left-2'>
+              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true' class='text-gray-300 w-5 h-5'>
+                <path fill-rule='evenodd' d='M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z' clip-rule='evenodd'></path>
+              </svg>
+            </div>
+
+            <input placeholder='Search...' class='form-input rounded-full pl-8 text-sm h-9 w-full' data-action='input->form#requestSubmit' type='search' name='query' id='query'>
+          </div>
+
+        </form>
+      </div>
+
+      <div class='hidden md:block md:mb-6 overflow-scroll flex-1'>
+        <a class='font-medium w-full text-sm px-3 py-2 rounded-lg flex items-center justify-between text-gray-900 bg-spina-dark bg-opacity-20' data-turbo-frame='media_picker' href='/admin/media_picker'>
+          <div class='flex items-center'>
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true' class='w-5 h-5 mr-2 text-spina-light'>
+              <path d='M5.566 4.657A4.505 4.505 0 016.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0015.75 3h-7.5a3 3 0 00-2.684 1.657zM2.25 12a3 3 0 013-3h13.5a3 3 0 013 3v6a3 3 0 01-3 3H5.25a3 3 0 01-3-3v-6zM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 016.75 6h10.5a3 3 0 012.683 1.657A4.505 4.505 0 0018.75 7.5H5.25z'></path>
+            </svg>
+            All images
+          </div>
+
+          <div class='text-gray-400 text-sm font-semibold'>
+            237
+          </div>
+        </a>
+
+        <div data-controller='file-upload-component' class=''>
+          <%= form_tag '', method: :post, autocomplete: false do |f| %>
+            <input type='hidden' name='origin' id='origin' value='media-picker' autocomplete='off'>
+            <input type='hidden' name='trix_target_id' id='trix_target_id' value='value ' autocomplete='off'>
+            <input autocomplete='off' type='hidden' name='image[media_folder_id]' id='image_media_folder_id'>
+
+            <input name='image[files][]' type='hidden' value='' autocomplete='off'><input multiple='multiple' accept='image/*' id='image_upload_file_field_3721116d-db76-4d5c-9b16-0ebb1c1bcaf9' class='image-upload-file-field hidden' data-action='loading-button#loading form#requestSubmit' type='file' name='image[files][]'>
+
+            <button name='button' type='button' class='font-medium w-full text-gray-600 text-sm hover:bg-gray-200 px-3 py-2 cursor-pointer rounded-lg flex items-center w-full' data-controller='delegate-click' data-action='delegate-click#click' data-loading-button-target='button' data-delegate-click-target='#image_upload_file_field_3721116d-db76-4d5c-9b16-0ebb1c1bcaf9'>
+              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true' class='w-5 h-5 text-spina mr-2'>
+                <path fill-rule='evenodd' d='M11.47 2.47a.75.75 0 011.06 0l4.5 4.5a.75.75 0 01-1.06 1.06l-3.22-3.22V16.5a.75.75 0 01-1.5 0V4.81L8.03 8.03a.75.75 0 01-1.06-1.06l4.5-4.5zM3 15.75a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z' clip-rule='evenodd'></path>
+              </svg>
+              Upload from device
+            </button>
+          <% end %>
+        </div>
+      </div>
+
+      <%= form_tag insert_image_v2_admin_images_path(element_id: @element_id, form_id: @form_id, form_name: @form_name), method: :post,
+        autocomplete: false, data: { turbo: true, turbo_stream: true, media_picker_target: 'form' } do %>
+        <%= hidden_field_tag :image_id %>
+        <button type='submit' class='btn btn-primary w-full mt-3' data-action='media-picker-modal#confirm modal#close'>
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' aria-hidden='true' class='text-white w-4 h-4 mr-1'>
+            <path fill-rule='evenodd' d='M2 10a.75.75 0 01.75-.75h12.638L10.23 4.29a.75.75 0 111.04-1.08l6.5 6.25a.75.75 0 010 1.08l-6.5 6.25a.75.75 0 11-1.04-1.08l5.158-4.96H2.75A.75.75 0 012 10z' clip-rule='evenodd'></path>
+          </svg>
+          Insert image
+        </button>
+      <% end %>
+    </div>
+  </div>
+</turbo-frame>

@@ -2,7 +2,7 @@
   <div class='col-span-5'>
     <%= f.select :featureable_id, options_for_select(options, f.object.featureable_id), { include_blank: true }, {
       name: 'featured_item[featureable_id][]',
-      data: { controller: 'slimselect' }, class: 'w-full mr-5',
+      data: { controller: 'slimselect' }, class: 'w-full mr-5', style: 'min-height: 49.33px;',
       autocomplete: 'off' } %>
   </div>
   <div class='col-span-1'>

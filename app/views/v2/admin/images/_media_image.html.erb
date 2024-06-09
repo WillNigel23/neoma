@@ -1,0 +1,13 @@
+<div>
+  <%= button_tag type: 'button', class: 'w-full h-40 overflow-hidden rounded-md transform transition-transform duration-200 border-2 border-transparent hover:scale-105',
+    data: {
+      image_id: image.id,
+      selectable_target: 'item',
+      action: 'click->selectable#select click->media-picker#select'
+    } do %>
+
+    <%= image_tag(image.file, class: 'object-contain h-40 w-full transition-opacity duration-500') %>
+  <% end %>
+
+  <div class='text-xs text-center text-gray-700 rounded p-1'><%= image.file.filename.to_s %></div>
+</div>

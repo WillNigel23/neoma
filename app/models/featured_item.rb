@@ -17,6 +17,8 @@ class FeaturedItem < ApplicationRecord
 
   validates :position, presence: true
 
+  default_scope { order(position: :asc) }
+
   scope :articles, -> { where(featureable_type: 'Article') }
   scope :artists, -> { where(featureable_type: 'Artist') }
   scope :artworks, -> { where(featureable_type: 'Artwork') }

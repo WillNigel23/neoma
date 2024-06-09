@@ -1,0 +1,60 @@
+<%= form_for(exhibit, url:, method:, html: { id: 'exhibits-form', class: 'flex flex-col w-full', data: { } }) do |f| %>
+  <div class='flex flex-row w-full mb-5'>
+    <div class='flex flex-col w-full mr-5'>
+      <div class='flex flex-col w-full mb-5'>
+        <%= f.label :title, class: 'text-sm font-medium mb-2' %>
+        <%= f.text_field :title, class: 'form-input font-medium', required: true %>
+        <%= error_field(:title, exhibit.errors) %>
+      </div>
+      <div class='flex flex-col w-full'>
+        <%= f.label :subtitle, class: 'text-sm font-medium mb-2' %>
+        <%= f.text_field :subtitle, class: 'form-input font-medium', required: true %>
+        <%= error_field(:subtitle, exhibit.errors) %>
+      </div>
+    </div>
+    <div class='flex flex-row w-full'>
+      <div class='flex flex-col mr-5'>
+        <%= f.label :banner, class: 'text-sm font-medium mb-2' %>
+        <%= render partial: '/v2/admin/images/image_picker', locals: {
+          id: 'exhibit-banner-picker', object: exhibit.banner,
+          form_id: 'exhibit_banner_id', form_name: 'exhibit[banner_id]' } %>
+      </div>
+      <div class='flex flex-col'>
+        <%= f.label :poster, class: 'text-sm font-medium mb-2' %>
+        <%= render partial: '/v2/admin/images/image_picker', locals: {
+          id: 'exhibit-poster-picker', object: exhibit.poster,
+          form_id: 'exhibit_poster_id', form_name: 'exhibit[poster_id]' } %>
+      </div>
+    </div>
+  </div>
+
+  <div class='flex flex-col w-full mb-5'>
+    <%= f.label :description, class: 'text-sm font-medium mb-2' %>
+    <%= f.text_area :description, class: 'form-input font-medium', required: true %>
+    <%= error_field(:description, exhibit.errors) %>
+  </div>
+
+  <div class='flex flex-row w-full mb-5'>
+    <div class='flex flex-col w-full mr-5'>
+      <%= f.label :start_date, class: 'text-sm font-medium mb-2' %>
+      <%= f.date_field :start_date, class: 'form-input font-medium', required: true %>
+      <%= error_field(:start_date, exhibit.errors) %>
+    </div>
+
+    <div class='flex flex-col w-full'>
+      <%= f.label :end_date, class: 'text-sm font-medium mb-2' %>
+      <%= f.date_field :end_date, class: 'form-input font-medium' %>
+      <%= error_field(:end_date, exhibit.errors) %>
+    </div>
+  </div>
+
+  <div class='flex flex-col w-full mb-5'>
+    <%= f.label :artworks, class: 'text-sm font-medium mb-2' %>
+    <%= f.select :artwork_ids, options_for_select(artworks, f.object.artwork_ids), { include_blank: true, multiple: true }, {
+      data: { controller: 'slimselect', slimselect_close_on_select_value: false }, class: 'w-full mr-5',
+      autocomplete: 'off', style: 'min-height: 49.33px;' } %>
+  </div>
+
+  <%= render partial: 'v2/admin/content_sections/form', locals: { f: f, object: exhibit } %>
+
+<% end %>

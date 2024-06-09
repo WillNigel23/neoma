@@ -39,3 +39,12 @@ application.register('sortable', Sortable)
 
 import Slimselect from './slimselect_controller'
 application.register('slimselect', Slimselect)
+
+import FormController from './form_controller'
+application.register('form', FormController)
+
+import MediaPickerController from './media_picker_controller'
+application.register('media-picker', MediaPickerController)
+
+import SelectableController from './selectable_controller'
+application.register('selectable', SelectableController)

@@ -1,1 +1,13 @@
-HELLO
+<%= content_for :header do %>
+  <h1 class='text-2xl font-normal items-center'> Exhibits </h1>
+
+  <div class='flex flex-row justify-center items-center'>
+    <%= button_to 'New exhibit', '#', class: 'btn btn-primary w-1/2 md:w-auto' %>
+  </div>
+<% end %>
+
+<%= content_for :content do %>
+  <div class="max-w-full overflow-x-auto rounded-xl shadow-lg">
+    <%= render partial: 'table' %>
+  </div>
+<% end %>

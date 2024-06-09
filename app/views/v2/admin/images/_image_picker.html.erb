@@ -1,0 +1,24 @@
+<div class='relative' data-controller='media-picker' id=<%= id %>>
+  <input type='hidden' id='<%= form_id %>' name='<%= form_name %>' value='<%= object&.id %>' data-media-picker-target='hiddenField'>
+
+  <% if object&.attached? %>
+    <%= link_to '#', data: { action: 'click->media-picker#delete' },
+      class: 'absolute mt-3 ml-2 z-10 cursor-pointer flex items-center h-9 px-2 rounded-md bg-gray-700 bg-opacity-50 border-gray-300 active:shadow-inner text-gray-200 hover:text-white text-sm font-medium leading-none shadow-sm' do %>
+      <i class='fa-solid fa-trash'></i>
+    <% end %>
+  <% end %>
+
+  <%= link_to v2_admin_images_path(element_id: id, form_id: form_id, form_name: form_name), class: 'block relative mt-1 w-full', data: { turbo: true, turbo_stream: true } do %>
+    <div class='w-36 h-36 bg-transparent border-2 border-dashed border-gray-300 rounded-lg flex items-center flex-col justify-center'>
+      <svg class='mx-auto h-12 w-12 text-gray-400' stroke='currentColor' fill='none' viewBox='0 0 48 48'>
+        <path d='M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path>
+      </svg>
+      <div class='text-gray-400 font-medium text-sm'>Choose image</div>
+    </div>
+    <% if object&.attached? %>
+      <div class='border absolute inset-0 w-36 h-36 bg-gray-100 rounded-lg shadow-md overflow-hidden' data-media-picker-target='imageField'>
+        <%= image_tag object.file, class: 'object-contain h-36 w-full transition-opacity duration-500' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

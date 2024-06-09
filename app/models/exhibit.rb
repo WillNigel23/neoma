@@ -32,13 +32,16 @@ class Exhibit < ApplicationRecord
   friendly_id :title, use: :slugged
 
   belongs_to :banner, class_name: 'Image', optional: true
+  accepts_nested_attributes_for :banner, allow_destroy: false
   belongs_to :poster, class_name: 'Image', optional: true
+  accepts_nested_attributes_for :poster, allow_destroy: false
 
   has_many :exhibit_artworks, dependent: :destroy
   has_many :artworks, through: :exhibit_artworks
   has_many :artists, -> { distinct }, through: :artworks, source: :artist
 
   has_many :content_sections, as: :contentable, dependent: :destroy
+  accepts_nested_attributes_for :content_sections, allow_destroy: false
   has_one :featured_item, as: :featureable, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
@@ -61,5 +64,14 @@ class Exhibit < ApplicationRecord
   scope :future, -> {
     where('start_date > :date', date: Date.current)
   }
+
+  before_destroy :nullify_images
+
+  private
+
+  def nullify_images
+    update(banner_id: nil)
+    update(poster_id: nil)
+  end
 
 end

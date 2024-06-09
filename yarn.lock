@@ -154,6 +154,21 @@
   dependencies:
     spark-md5 "^3.0.1"
 
+"@rails/request.js@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@rails/request.js/-/request.js-0.0.9.tgz#89e2a575405dc07eb8a9b3d2fe04289e1f057cd0"
+  integrity sha512-VleYUyrA3rwKMvYnz7MI9Ada85Vekjb/WVz7NuGgDO24Y3Zy9FFSpDMQW+ea/tlftD+CdX/W/sUosRA9/HkDOQ==
+
+"@stimulus-components/rails-nested-form@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@stimulus-components/rails-nested-form/-/rails-nested-form-5.0.0.tgz#b443ad8ba5220328cfd704ca956ebf95ab8c4848"
+  integrity sha512-qrmmurT+KBPrz9iBlyrgJa6Di8i0j328kSk2SUR53nK5W0kDhw1YxVC91aUR+7EsFKiwJT1iB7oDSwpDhDQPeA==
+
+"@stimulus-components/sortable@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@stimulus-components/sortable/-/sortable-5.0.1.tgz#622b54bd11ab905ab28bdd8282399dc682d06933"
+  integrity sha512-03wQ+0fRaa0cYR3ia8+DJ4vW+UnAmBz24N8ChujWbceN79il49l7+hUZr74FNghmdX2OWhrmcr4YoG+VZ5XQ2g==
+
 activestorage@^5.2.8-1:
   version "5.2.8-1"
   resolved "https://registry.npmjs.org/activestorage/-/activestorage-5.2.8-1.tgz"
@@ -201,6 +216,11 @@ slim-select@^2.8.1:
   version "2.8.2"
   resolved "https://registry.npmjs.org/slim-select/-/slim-select-2.8.2.tgz"
   integrity sha512-f4urDhh1aYVK2JCg1UMPKj+LaP3S8xO2LAt06svMQq4aLZyYWB9D6vmgqAoMJuXBOl+F0tVuo/zG2lerRxy3aA==
+
+sortablejs@^1.15.2:
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.15.2.tgz#4e9f7bda4718bd1838add9f1866ec77169149809"
+  integrity sha512-FJF5jgdfvoKn1MAKSdGs33bIqLi3LmsgVTliuX6iITj834F+JRQZN90Z93yql8h0K2t0RwDPBmxwlbZfDcxNZA==
 
 spark-md5@^3.0.0, spark-md5@^3.0.1:
   version "3.0.2"

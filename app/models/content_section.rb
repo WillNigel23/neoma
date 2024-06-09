@@ -5,6 +5,7 @@
 #  id               :bigint           not null, primary key
 #  contentable_type :string
 #  header           :string
+#  position         :integer          default(0), not null
 #  contentable_id   :bigint
 #
 # Indexes
@@ -20,6 +21,9 @@ class ContentSection < ApplicationRecord
 
   has_rich_text :content
 
+  default_scope { order(position: :asc) }
+
+  validates :position, presence: true
   validate :has_valid_contents
 
   private
