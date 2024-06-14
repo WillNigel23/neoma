@@ -103,6 +103,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_224828) do
   create_table "content_images", force: :cascade do |t|
     t.bigint "image_id"
     t.bigint "content_section_id"
+    t.integer "position", default: 0, null: false
     t.index ["content_section_id"], name: "index_content_images_on_content_section_id"
     t.index ["image_id"], name: "index_content_images_on_image_id"
   end
@@ -111,6 +112,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_224828) do
     t.string "contentable_type"
     t.bigint "contentable_id"
     t.string "header"
+    t.integer "position", default: 0, null: false
     t.index ["contentable_type", "contentable_id"], name: "index_content_sections_on_contentable"
   end
 

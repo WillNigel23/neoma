@@ -1,29 +1,29 @@
 <div x-data="
   {
-  openTab: <%= object.content_sections.first&.id %>,
+  openTab: '<%= object.content_sections.first&.id %>',
   activeClasses: 'bg-spina-dark',
   inactiveClasses: ''
   }
   " class='flex flex-col w-full mb-5'>
   <%= f.label :contents, class: 'text-sm font-medium mb-2' %>
 
-  <div class='flex flex-row w-full mb-5'>
-    <div class='flex flex-col mr-5'>
-      <ul class='flex flex-col' data-controller='sortable' data-sortable-handle-value='.handle'>
-        <% object.content_sections.each_with_index do |content, index| %>
-          <li>
-            <a href='javascript:void(0)' @click='openTab = <%= content.id %>' :class='openTab === <%= content.id %> ? activeClasses : inactiveClasses' class='hover:text-gray-900 rounded-md px-3 truncate text-sm font-medium flex items-center w-full h-9 bg-opacity-10 text-gray-900'>
-              <i class='fa-solid fa-grip-lines handle mr-2'></i>
-              <%= content.header %>
-            </a>
-          </li>
+  <div class='flex flex-col w-full mb-5'>
+    <div class='flex flex-col relative' data-controller='sortable' data-sortable-handle-value='.handle'>
+      <template data-nested-form-target="template">
+        <%= f.fields_for :content_sections, ContentSection.new, child_index: 'NEW_RECORD' do |content_section_fields| %>
+          <%= render partial: '/v2/admin/content_sections/nested_form', locals: { f: content_section_fields } %>
         <% end %>
-      </ul>
-      <button type='button' class='text-gray-400 pl-2 hover:text-gray-900 rounded-md truncate text-sm font-medium flex items-center h-10' data-action='nested-form#add'>
-        <i class='fa-solid fa-plus mr-2'></i>
-        New entry
-      </button>
+      </template>
+
+      <%= f.fields_for :content_sections do |content_section_fields| %>
+        <%= render partial: '/v2/admin/content_sections/nested_form', locals: { f: content_section_fields } %>
+      <% end %>
+
+      <div data-nested-form-target="target"></div>
     </div>
-    MAKE IT FIXED INSTEAD OF A SEPARATE DIV, THEN PLACE INSIDE THE LI TAG
+    <button type='button' class='text-gray-400 pl-2 hover:text-gray-900 rounded-md truncate text-sm font-medium flex items-center h-10' data-action='nested-form#add'>
+      <i class='fa-solid fa-plus mr-2'></i>
+      New entry
+    </button>
   </div>
 </div>

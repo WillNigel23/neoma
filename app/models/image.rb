@@ -17,7 +17,7 @@ class Image < ApplicationRecord
   has_many :artist_banners, class_name: 'Artist', foreign_key: 'banner_id', dependent: :nullify
   has_many :artist_portraits, class_name: 'Artist', foreign_key: 'portrait_id', dependent: :nullify
 
-  has_many :artwork_images, class_name: 'Artwork', foreign_key: 'image_id', dependent: :nullify
+  has_many :artwork_images, class_name: 'Artwork', dependent: :nullify
 
   has_many :content_images, dependent: :destroy
   has_many :content_sections, through: :content_images
