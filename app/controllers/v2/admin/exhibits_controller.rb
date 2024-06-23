@@ -59,6 +59,7 @@ module V2
         params.require(:exhibit).permit(
           :title,
           :subtitle,
+          :description,
           :start_date,
           :end_date,
           :banner_id,
