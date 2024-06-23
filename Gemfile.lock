@@ -77,9 +77,6 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
-    acts_as_list (1.2.1)
-      activerecord (>= 6.1)
-      activesupport (>= 6.1)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     ancestry (4.3.3)
@@ -461,7 +458,6 @@ PLATFORMS
 
 DEPENDENCIES
   activestorage-validator (~> 0.4.0)
-  acts_as_list
   annotaterb
   better_errors
   binding_of_caller

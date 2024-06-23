@@ -22,7 +22,7 @@
             <% block.content(:carousel).each do |img| %>
               <%= fe_carousel_item do %>
                 <%= fe_banner do %>
-                  <%= fe_banner_img(img.spina_image, { opacity: '0.8' }) %>
+                  <%= fe_banner_img(img.spina_image, opts: { opacity: '0.8' }) %>
                 <% end %>
               <% end %>
             <% end %>
@@ -47,7 +47,7 @@
         <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
         <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal' data-scroll-reveal-target='item' data-delay='750ms'>
           <% content(:featured_artists)[1]&.live.each do |artist| %>
-            <%= fe_featured_item_link(artist.materialized_path, { class: 'flex flex-col mx-auto' }) do %>
+            <%= fe_featured_item_link(artist.materialized_path, opts: { class: 'flex flex-col mx-auto' }) do %>
               <%= fe_featured_item_content_wrapper() do %>
                 <div class='transition-all duration-500 hover:scale-110 mb-5'>
                   <%= artist.content.image_tag(:portrait, resize_to_fill: [450, 500]) %>

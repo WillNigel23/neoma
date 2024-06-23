@@ -6,9 +6,29 @@ module V2
         @exhibits = Exhibit.all.includes(:featured_item)
       end
 
+      def new
+        @exhibit = Exhibit.new
+        @artworks = Artwork.all.order(title: :asc).pluck(:title, :id)
+      end
+
       def edit
         @exhibit = Exhibit.find(params[:id])
         @artworks = Artwork.all.order(title: :asc).pluck(:title, :id)
+      end
+
+      def create
+        @exhibit = Exhibit.new(exhibit_params)
+
+        if @exhibit.save
+          nested_content_sections_update_callback(:exhibit)
+
+          flash[:notice] = "Created #{@exhibit.title} successfully"
+          redirect_to edit_v2_admin_exhibit_path(@exhibit.id)
+        else
+          flash[:notice] = "Failed to create due to #{@exhibit.errors.full_messages}"
+          @artworks = Artwork.all.order(title: :asc).pluck(:title, :id)
+          render :new
+        end
       end
 
       def update

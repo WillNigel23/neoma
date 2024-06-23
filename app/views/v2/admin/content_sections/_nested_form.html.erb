@@ -18,9 +18,15 @@
     </div>
     <div id='<%= "content-sections-#{tab_id}-image-pickers" %>' class='flex flex-col w-full mb-5'>
       <%= f.label :carousel, class: 'text-sm font-medium mb-2' %>
-      <div class='flex flex-row flex-wrap w-full' data-controller='sortable' data-sortable-handle-value='.handle'>
-        <%= render partial: '/v2/admin/images/multi_image_picker', locals: { f: f, tab_id: tab_id } %>
-      </div>
+      <% if f.object.new_record? %>
+        <p class='text-sm text-gray-100'>
+          Save content section first before adding carousel.
+        </p>
+      <% else %>
+        <div class='flex flex-row flex-wrap w-full' data-controller='sortable' data-sortable-handle-value='.handle'>
+          <%= render partial: '/v2/admin/images/multi_image_picker', locals: { f: f, tab_id: tab_id } %>
+        </div>
+      <% end %>
     </div>
     <div class='flex flex-row flex-wrap w-full mb-5'>
       <%= f.hidden_field :_destroy %>
