@@ -1,0 +1,5 @@
+---
+en:
+  errors:
+    exhibits:
+      no_value: Must at least contain Images or Header or Body

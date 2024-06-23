@@ -1,0 +1,12 @@
+<turbo-stream action='replace' target='modal'>
+  <template>
+    <div id='modal' class='modal max-h-screen py-6' data-controller='modal'>
+      <button type='button' class='cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-25' tabindex='-1' data-action='modal#closeV2'></button>
+      <div class='modal-window max-w-6xl h-full'>
+        <div class='h-full w-full' data-controller='media-picker' >
+          <%= render partial: 'media_picker', formats: [:html] %>
+        </div>
+      </div>
+    </div>
+  </template>
+</turbo-stream>

@@ -16,4 +16,19 @@ export default class extends Controller {
       }, 500);
     });
   }
+
+  closeV2(event) {
+    event.preventDefault();
+
+    var turboFrameTag = document.createElement("turbo-frame");
+    turboFrameTag.id = 'modal'
+
+    this.bodyTargets.forEach(body => {
+      body.classList.remove('in');
+    });
+
+    setTimeout(() => {
+      document.getElementById('modal').replaceWith(turboFrameTag);
+    }, 500);
+  }
 }

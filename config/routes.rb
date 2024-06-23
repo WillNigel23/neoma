@@ -1,9 +1,28 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
-  devise_for :customers, controllers: {
-    sessions: 'customers/sessions'
-  }
+  namespace :v2 do
+    resources :articles, only: [:index, :show]
+    resources :artists, only: [:index, :show]
+    resources :artworks, only: [:index, :show]
+    resources :exhibits, only: [:index, :show]
+    resources :galleries, only: [:index, :show]
+    resources :homepage, only: [:index]
+
+    root to: 'homepage#index'
+
+    namespace :admin do
+      devise_for :users, controllers: { sessions: 'v2/admin/users/sessions' }
+      resources :homepage, only: [:index] do
+        post 'set_featured_items', on: :collection
+      end
+      resources :artworks
+      resources :exhibits
+      resources :images, only: [:index] do
+        post 'insert_image', on: :collection
+      end
+
+      root to: 'homepage#index'
+    end
+  end
 
   resources :artwork_modals do
     get 'show_modal', on: :collection

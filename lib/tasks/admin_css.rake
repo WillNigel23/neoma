@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
 require 'tailwindcss-rails'
 
 namespace :spina do
   namespace :tailwind do
     def spina_tailwind_compile_command
       "#{Tailwindcss::Engine.root.join('exe/tailwindcss')} -i #{Rails.root.join('app/assets/spina/admin.css')} -o #{Rails.root.join(
-        'app/assets/builds', 'spina/admin.css'
+        'app/assets/builds/spina/admin.css'
       )}"
     end
 

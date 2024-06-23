@@ -1,0 +1,62 @@
+<div class='fixed top-5 right-5 z-[101]' data-controller='scroll-reveal modal lazy' data-delay='100ms' data-scroll-reveal-target='item'>
+  <%= link_to '/' do %>
+    <i class='text-xl text-black cursor-hover fa-solid fa-xmark'></i>
+  <% end %>
+</div>
+<div class='fixed top-0 left-0 z-[100] bg-white w-screen h-screen reveal' data-modal-target='body' data-delay='100ms' data-scroll-reveal-target='item'>
+  <div class='flex flex-col justify-center items-center h-screen w-screen'>
+    <div class='swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden container reveal'
+      data-controller='carousel'
+      data-scroll-reveal-target='item'
+      data-delay='500ms'
+      data-carousel-options-value='
+      {
+        "navigation": {
+          "nextEl": ".swiper-button-next",
+          "prevEl": ".swiper-button-prev"
+        },
+        "effect": "fade",
+        "fadeEffect": {
+          "crossFade": "true"
+        },
+        "initialSlide": <%= @position %>
+      }'
+      >
+      <div class='swiper-wrapper py-10'>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <% @artworks.each do |artwork| %>
+          <div class='swiper-slide'>
+            <div class='flex flex-col md:flex-row-reverse w-full container px-5'>
+              <span class='w-full flex justify-start md:justify-end items-center'>
+                <%= image_tag(artwork.image.file, class: 'object-contain max-h-[500px] md:max-h-[800px] reveal') %>
+              </span>
+              <span class='w-full flex flex-col justify-between items-start py-10'>
+                <h1 class='font-restora uppercase font-bold text-xl md:text-3xl'>
+                  <%= artwork.artist&.name %>
+                </h1>
+                <div class='flex flex-col items-start'>
+                  <h2 class='font-restora italic text-xl md:text-3xl mb-2'>
+                    <%= artwork.title %>
+                  </h2>
+                  <p class='font-montserrat text-lg mb-5'>
+                  <%= format_price(artwork.price) %>
+                  </p>
+
+                  <div class='font-montserrat text-sm flex flex-col items-start'>
+                    <p class='italic'><%= "#{artwork.size} | #{artwork.medium} | #{artwork.year}" %></p>
+                    <blockquote><%= artwork.description %></blockquote>
+                  </div>
+                </div>
+                <div class='flex flex-row mt-5 reveal' data-scroll-reveal-target='item'>
+                  TODO
+                  <%#= link_to t('buttons.inquire_now'), main_app.show_sidemodal_artwork_modals_path(artwork: artwork.id), class: 'font-montserrat text-center text-black transition-color duration-500 bg-neoma-pink-1 hover:bg-[#f7b1af] px-3 py-2 min-w-[120px]', data: { turbo: true, turbo_stream: true } %>
+                </div>
+              </span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,7 @@
-# frozen_string_literal: true
-
 module Spina
   module Parts
     class FeaturedArtist < Base
+
       attr_json :main_artist_id, :integer
       attr_json :artist_ids, :integer, array: true, default: []
 
@@ -12,6 +11,7 @@ module Spina
           Spina::Page.where(view_template: 'artist', id: artist_ids)
         ]
       end
+
     end
   end
 end

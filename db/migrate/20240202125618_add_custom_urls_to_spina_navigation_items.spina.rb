@@ -1,7 +1,6 @@
-# frozen_string_literal: true
-
 # This migration comes from spina (originally 17)
 class AddCustomUrlsToSpinaNavigationItems < ActiveRecord::Migration[7.0]
+
   def change
     add_column :spina_navigation_items, :url, :string
     add_column :spina_navigation_items, :url_title, :string
@@ -18,4 +17,5 @@ class AddCustomUrlsToSpinaNavigationItems < ActiveRecord::Migration[7.0]
       end
     end
   end
+
 end

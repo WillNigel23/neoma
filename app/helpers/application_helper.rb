@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 module ApplicationHelper
+
   def main_nav_items
     @main_nav_items ||= Spina::Navigation.find_by(name: 'main').navigation_items.roots.sorted
   end
@@ -27,8 +26,10 @@ module ApplicationHelper
     end
     ongoing.sort_by! do |exhibit|
       if exhibit.content(:start_date).nil?
-        [1,
-         Date.current]
+        [
+          1,
+          Date.current
+        ]
       else
         [0, Date.strptime(exhibit.content(:start_date), '%d, %B %Y')]
       end
@@ -42,8 +43,10 @@ module ApplicationHelper
     end
     past.sort_by! do |exhibit|
       if exhibit.content(:start_date).nil?
-        [1,
-         Date.current]
+        [
+          1,
+          Date.current
+        ]
       else
         [0, Date.strptime(exhibit.content(:start_date), '%d, %B %Y')]
       end
@@ -69,8 +72,10 @@ module ApplicationHelper
     end
     ongoing.sort_by! do |event|
       if event.content(:start_date).nil?
-        [1,
-         Date.current]
+        [
+          1,
+          Date.current
+        ]
       else
         [0, Date.strptime(event.content(:start_date), '%d, %B %Y')]
       end
@@ -84,8 +89,10 @@ module ApplicationHelper
     end
     past.sort_by! do |event|
       if event.content(:start_date).nil?
-        [1,
-         Date.current]
+        [
+          1,
+          Date.current
+        ]
       else
         [0, Date.strptime(event.content(:start_date), '%d, %B %Y')]
       end
@@ -115,7 +122,49 @@ module ApplicationHelper
   end
 
   def navbar_color_scheme
-    %w[Artists Exhibits Galleries Events]
+    ['Artists', 'Artworks', 'Exhibits', 'Galleries', 'Events']
+  end
+
+  def v2_main_nav_items
+    [
+      [:home, v2_root_path],
+      [:exhibits, v2_exhibits_path],
+      [:artworks, v2_artworks_path],
+      [:artists, v2_artists_path],
+      [:articles, v2_articles_path],
+      [:galleries, v2_galleries_path],
+      [:about, v2_root_path]
+    ]
+  end
+
+  def v2_admin_content_nav_items
+    [
+      [:homepage, v2_admin_root_path],
+      [:exhibits, v2_admin_exhibits_path],
+      [:artworks, v2_admin_artworks_path]
+      # [:artists, v2_artists_path],
+      # [:articles, v2_articles_path],
+      # [:galleries, v2_galleries_path],
+      # [:about, v2_root_path]
+    ]
+  end
+
+  def v2_admin_inbox_nav_items
+    [
+      [:email_list, '#'],
+      [:inquiries, '#']
+      # [:artworks, v2_admin_artworks_path]
+      # [:artists, v2_artists_path],
+      # [:articles, v2_articles_path],
+      # [:galleries, v2_galleries_path],
+      # [:about, v2_root_path]
+    ]
+  end
+
+  def v2_admin_manage_nav_items
+    [
+      [:users, '#']
+    ]
   end
 
   def classes_for_flash(key)
@@ -135,4 +184,5 @@ module ApplicationHelper
       content_tag(:i, nil, class: 'fa-solid fa-circle-check text-neoma-blue-2 text-xl')
     end
   end
+
 end

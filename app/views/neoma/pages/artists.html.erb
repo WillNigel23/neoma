@@ -15,10 +15,10 @@
 
     <div id='#grid_view' class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full'>
       <% artists.each do |artist| %>
-        <%= fe_featured_item_link(artist.materialized_path, { class: 'flex flex-col' }) do %>
+        <%= fe_featured_item_link(artist.materialized_path, opts: { class: 'flex flex-col' }) do %>
           <%= fe_featured_item_content_wrapper() do %>
             <%= fe_featured_item_image_wrapper do %>
-              <%= fe_featured_item_image(artist.content(:portrait).spina_image, class: 'reveal object-cover w-[500px] h-[500px]') %>
+              <%= fe_featured_item_image(artist.content(:portrait).spina_image, opts: { class: 'reveal object-cover w-[500px] h-[500px]' }) %>
             <% end %>
             <%= fe_featured_item_title(artist.content(:header)) %>
             <%= fe_featured_item_subtitle(artist.content(:subheader)) %>

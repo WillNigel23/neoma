@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Neoma</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Neoma Galleria</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <%= favicon_link_tag asset_path('neoma.ico') %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload' %>
     <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
     <%= stylesheet_link_tag 'restora', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'montserrat', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' integrity='sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==' crossorigin='anonymous' referrerpolicy='no-referrer' />
+
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+  <body class='flex flex-col w-full' data-controller='scroll-reveal lazy'>
+    <%= render 'v2/shared/navigation' %>
+    <%= yield %>
+    <div class='min-h-screen w-full'></div> <!-- Spacer -->
+    <%= render 'v2/shared/footer' %>
+
+    <%= turbo_frame_tag 'flash' %>
+    <%= turbo_frame_tag 'modal' %>
+    <%= turbo_frame_tag 'side-modal' %>
   </body>
 </html>

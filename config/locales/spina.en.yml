@@ -1,17 +1,18 @@
+---
 en:
   spina:
-    website:
-      inbox: Inbox
+    button:
+      save: Save
     inbox:
       email_list: Email List
       inquiries: Inquiries
-    no_content_available: No available data
-    button:
-      save: Save
-    mailinglists:
-      new: New Email
-      edit: Edit Email
-      deleted: Email deleted
-      cannot_be_created: Failed to add email
     inquiries:
       show: View
+    mailinglists:
+      cannot_be_created: Failed to add email
+      deleted: Email deleted
+      edit: Edit Email
+      new: New Email
+    no_content_available: No available data
+    website:
+      inbox: Inbox

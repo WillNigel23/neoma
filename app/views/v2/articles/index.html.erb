@@ -1,0 +1,30 @@
+<!-- Articles start here -->
+<section class='w-full bg-white z-20'>
+  <section class='container w-full py-5 md:py-10 mx-auto mt-28 px-5 bg-white min-h-screen' data-controller='scroll-reveal'>
+    <h1 class='font-restora font-bold text-black text-4xl md:text-7xl lg:text-9xl mb-10 uppercase reveal' data-scroll-reveal-target='item'> <%= t('title.articles') %> </h1>
+    <hr class='w-full my-5'>
+
+    <div class='w-full mb-10'>
+      <div class='grid grid-cols-1 md:grid-cols-2 gap-5'>
+        <% @articles.each do |article| %>
+          <%= fe_featured_item_image_wrapper(opts: { class: 'reveal', data: { scroll_reveal_target: 'item' } }) do %>
+            <%= fe_featured_item_image_v2(article.banner) %>
+          <% end %>
+
+          <%= fe_featured_item_content_wrapper(opts: {
+            class: 'flex flex-col w-full my-auto py-5 px-0 md:px-5 reveal',
+            data: { scroll_reveal_target: 'item' } }) do %>
+
+            <%= fe_featured_item_pretitle(format_date(article.date), opts: {
+              class: 'font-montserrat text-gray-600 text-light text-sm'
+            }) %>
+            <%= fe_featured_item_title(article.title, opts: { class: 'font-restora font-bold text-xl md:text-3xl my-5' }) %>
+            <%= fe_featured_item_subtitle(article.subtitle, opts: { class: 'font-montserrat text-light' }) %>
+            <%= fe_featured_item_text(article.description, opts: { class: 'font-montserrat text-light text-xs my-5' }) %>
+            <%= fe_banner_link('Explore Now', v2_article_path(article)) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</section>

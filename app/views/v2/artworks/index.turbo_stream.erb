@@ -1,0 +1,26 @@
+<turbo-stream action='replace' target='artworks'>
+  <template>
+    <%= turbo_frame_tag 'artworks', data: { controller: 'scroll-reveal modal lazy' } do %>
+      <hr class='w-full my-5'>
+
+      <div class='w-full flex items-center justify-end mb-5 reveal' data-scroll-reveal-target='item' data-delay='250ms'>
+        <%= fe_sort_dropdown(v2_artworks_path, params[:sort_by], Artwork::SORTING_PARAMS, model: 'artwork') %>
+      </div>
+
+      <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full'>
+        <% @artworks.each do |artwork| %>
+          <%= fe_featured_item_link(v2_artwork_path(artwork, sort_by: params[:sort_by]), opts: { class: 'flex flex-col', data: { turbo: true, turbo_stream: true } }) do %>
+            <%= fe_featured_item_content_wrapper() do %>
+              <%= fe_featured_item_image_wrapper do %>
+                <%= fe_featured_item_image_v2(artwork.image, opts: { class: 'reveal object-cover w-[500px] h-[500px]' }) %>
+              <% end %>
+              <%= fe_featured_item_title(artwork.title) %>
+              <%= fe_featured_item_subtitle(artwork.artist.name) if artwork.artist %>
+              <%= fe_featured_item_text(format_price(artwork.price)) if artwork.price %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <template>
+</turbo-stream>

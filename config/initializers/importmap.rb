@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Spina.config.importmap.draw do
   # Stimulus & Turbo
   pin '@hotwired/stimulus', to: 'stimulus.js'
@@ -10,12 +8,12 @@ Spina.config.importmap.draw do
   pin 'application', to: 'spina/application.js'
 
   pin_all_from Spina::Engine.root.join('app/assets/javascripts/spina/controllers'), under: 'controllers',
-                                                                                    to: 'spina/controllers'
+    to: 'spina/controllers'
   pin_all_from Spina::Engine.root.join('app/assets/javascripts/spina/libraries'), under: 'libraries',
-                                                                                  to: 'spina/libraries'
+    to: 'spina/libraries'
 
   pin_all_from Rails.root.join('app/assets/javascripts/spina/controllers'), under: 'controllers',
-                                                                            to: 'spina/controllers'
+    to: 'spina/controllers'
   pin_all_from Rails.root.join('app/assets/javascripts/spina/libraries'), under: 'libraries', to: 'spina/libraries'
 end
 

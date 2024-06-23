@@ -1,0 +1,15 @@
+---
+en:
+  sorting:
+    artwork:
+      artist: Artist
+      price_asc: Price <i class='fa-solid font-light fa-chevron-up text-[8px] ml-2'></i>
+      price_desc: Price <i class='fa-solid font-light fa-chevron-down text-[8px] ml-2'></i>
+      title: Title
+      year: Year
+    default:
+      artist: Artist
+      price_asc: Price <i class='fa-solid font-light fa-chevron-up text-[8px] ml-2'></i>
+      price_desc: Price <i class='fa-solid font-light fa-chevron-down text-[8px] ml-2'></i>
+      title: Title
+      year: Year

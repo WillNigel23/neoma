@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 class ArtworkModalsController < ApplicationController
+
   def show_modal
     artwork_ids = [params[:active]] + params[:artworks].reject { |id| id == params[:active] }
     @artworks = artworks.where(id: artwork_ids)
@@ -18,7 +17,8 @@ class ArtworkModalsController < ApplicationController
     respond_to(&:turbo_stream)
   end
 
-  def show_inquire_modal; end
+  def show_inquire_modal
+  end
 
   def close_sidemodal
     respond_to(&:turbo_stream)
@@ -33,4 +33,5 @@ class ArtworkModalsController < ApplicationController
   def artworks
     @artworks ||= Spina::Resource.find_by(name: 'artworks').pages
   end
+
 end

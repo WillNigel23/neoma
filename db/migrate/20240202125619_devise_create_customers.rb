@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 class DeviseCreateCustomers < ActiveRecord::Migration[7.1]
+
   def change
     create_table :customers do |t|
       ## Database authenticatable
@@ -40,4 +39,5 @@ class DeviseCreateCustomers < ActiveRecord::Migration[7.1]
     # add_index :customers, :confirmation_token,   unique: true
     # add_index :customers, :unlock_token,         unique: true
   end
+
 end

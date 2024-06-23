@@ -1,0 +1,43 @@
+<div class='w-full flex items-center justify-between reveal' data-scroll-reveal-target='item' data-delay='250ms'>
+  <h2 class='font-restora font-bold flex-1'> <%= t('title.exhibits') %> </h2>
+  <%= link_to t('buttons.view_all'), v2_exhibits_path, class: 'text-xs font-medium hover:text-[#f7b1af] transition-all duration-500' %>
+</div>
+
+<hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+
+<div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
+  <div class='relative flex flex-col'>
+    <%= fe_featured_item_link(v2_exhibit_path(main_exhibit)) do %>
+      <%= fe_featured_item_content_wrapper() do %>
+        <%= fe_featured_item_image_wrapper do %>
+          <%= fe_featured_item_image_v2(main_exhibit.banner) %>
+        <% end %>
+        <%= fe_featured_item_pretitle(format_date_range(main_exhibit.start_date, main_exhibit.end_date)) %>
+        <%= fe_featured_item_title(main_exhibit.title) %>
+        <%= fe_featured_item_subtitle(main_exhibit.subtitle) if main_exhibit.subtitle %>
+        <%= fe_featured_item_text(main_exhibit.description) if main_exhibit.description %>
+      <% end %>
+    <% end %>
+  </div>
+  <% if sub_exhibits.any? %>
+    <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full'>
+      <% sub_exhibits.in_groups_of((sub_exhibits.length / 2.0).ceil) do |group| %>
+        <div class='flex flex-col w-full'>
+          <% group.compact.each do |exhibit| %>
+            <%= fe_featured_item_link(v2_exhibit_path(exhibit), opts: { class: 'mb-5' }) do %>
+              <%= fe_featured_item_content_wrapper() do %>
+                <%= fe_featured_item_image_wrapper do %>
+                  <%= fe_featured_item_image_v2(exhibit.banner) %>
+                <% end %>
+                <%= fe_featured_item_pretitle(format_date_range(exhibit.start_date, exhibit.end_date)) %>
+                <%= fe_featured_item_title(exhibit.title) %>
+                <%= fe_featured_item_subtitle(exhibit.subtitle) if exhibit.subtitle %>
+                <%= fe_featured_item_text(exhibit.description) if exhibit.description %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

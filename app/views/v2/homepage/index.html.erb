@@ -1,0 +1,44 @@
+<section class='w-full bg-white z-20'>
+  <%= fe_carousel do %>
+    <%= fe_carousel_wrapper do %>
+      <% @exhibits.each do |exhibit| %>
+        <%= fe_carousel_item do %>
+          <%= fe_banner do %>
+            <%= fe_banner_img_v2(exhibit.banner, opts: { class: 'absolute top-0 left-0 w-full w-[100vw] min-h-[100vh] object-cover reveal', opacity: '0.8' }, check_attached: false) %>
+
+            <%= fe_banner_inner do %>
+              <%= fe_banner_preheader(format_date_range(exhibit.start_date, exhibit.end_date)) %>
+              <%= fe_banner_header(exhibit.title) %>
+              <%= fe_banner_subheader(exhibit.subtitle) if exhibit.subtitle %>
+              <%= fe_banner_link('Explore Now', v2_exhibit_path(exhibit)) %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>
+
+<section class='w-full bg-white z-20 py-10' data-controller='scroll-reveal'>
+  <div class='flex flex-col w-full container py-5 justify-center items-start mx-auto px-5 my-5'>
+    <% if @exhibits.any? %>
+      <%= render partial: 'exhibits', locals: { main_exhibit: @main_exhibit, sub_exhibits: @sub_exhibits } %>
+    <% end %>
+
+    <% if @artworks.any? %>
+      <%= render partial: 'artworks', locals: { main_artwork: @main_artwork, sub_artworks: @sub_artworks} %>
+    <% end %>
+
+    <% if @artists.any? %>
+      <%= render partial: 'artists', locals: { main_artist: @main_artist, sub_artists: @sub_artists} %>
+    <% end %>
+
+    <% if @articles.any? %>
+      <%= render partial: 'articles', locals: { main_article: @main_article, sub_articles: @sub_articles } %>
+    <% end %>
+
+    <% if @galleries.any? %>
+      <%= render partial: 'galleries', locals: { main_gallery: @main_gallery, sub_galleries: @sub_galleries} %>
+    <% end %>
+  </div>
+</section>

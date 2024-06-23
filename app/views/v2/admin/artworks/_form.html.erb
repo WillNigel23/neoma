@@ -1,0 +1,59 @@
+<%= form_for(artwork, url:, method:, html: { id: 'artworks-form', class: 'flex flex-col w-full',
+  data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } }) do |f| %>
+  <div class='flex flex-row w-full mb-5'>
+    <div class='flex flex-col w-full mr-5'>
+      <div class='flex flex-col w-full mb-5'>
+        <%= f.label :title, class: 'text-sm font-medium mb-2' %>
+        <%= f.text_field :title, class: 'form-input font-medium', required: true %>
+        <%= error_field(:title, artwork.errors) %>
+      </div>
+      <div class='flex flex-col w-full mb-5'>
+        <%= f.label :size, class: 'text-sm font-medium mb-2' %>
+        <%= f.text_field :size, class: 'form-input font-medium', required: true %>
+        <%= error_field(:size, artwork.errors) %>
+      </div>
+      <div class='flex flex-col w-full mb-5'>
+        <%= f.label :medium, class: 'text-sm font-medium mb-2' %>
+        <%= f.text_field :medium, class: 'form-input font-medium', required: true %>
+        <%= error_field(:medium, artwork.errors) %>
+      </div>
+      <div class='flex flex-col w-full mb-5'>
+        <%= f.label :price, class: 'text-sm font-medium mb-2' %>
+        <%= f.number_field :price, class: 'form-input font-medium', required: true %>
+        <%= error_field(:price, artwork.errors) %>
+      </div>
+      <div class='flex flex-col w-full'>
+        <%= f.label :year, class: 'text-sm font-medium mb-2' %>
+        <%= f.select :year, nil, { multiple: false }, class: 'w-full mr-5', data: { controller: 'slimselect' }, style: 'min-height: 49.33px;' do %>
+          <option value=''></option>
+          <% Array((Date.current.year - 50)..Date.current.year).reverse.each do |year| %>
+            <option value='<%= year %>' <%= 'selected' if f.object.year == year %>><%= year %></option>
+          <% end %>
+        <% end %>
+        <%= error_field(:price, artwork.errors) %>
+      </div>
+    </div>
+    <div class='flex flex-row w-full'>
+      <div class='flex flex-col mr-5'>
+        <%= f.label :image, class: 'text-sm font-medium mb-2' %>
+        <%= render partial: '/v2/admin/images/image_picker', locals: {
+          id: 'artwork-image-picker', object: artwork.image,
+          form_name: 'artwork[image_id]' } %>
+      </div>
+    </div>
+  </div>
+
+  <div class='flex flex-col w-full mb-5'>
+    <%= f.label :description, class: 'text-sm font-medium mb-2' %>
+    <%= f.text_area :description, class: 'form-input font-medium', required: true %>
+    <%= error_field(:description, artwork.errors) %>
+  </div>
+
+  <div class='flex flex-col w-full mb-5'>
+    <%= f.label :artist, class: 'text-sm font-medium mb-2' %>
+    <%= f.select :artist_id, options_for_select(artists, f.object.artist_id), { include_blank: true, multiple: false }, {
+      data: { controller: 'slimselect' }, class: 'w-full mr-5',
+      autocomplete: 'off', style: 'min-height: 49.33px;' } %>
+  </div>
+
+<% end %>

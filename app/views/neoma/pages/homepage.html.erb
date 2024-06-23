@@ -49,7 +49,7 @@
             <% content(:featured_exhibits)[1]&.live.in_groups_of((content(:featured_exhibits)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>
                 <% group.compact.each do |exhibit| %>
-                  <%= fe_featured_item_link(exhibit.materialized_path, { class: 'mb-5' }) do %>
+                  <%= fe_featured_item_link(exhibit.materialized_path, opts: { class: 'mb-5' }) do %>
                     <%= fe_featured_item_content_wrapper() do %>
                       <%= fe_featured_item_image_wrapper do %>
                         <%= fe_featured_item_image(exhibit.content(:poster).spina_image) %>
@@ -78,7 +78,7 @@
       <div class='grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5'>
         <div class='relative flex flex-col'>
           <% if content(:featured_artworks)[0]&.live? %>
-            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: [content(:featured_artworks)[0]&.id] + content(:featured_artworks)[1]&.live.pluck(:id), active: content(:featured_artworks)[0]&.id), { class: 'sticky top-5 md:top-1/4', data: { turbo: true, turbo_stream: true } }) do %>
+            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: [content(:featured_artworks)[0]&.id] + content(:featured_artworks)[1]&.live.pluck(:id), active: content(:featured_artworks)[0]&.id), opts: { class: 'sticky top-5 md:top-1/4', data: { turbo: true, turbo_stream: true } }) do %>
               <%= fe_featured_item_content_wrapper() do %>
                 <%= fe_featured_item_image_wrapper do %>
                   <%= fe_featured_item_image(content(:featured_artworks)[0].content(:image).spina_image) %>
@@ -95,7 +95,7 @@
             <% content(:featured_artworks)[1]&.live.in_groups_of((content(:featured_artworks)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>
                 <% group.compact.each do |artwork| %>
-                  <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: [content(:featured_artworks)[0]&.id] + content(:featured_artworks)[1]&.live.pluck(:id), active: artwork.id), { class: 'mb-5', data: { turbo: true, turbo_stream: true } }) do %>
+                  <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: [content(:featured_artworks)[0]&.id] + content(:featured_artworks)[1]&.live.pluck(:id), active: artwork.id), opts: { class: 'mb-5', data: { turbo: true, turbo_stream: true } }) do %>
                     <%= fe_featured_item_content_wrapper() do %>
                       <%= fe_featured_item_image_wrapper do %>
                         <%= fe_featured_item_image(artwork.content(:image).spina_image) %>
@@ -139,7 +139,7 @@
             <% content(:featured_artists)[1]&.live.in_groups_of((content(:featured_artists)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>
                 <% group.compact.each do |artist| %>
-                  <%= fe_featured_item_link(artist.materialized_path, { class: 'mb-5' }) do %>
+                  <%= fe_featured_item_link(artist.materialized_path, opts: { class: 'mb-5' }) do %>
                     <%= fe_featured_item_content_wrapper() do %>
                       <%= fe_featured_item_image_wrapper do %>
                         <%= fe_featured_item_image(artist.content(:portrait).spina_image) %>
@@ -182,7 +182,7 @@
             <% content(:featured_events)[1]&.live.in_groups_of((content(:featured_events)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>
                 <% group.compact.each do |event| %>
-                  <%= fe_featured_item_link(event.materialized_path, { class: 'mb-5' }) do %>
+                  <%= fe_featured_item_link(event.materialized_path, opts: { class: 'mb-5' }) do %>
                     <%= fe_featured_item_content_wrapper() do %>
                       <%= fe_featured_item_image_wrapper do %>
                         <%= fe_featured_item_image(event.content(:banner).spina_image) %>
@@ -225,7 +225,7 @@
             <% content(:featured_galleries)[1]&.live.in_groups_of((content(:featured_galleries)[1]&.live.length / 2.0).ceil) do |group| %>
               <div class='flex flex-col w-full'>
                 <% group.compact.each do |gallery| %>
-                  <%= fe_featured_item_link(gallery.materialized_path, { class: 'mb-5' }) do %>
+                  <%= fe_featured_item_link(gallery.materialized_path, opts: { class: 'mb-5' }) do %>
                     <%= fe_featured_item_content_wrapper() do %>
                       <%= fe_featured_item_image_wrapper do %>
                         <%= fe_featured_item_image(gallery.content(:banner).spina_image) %>

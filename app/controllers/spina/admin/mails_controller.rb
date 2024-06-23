@@ -1,8 +1,7 @@
-# frozen_string_literal: true
-
 module Spina
   module Admin
     class MailsController < AdminController
+
       admin_section :inbox
 
       def index
@@ -29,6 +28,7 @@ module Spina
       def add_index_breadcrumb
         add_breadcrumb I18n.t('spina.inbox.inquiries'), spina.admin_mails_path, class: 'text-gray-400'
       end
+
     end
   end
 end

@@ -29,7 +29,7 @@
             <% block.content(:carousel).each do |img| %>
               <%= fe_carousel_item do %>
                 <%= fe_banner do %>
-                  <%= fe_banner_img(img.spina_image, { opacity: '0.8' }) %>
+                  <%= fe_banner_img(img.spina_image, opts: { opacity: '0.8' }) %>
                 <% end %>
               <% end %>
             <% end %>
@@ -54,10 +54,10 @@
         <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
         <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
           <% content(:featured_artworks)[1]&.live.each do |artwork| %>
-            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: content(:featured_artworks)[1]&.live.pluck(:id), active: artwork.id), { class: 'flex flex-col mx-auto', data: { turbo: true, turbo_stream: true } }) do %>
+            <%= fe_featured_item_link(main_app.show_modal_artwork_modals_path(artworks: content(:featured_artworks)[1]&.live.pluck(:id), active: artwork.id), opts: { class: 'flex flex-col mx-auto', data: { turbo: true, turbo_stream: true } }) do %>
               <%= fe_featured_item_content_wrapper() do %>
                 <%= fe_featured_item_image_wrapper do %>
-                  <%= fe_featured_item_image(artwork.content(:image).spina_image, class: 'reveal object-cover w-[450px] h-[500px]') %>
+                  <%= fe_featured_item_image(artwork.content(:image).spina_image, opts: { class: 'reveal object-cover w-[450px] h-[500px]' }) %>
                 <% end %>
                 <%= fe_featured_item_title(artwork.content(:header)) %>
                 <%= fe_featured_item_subtitle(artwork.content(:featured_artist)[0]&.content(:header)) %>

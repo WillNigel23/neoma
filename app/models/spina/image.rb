@@ -1,7 +1,19 @@
-# frozen_string_literal: true
-
+# == Schema Information
+#
+# Table name: spina_images
+#
+#  id              :bigint           not null, primary key
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  media_folder_id :integer
+#
+# Indexes
+#
+#  index_spina_images_on_media_folder_id  (media_folder_id)
+#
 module Spina
   class Image < ApplicationRecord
+
     include Attachable
 
     belongs_to :media_folder, optional: true
@@ -32,5 +44,6 @@ module Spina
         }
       )
     end
+
   end
 end

@@ -1,5 +1,31 @@
-# frozen_string_literal: true
-
+# == Schema Information
+#
+# Table name: spina_pages
+#
+#  id                      :integer          not null, primary key
+#  active                  :boolean          default(TRUE)
+#  ancestry                :string
+#  ancestry_children_count :integer
+#  ancestry_depth          :integer          default(0)
+#  deletable               :boolean          default(TRUE)
+#  draft                   :boolean          default(FALSE)
+#  json_attributes         :jsonb
+#  layout_template         :string
+#  link_url                :string
+#  name                    :string
+#  position                :integer
+#  show_in_menu            :boolean          default(TRUE)
+#  skip_to_first_child     :boolean          default(FALSE)
+#  slug                    :string
+#  view_template           :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  resource_id             :integer
+#
+# Indexes
+#
+#  index_spina_pages_on_resource_id  (resource_id)
+#
 module Spina
   class Page < ApplicationRecord
     extend Mobility
@@ -21,7 +47,7 @@ module Spina
     has_many :navigations, through: :navigation_items
 
     # Pages can belong to a resource
-    belongs_to :resource, optional: true, touch: true, class_name: 'Spina::Resource'
+    belongs_to :resource, optional: true, touch: true, class_name: "Spina::Resource"
 
     scope :main, -> { where(resource_id: nil) }
     scope :regular_pages, -> { main }
@@ -64,7 +90,7 @@ module Spina
     end
 
     def homepage?
-      name == 'homepage'
+      name == "homepage"
     end
 
     def custom_page?
@@ -80,11 +106,11 @@ module Spina
     end
 
     def previous_sibling
-      siblings.where('position < ?', position).sorted.last
+      siblings.where("position < ?", position).sorted.last
     end
 
     def next_sibling
-      siblings.where('position > ?', position).sorted.first
+      siblings.where("position > ?", position).sorted.first
     end
 
     def set_materialized_path
@@ -100,7 +126,7 @@ module Spina
     end
 
     def cache_key
-      "#{super}_#{Mobility.locale}"
+      super + "_" + Mobility.locale.to_s
     end
 
     private
@@ -125,15 +151,15 @@ module Spina
     end
 
     def rewrite_rule
-      RewriteRule.where(old_path:).first_or_create.update(new_path: materialized_path) if old_path != materialized_path
+      RewriteRule.where(old_path: old_path).first_or_create.update(new_path: materialized_path) if old_path != materialized_path
     end
 
     def localized_materialized_path
       segments = if Mobility.locale == I18n.default_locale
-                   [Spina.mounted_at, generate_materialized_path]
-                 else
-                   [Spina.mounted_at, Mobility.locale, generate_materialized_path]
-                 end
+        [Spina.mounted_at, generate_materialized_path]
+      else
+        [Spina.mounted_at, Mobility.locale, generate_materialized_path]
+      end
       File.join(*segments.map(&:to_s).compact)
     end
 
@@ -141,11 +167,11 @@ module Spina
       path_fragments = [resource&.slug]
       path_fragments.append(*ancestors.collect(&:slug))
       path_fragments.append(slug) unless homepage?
-      path_fragments.compact.map(&:parameterize).join('/')
+      path_fragments.compact.map(&:parameterize).join("/")
     end
 
     def duplicate_materialized_path?
-      self.class.where.not(id:).i18n.where(materialized_path:).exists?
+      self.class.where.not(id: id).i18n.where(materialized_path: materialized_path).exists?
     end
   end
 end

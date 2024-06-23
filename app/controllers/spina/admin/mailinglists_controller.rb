@@ -1,8 +1,7 @@
-# frozen_string_literal: true
-
 module Spina
   module Admin
     class MailinglistsController < AdminController
+
       admin_section :inbox
 
       def index
@@ -17,6 +16,12 @@ module Spina
         add_breadcrumb I18n.t('spina.mailinglists.new')
       end
 
+      def edit
+        @mail = Mailinglist.find(params[:id])
+        add_index_breadcrumb
+        add_breadcrumb I18n.t('spina.mailinglists.edit')
+      end
+
       def create
         @mail = Mailinglist.new(mail_params)
         if @mail.save
@@ -29,13 +34,8 @@ module Spina
         end
       end
 
-      def edit
-        @mail = Mailinglist.find(params[:id])
-        add_index_breadcrumb
-        add_breadcrumb I18n.t('spina.mailinglists.edit')
+      def update
       end
-
-      def update; end
 
       def destroy
         @mail = Mailinglist.find(params[:id])
@@ -52,6 +52,7 @@ module Spina
       def mail_params
         params.require(:mailinglist).permit(:email)
       end
+
     end
   end
 end

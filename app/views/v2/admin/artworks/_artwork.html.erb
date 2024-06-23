@@ -1,0 +1,38 @@
+<tr>
+  <td class='border-stroke border-t py-5 px-5 pl-10'>
+    <%= link_to v2_artwork_path(artwork), class: 'text-base font-medium text-nowrap' do %>
+      <i class='fa-solid fa-eye mr-5'></i>
+      <%= artwork.title %>
+    <% end %>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4'>
+    <p class='text-body-color text-base'>
+      <%= "#{artwork.size} | #{artwork.medium} | #{artwork.year}" %>
+    </p>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4'>
+    <p class='text-body-color text-base'>
+      <%= format_price(artwork.price) %>
+    </p>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4'>
+    <p class='text-body-color text-sm flex flex-nowrap items-center text-nowrap'>
+      <%= artwork.status.titleize %>
+      <% if artwork.featured_item %>
+        <i class='fa-solid fa-star ml-1'></i>
+      <% end %>
+    </p>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4 pr-10 text-center flex flex-row'>
+    <%= link_to edit_v2_admin_artwork_path(artwork.id), class: 'text-green mr-5' do %>
+      <i class='fa-solid fa-pen-to-square'></i>
+    <% end %>
+    <%= button_to v2_admin_artwork_path(artwork.id), class: 'text-red-500', method: :delete do %>
+      <i class='fa-solid fa-trash'></i>
+    <% end %>
+  </td>
+</tr>

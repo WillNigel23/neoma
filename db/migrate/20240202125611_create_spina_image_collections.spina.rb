@@ -1,7 +1,6 @@
-# frozen_string_literal: true
-
 # This migration comes from spina (originally 10)
 class CreateSpinaImageCollections < ActiveRecord::Migration[5.2]
+
   def change
     create_table :spina_image_collections, &:timestamps
 
@@ -14,4 +13,5 @@ class CreateSpinaImageCollections < ActiveRecord::Migration[5.2]
     add_index :spina_image_collections_images, :image_collection_id
     add_index :spina_image_collections_images, :image_id
   end
+
 end
