@@ -25,7 +25,7 @@
             <%= fe_featured_item_link(v2_artist_path(artist), opts: { class: 'mb-5' }) do %>
               <%= fe_featured_item_content_wrapper() do %>
                 <%= fe_featured_item_image_wrapper do %>
-                  <%= fe_featured_item_image(artist.banner) %>
+                  <%= fe_featured_item_image(artist.portrait) %>
                 <% end %>
                 <%= fe_featured_item_title(artist.name) %>
                 <%= fe_featured_item_subtitle(artist.description) if artist.description %>
