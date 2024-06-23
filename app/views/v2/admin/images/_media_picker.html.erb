@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <%= form_tag insert_image_v2_admin_images_path(element_id: @element_id, form_id: @form_id, form_name: @form_name), method: :post,
+      <%= form_tag insert_image_v2_admin_images_path(element_id: @element_id, form_name: @form_name, multiple: @multiple), method: :post,
         autocomplete: false, data: { turbo: true, turbo_stream: true, media_picker_target: 'form' } do %>
         <%= hidden_field_tag :image_id %>
         <button type='submit' class='btn btn-primary w-full mt-3' data-action='media-picker-modal#confirm modal#close'>

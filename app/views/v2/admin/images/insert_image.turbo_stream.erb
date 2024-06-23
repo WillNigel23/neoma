@@ -6,8 +6,16 @@
 
 <turbo-stream action='replace' target='<%= @element_id %>'>
   <template>
-    <%= render partial: '/v2/admin/images/image_picker', locals: {
-      id: @element_id, object: @image,
-      form_id: @form_id, form_name: @form_name }, formats: [:html] %>
+    <% if @multiple %>
+      <%= render partial: '/v2/admin/images/nested_multi_image_picker', locals: {
+        object: @image,
+        form_name: @form_name
+      }, formats: [:html] %>
+      <div id='<%= @element_id %>'></div>
+    <% else %>
+      <%= render partial: '/v2/admin/images/image_picker', locals: {
+        id: @element_id, object: @image,
+        form_id: @form_id, form_name: @form_name }, formats: [:html] %>
+    <% end %>
   </template>
 </turbo-stream>

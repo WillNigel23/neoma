@@ -16,7 +16,7 @@ export default class extends Controller {
 
   delete(event) {
     this.hiddenFieldTarget.value = '';
-    this.imageFieldTarget.remove();
     event.currentTarget.remove();
+    this.imageFieldTarget.remove();
   }
 }

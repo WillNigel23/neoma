@@ -19,7 +19,7 @@
 #
 class ContentImage < ApplicationRecord
 
-  belongs_to :image, class_name: 'Image'
+  belongs_to :image, class_name: 'Image', optional: true
   belongs_to :content_section, class_name: 'ContentSection'
 
   default_scope { order(position: :asc) }

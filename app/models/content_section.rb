@@ -17,6 +17,7 @@ class ContentSection < ApplicationRecord
   belongs_to :contentable, polymorphic: true, optional: true
 
   has_many :content_images, dependent: :destroy
+  accepts_nested_attributes_for :content_images, allow_destroy: true
   has_many :images, through: :content_images
 
   has_rich_text :content

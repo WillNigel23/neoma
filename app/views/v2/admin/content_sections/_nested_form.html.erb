@@ -3,7 +3,8 @@
   <a href='javascript:void(0)' @click='openTab = "<%= tab_id %>"' :class='openTab === "<%= tab_id %>" ? activeClasses : inactiveClasses'
     style='max-width: 200px'
     class='hover:text-gray-900 rounded-md px-3 truncate text-sm font-medium flex items-center w-full h-9 bg-opacity-10 text-gray-900'>
-    <i class='fa-solid fa-grip-lines handle mr-2'></i>
+    <i class='fa-solid fa-grip-lines handle cursor-move mr-2'></i>
+    <%= f.hidden_field :position %>
     <%= f.object.header %>
   </a>
   <div x-show='openTab === "<%= tab_id %>"' class='absolute top-0 px-5 flex flex-col w-full' style='left: 205px; max-width: 800px'>
@@ -15,10 +16,11 @@
       <%= f.label :content, class: 'text-sm font-medium mb-2' %>
       <%= f.rich_text_area :content, class: 'form-textarea p-4 pt-0 shadow-sm', required: true %>
     </div>
-    <div class='flex flex-row flex-wrap w-full mb-5'>
-      <%#= f.select :image_ids, options_for_select(Image.all.pluck(:id, :id), f.object.image_ids), { include_blank: true, multiple: true }, {
-        data: { controller: 'slimselect', slimselect_close_on_select_value: false }, class: 'w-full mr-5',
-        autocomplete: 'off', style: 'min-height: 49.33px;' } %>
+    <div id='<%= "content-sections-#{tab_id}-image-pickers" %>' class='flex flex-col w-full mb-5'>
+      <%= f.label :carousel, class: 'text-sm font-medium mb-2' %>
+      <div class='flex flex-row flex-wrap w-full' data-controller='sortable' data-sortable-handle-value='.handle'>
+        <%= render partial: '/v2/admin/images/multi_image_picker', locals: { f: f, tab_id: tab_id } %>
+      </div>
     </div>
     <div class='flex flex-row flex-wrap w-full mb-5'>
       <%= f.hidden_field :_destroy %>

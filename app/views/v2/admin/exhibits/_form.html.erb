@@ -18,13 +18,13 @@
         <%= f.label :banner, class: 'text-sm font-medium mb-2' %>
         <%= render partial: '/v2/admin/images/image_picker', locals: {
           id: 'exhibit-banner-picker', object: exhibit.banner,
-          form_id: 'exhibit_banner_id', form_name: 'exhibit[banner_id]' } %>
+          form_name: 'exhibit[banner_id]' } %>
       </div>
       <div class='flex flex-col'>
         <%= f.label :poster, class: 'text-sm font-medium mb-2' %>
         <%= render partial: '/v2/admin/images/image_picker', locals: {
           id: 'exhibit-poster-picker', object: exhibit.poster,
-          form_id: 'exhibit_poster_id', form_name: 'exhibit[poster_id]' } %>
+          form_name: 'exhibit[poster_id]' } %>
       </div>
     </div>
   </div>
@@ -56,6 +56,6 @@
       autocomplete: 'off', style: 'min-height: 49.33px;' } %>
   </div>
 
-  <%= render partial: 'v2/admin/content_sections/form', locals: { f: f, object: exhibit } %>
+  <%= render partial: 'v2/admin/content_sections/form', locals: { f: f, object: exhibit, form_id: '' } %>
 
 <% end %>

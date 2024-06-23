@@ -15,10 +15,13 @@ module V2
         @exhibit = Exhibit.find(params[:id])
 
         if @exhibit.update(exhibit_params)
-          destroy_nested_content_sections
+          nested_content_sections_update_callback(:exhibit)
+
           flash[:notice] = "Updated #{@exhibit.title} successfully"
           redirect_to edit_v2_admin_exhibit_path(@exhibit.id)
         else
+          flash[:notice] = "Failed to update due to #{@exhibit.errors.full_messages}"
+          @artworks = Artwork.all.order(title: :asc).pluck(:title, :id)
           render :edit
         end
       end
@@ -32,22 +35,8 @@ module V2
 
       private
 
-      def destroy_nested_content_sections
-        permitted_params = params.require(:exhibit).permit(
-          content_sections_attributes: [:id, :_destroy]
-        )
-
-        content_sections_params = permitted_params[:content_sections_attributes].to_h
-
-        content_sections_params.each do |(_, attributes)|
-          next if attributes[:_destroy] == 'false'
-
-          ContentSection.find_by(id: attributes[:id])&.destroy!
-        end
-      end
-
       def exhibit_params
-        permitted_params = params.require(:exhibit).permit(
+        params.require(:exhibit).permit(
           :title,
           :subtitle,
           :start_date,
@@ -60,18 +49,9 @@ module V2
             :header,
             :content,
             :position,
-            :_destroy,
-            { image_ids: [] }
+            :_destroy
           ]
         )
-
-        content_sections_attributes = permitted_params[:content_sections_attributes].to_h
-
-        content_sections_attributes.each_with_index do |(_, attributes), index|
-          attributes[:position] = index + 1
-        end
-
-        permitted_params.merge(content_sections_attributes:)
       end
 
     end
