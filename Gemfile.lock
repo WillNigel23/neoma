@@ -101,6 +101,7 @@ GEM
       parser (>= 2.4)
       smart_properties
     bigdecimal (3.1.8)
+    bindex (0.8.1)
     binding_of_caller (1.0.1)
       debug_inspector (>= 1.2.0)
     bootsnap (1.18.3)
@@ -444,6 +445,11 @@ GEM
       method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
+    web-console (4.2.1)
+      actionview (>= 6.0.0)
+      activemodel (>= 6.0.0)
+      bindex (>= 0.4.0)
+      railties (>= 6.0.0)
     webrick (1.8.1)
     websocket (1.2.10)
     websocket-driver (0.7.6)
@@ -495,6 +501,7 @@ DEPENDENCIES
   tailwindcss-rails (~> 2.3)
   turbo-rails
   tzinfo-data
+  web-console
 
 RUBY VERSION
    ruby 3.1.4p223
