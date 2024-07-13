@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       end
       resources :artworks
       resources :exhibits
-      resources :images, only: [:index] do
+      resources :images, only: [:index, :create] do
         post 'insert_image', on: :collection
       end
 

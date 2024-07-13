@@ -1,0 +1,7 @@
+<turbo-stream action='replace' target='media_picker'>
+  <template>
+    <turbo-frame id='media_picker' class='grid grid-cols-2 md:grid-cols-4 gap-6 auto-rows-min'>
+      <%= render partial: 'media_image', collection: @images, as: 'image', formats: [:html] %>
+    </turbo-frame>
+  </template>
+</turbo-stream>
