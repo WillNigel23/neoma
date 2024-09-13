@@ -1,0 +1,19 @@
+<table class="w-full table-auto">
+  <thead>
+    <tr class="bg-[#F9FAFB] text-left">
+      <th class="text-body-color min-w-[280px] py-4 pr-4 pl-11 text-base font-medium uppercase">
+        Fullname | Artist name
+      </th>
+      <th class="text-body-color min-w-[280px] py-4 px-4 text-base font-medium uppercase">
+        Role
+      </th>
+      <th class="text-body-color min-w-[140px] py-4 px-4 text-base font-medium uppercase">
+        Status
+      </th>
+      <th class="text-body-color min-w-[140px] py-4 pr-11 pl-4 text-base font-medium uppercase"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'artist', collection: @artists %>
+  </tbody>
+</table>

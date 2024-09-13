@@ -1,37 +1,31 @@
-<%= form_for(exhibit, url:, method:, html: { id: 'exhibits-form', class: 'flex flex-col w-full',
+<%= form_for(gallery, url:, method:, html: { id: 'galleries-form', class: 'flex flex-col w-full',
   data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } }) do |f| %>
   <div class='flex flex-row w-full mb-5'>
     <div class='flex flex-col w-full mr-5'>
       <div class='flex flex-col w-full mb-5'>
         <%= f.label :title, class: 'text-sm font-medium mb-2' %>
         <%= f.text_field :title, class: 'form-input font-medium', required: true %>
-        <%= error_field(:title, exhibit.errors) %>
+        <%= error_field(:title, gallery.errors) %>
       </div>
       <div class='flex flex-col w-full mb-2'>
-        <%= f.label :subtitle, class: 'text-sm font-medium mb-2' %>
-        <%= f.text_field :subtitle, class: 'form-input font-medium', required: true %>
-        <%= error_field(:subtitle, exhibit.errors) %>
+        <%= f.label :location, class: 'text-sm font-medium mb-2' %>
+        <%= f.text_field :location, class: 'form-input font-medium', required: true %>
+        <%= error_field(:location, gallery.errors) %>
       </div>
       <div class='flex flex-col w-full'>
         <%= f.label :status, class: 'text-sm font-medium mb-2' %>
         <%= f.select :status, options_for_select(statuses_collection, f.object.status), { include_blank: false, multiple: false }, {
           data: { controller: 'slimselect', slimselect_close_on_select_value: true }, class: 'w-full mr-5',
           autocomplete: 'off', style: 'min-height: 49.33px;' } %>
-        <%= error_field(:status, exhibit.errors) %>
+        <%= error_field(:status, gallery.errors) %>
       </div>
     </div>
     <div class='flex flex-row w-full'>
       <div class='flex flex-col mr-5'>
         <%= f.label :banner, class: 'text-sm font-medium mb-2' %>
         <%= render partial: '/v2/admin/images/image_picker', locals: {
-          id: 'exhibit-banner-picker', object: exhibit.banner,
-          form_name: 'exhibit[banner_id]' } %>
-      </div>
-      <div class='flex flex-col'>
-        <%= f.label :poster, class: 'text-sm font-medium mb-2' %>
-        <%= render partial: '/v2/admin/images/image_picker', locals: {
-          id: 'exhibit-poster-picker', object: exhibit.poster,
-          form_name: 'exhibit[poster_id]' } %>
+          id: 'gallery-banner-picker', object: gallery.banner,
+          form_name: 'gallery[banner_id]' } %>
       </div>
     </div>
   </div>
@@ -39,21 +33,7 @@
   <div class='flex flex-col w-full mb-5'>
     <%= f.label :description, class: 'text-sm font-medium mb-2' %>
     <%= f.text_area :description, class: 'form-input font-medium', required: true %>
-    <%= error_field(:description, exhibit.errors) %>
-  </div>
-
-  <div class='flex flex-row w-full mb-5'>
-    <div class='flex flex-col w-full mr-5'>
-      <%= f.label :start_date, class: 'text-sm font-medium mb-2' %>
-      <%= f.date_field :start_date, class: 'form-input font-medium', required: true %>
-      <%= error_field(:start_date, exhibit.errors) %>
-    </div>
-
-    <div class='flex flex-col w-full'>
-      <%= f.label :end_date, class: 'text-sm font-medium mb-2' %>
-      <%= f.date_field :end_date, class: 'form-input font-medium' %>
-      <%= error_field(:end_date, exhibit.errors) %>
-    </div>
+    <%= error_field(:description, gallery.errors) %>
   </div>
 
   <div class='flex flex-col w-full mb-5'>
@@ -63,6 +43,6 @@
       autocomplete: 'off', style: 'min-height: 49.33px;' } %>
   </div>
 
-  <%= render partial: 'v2/admin/content_sections/form', locals: { f: f, object: exhibit, form_id: '' } %>
+  <%= render partial: 'v2/admin/content_sections/form', locals: { f: f, object: gallery, form_id: '' } %>
 
 <% end %>

@@ -14,8 +14,11 @@ Rails.application.routes.draw do
       resources :homepage, only: [:index] do
         post 'set_featured_items', on: :collection
       end
+      resources :articles
+      resources :artists
       resources :artworks
       resources :exhibits
+      resources :galleries
       resources :images, only: [:index, :create] do
         post 'insert_image', on: :collection
       end

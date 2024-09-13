@@ -13,7 +13,7 @@
           <%= fe_featured_item_image_v2(main_artwork.image) %>
         <% end %>
         <%= fe_featured_item_title(main_artwork.title) %>
-        <%= fe_featured_item_subtitle(main_artwork.artist.name) %>
+        <%= fe_featured_item_subtitle(main_artwork.artist&.name) %>
         <%= fe_featured_item_text(format_price(main_artwork.price)) %>
       <% end %>
     <% end %>
@@ -29,7 +29,7 @@
                   <%= fe_featured_item_image_v2(artwork.image) %>
                 <% end %>
                 <%= fe_featured_item_title(artwork.title) %>
-                <%= fe_featured_item_subtitle(artwork.artist.name) %>
+                <%= fe_featured_item_subtitle(artwork.artist&.name) %>
                 <%= fe_featured_item_text(format_price(artwork.price)) %>
               <% end %>
             <% end %>

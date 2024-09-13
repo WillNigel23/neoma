@@ -1,0 +1,24 @@
+<%= content_for :header do %>
+  <h1 class='text-2xl font-normal items-center'> New artist </h1>
+
+  <div class='flex flex-row justify-center items-center'>
+    <div x-data="
+      {
+      dropdownOpen: false
+      }
+      " @click.outside='dropdownOpen = false' class='relative inline-block text-left'>
+      <button @click='dropdownOpen = !dropdownOpen' class='btn btn-primary flex items-center rounded py-3 px-5 text-base font-semibold text-white'>
+        Actions
+        <i class='fa-solid fa-chevron-down pl-2'></i>
+      </button>
+      <div :class="dropdownOpen ? 'top-full block visible' : 'top-[110%] hidden' " class='bg-white shadow absolute left-0 z-40 mt-2 w-full rounded border-[.5px] py-5 transition-all top-[110%]'>
+        <%= button_tag 'Submit', class: 'block py-2 px-5 text-base font-semibold text-black hover:text-gray-500',
+          data: { controller: 'form', form_form_id_value: 'artists-form' } %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= content_for :content do %>
+  <%= render partial: 'form', locals: { url: v2_admin_artists_path, method: :post, artist: @artist, artworks: @artworks } %>
+<% end %>

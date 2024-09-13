@@ -59,6 +59,7 @@ module V2
         params.require(:artwork).permit(
           :title,
           :description,
+          :status,
           :medium,
           :price,
           :size,

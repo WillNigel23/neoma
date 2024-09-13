@@ -22,7 +22,7 @@
         <%= f.number_field :price, class: 'form-input font-medium', required: true %>
         <%= error_field(:price, artwork.errors) %>
       </div>
-      <div class='flex flex-col w-full'>
+      <div class='flex flex-col w-full mb-5'>
         <%= f.label :year, class: 'text-sm font-medium mb-2' %>
         <%= f.select :year, nil, { multiple: false }, class: 'w-full mr-5', data: { controller: 'slimselect' }, style: 'min-height: 49.33px;' do %>
           <option value=''></option>
@@ -31,6 +31,13 @@
           <% end %>
         <% end %>
         <%= error_field(:price, artwork.errors) %>
+      </div>
+      <div class='flex flex-col w-full'>
+        <%= f.label :status, class: 'text-sm font-medium mb-2' %>
+        <%= f.select :status, options_for_select(statuses_collection, f.object.status), { include_blank: false, multiple: false }, {
+          data: { controller: 'slimselect', slimselect_close_on_select_value: true }, class: 'w-full mr-5',
+          autocomplete: 'off', style: 'min-height: 49.33px;' } %>
+        <%= error_field(:status, artwork.errors) %>
       </div>
     </div>
     <div class='flex flex-row w-full'>
