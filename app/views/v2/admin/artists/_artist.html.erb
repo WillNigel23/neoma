@@ -1,0 +1,32 @@
+<tr>
+  <td class='border-stroke border-t py-5 px-5 pl-10'>
+    <%= link_to v2_artist_path(artist), class: 'text-base font-medium text-nowrap' do %>
+      <i class='fa-solid fa-eye mr-5'></i>
+      <%= "#{artist.full_name} | #{artist.name}" %>
+    <% end %>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4'>
+    <p class='text-body-color text-base'>
+      <%= artist.role %>
+    </p>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4'>
+    <p class='text-body-color text-sm flex flex-nowrap items-center text-nowrap'>
+      <%= artist.status.titleize %>
+      <% if artist.featured_item %>
+        <i class='fa-solid fa-star ml-1'></i>
+      <% end %>
+    </p>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4 pr-10 text-center flex flex-row'>
+    <%= link_to edit_v2_admin_artist_path(artist.id), class: 'text-green mr-5' do %>
+      <i class='fa-solid fa-pen-to-square'></i>
+    <% end %>
+    <%= button_to v2_admin_artist_path(artist.id), class: 'text-red-500', method: :delete do %>
+      <i class='fa-solid fa-trash'></i>
+    <% end %>
+  </td>
+</tr>

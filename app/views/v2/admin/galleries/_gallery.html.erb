@@ -1,0 +1,32 @@
+<tr>
+  <td class='border-stroke border-t py-5 px-5 pl-10'>
+    <%= link_to v2_gallery_path(gallery), class: 'text-base font-medium text-nowrap' do %>
+      <i class='fa-solid fa-eye mr-5'></i>
+      <%= gallery.title %>
+    <% end %>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4'>
+    <p class='text-body-color text-base'>
+      <%= gallery.location %>
+    </p>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4'>
+    <p class='text-body-color text-sm flex flex-nowrap items-center text-nowrap'>
+      <%= gallery.status.titleize %>
+      <% if gallery.featured_item %>
+        <i class='fa-solid fa-star ml-1'></i>
+      <% end %>
+    </p>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4 pr-10 text-center flex flex-row'>
+    <%= link_to edit_v2_admin_gallery_path(gallery.id), class: 'text-green mr-5' do %>
+      <i class='fa-solid fa-pen-to-square'></i>
+    <% end %>
+    <%= button_to v2_admin_gallery_path(gallery.id), class: 'text-red-500', method: :delete do %>
+      <i class='fa-solid fa-trash'></i>
+    <% end %>
+  </td>
+</tr>

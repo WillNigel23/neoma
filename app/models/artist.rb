@@ -31,12 +31,15 @@ class Artist < ApplicationRecord
   friendly_id :name, use: :slugged
 
   belongs_to :banner, class_name: 'Image', optional: true
+  accepts_nested_attributes_for :banner, allow_destroy: false
   belongs_to :portrait, class_name: 'Image', optional: true
+  accepts_nested_attributes_for :portrait, allow_destroy: false
 
   has_many :artworks, dependent: :nullify
   has_many :exhibits, -> { distinct }, through: :artworks
 
   has_many :content_sections, as: :contentable, dependent: :destroy
+  accepts_nested_attributes_for :content_sections, allow_destroy: false
   has_one :featured_item, as: :featureable, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true

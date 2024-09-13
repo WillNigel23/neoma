@@ -28,8 +28,10 @@ class Article < ApplicationRecord
   friendly_id :title, use: :slugged
 
   belongs_to :banner, class_name: 'Image', optional: true
+  accepts_nested_attributes_for :banner, allow_destroy: false
 
   has_many :content_sections, as: :contentable, dependent: :destroy
+  accepts_nested_attributes_for :content_sections, allow_destroy: false
 
   has_one :featured_item, as: :featureable, dependent: :destroy
 

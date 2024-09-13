@@ -60,6 +60,7 @@ module V2
           :title,
           :subtitle,
           :description,
+          :status,
           :start_date,
           :end_date,
           :banner_id,
