@@ -40,6 +40,17 @@ module V2
         end
       end
 
+      def redirect_to_type_map
+        {
+          homepage: v2_admin_root_path,
+          exhibits: v2_admin_exhibits_path,
+          artworks: v2_admin_artworks_path,
+          artists: v2_admin_artists_path,
+          articles: v2_admin_articles_path,
+          galleries: v2_admin_galleries_path
+        }
+      end
+
     end
   end
 end

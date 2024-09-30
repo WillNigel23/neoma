@@ -48,3 +48,6 @@ application.register('media-picker', MediaPickerController)
 
 import SelectableController from './selectable_controller'
 application.register('selectable', SelectableController)
+
+import BulkImportController from './bulk_import_controller'
+application.register('bulk-import', BulkImportController)

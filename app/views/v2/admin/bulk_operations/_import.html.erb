@@ -1,0 +1,25 @@
+<tr>
+  <td class='border-stroke border-t py-5 px-5 pl-10'>
+    <%= import.id %>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4'>
+    <%= import.import_type %>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4'>
+    <%= import.status %>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4'>
+    <p class='text-body-color text-base'>
+      <%= format_date(import.created_at) %>
+    </p>
+  </td>
+
+  <td class='border-stroke border-t py-5 px-4 pr-10 text-center flex flex-row'>
+    <textarea class="w-full max-h-36 overflow-y-auto border rounded p-2 bg-gray-100" readonly>
+      <%= import.logs %>
+    </textarea>
+  </td>
+</tr>

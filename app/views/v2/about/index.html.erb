@@ -1,0 +1,57 @@
+<%= render partial: 'neoma/shared/scroll_nav', locals: { menu_items: [['#about_us', t('title.about_us')], ['#core_team', t('title.core_team')]] } %>
+
+<section class='w-full'>
+  <!-- Banner -->
+  <%= fe_banner do %>
+    <%= image_tag asset_path('aboutus.jpg'), class: 'absolute top-0 left-0 w-full w-[100vw] min-h-[100vh] object-cover reveal', style: '--reveal-opacity: .2' %>
+    <%= fe_banner_inner do %>
+      <%= fe_banner_header(t('title.about_us')) %>
+    <% end %>
+  <% end %>
+
+  <!-- Padding -->
+  <section class='w-full min-h-screen'>
+  </section>
+
+  <!-- Content -->
+  <section class='relative w-full bg-white pb-10 z-20'>
+    <%= fe_carousel do %>
+      <%= fe_carousel_wrapper do %>
+        <%= fe_carousel_item do %>
+          <%= fe_banner do %>
+            <%= image_tag asset_path('aboutus.jpg'), class: 'absolute top-0 left-0 w-full w-[100vw] min-h-[100vh] object-cover reveal', style: '--reveal-opacity: .8' %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <div id='#about_us' class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
+      <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= t('title.about_us') %></h2>
+      <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+      <div class='markdown font-montserrat reveal' data-scroll-reveal-target='item' data-delay='750ms'>
+        As a premier contemporary art gallery in the Philippines, NEOMA GALLERIA promotes and showcases the work of hundreds of artists.
+        Our work involves showcasing new and emerging artists alongside classic, well-established pieces.
+        By providing a space in which to display their latest works, artists appreciate our role in sharing their
+        creative aspirations with a wider audience. Come check us out for yourself.
+      </div>
+    </div>
+
+    <div id='#core_team' class='container w-full py-5 md:py-10 mx-auto px-5 my-5' data-controller='scroll-reveal'>
+      <h2 class='font-restora font-bold reveal' data-scroll-reveal-target='item' data-delay='250ms'><%= t('title.core_team') %></h2>
+      <hr class='w-full my-5 reveal' data-scroll-reveal-target='item' data-delay='500ms'>
+      <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full'>
+        <% @artists.each do |artist| %>
+          <%= fe_featured_item_link(v2_artist_path(artist), opts: { class: 'flex flex-col' }) do %>
+            <%= fe_featured_item_content_wrapper() do %>
+              <%= fe_featured_item_image_wrapper do %>
+                <%= fe_featured_item_image_v2(artist.portrait, opts: { class: 'reveal object-cover w-[500px] h-[500px]' }) %>
+              <% end %>
+              <%= fe_featured_item_title(artist.name) %>
+              <%= fe_featured_item_subtitle(artist.role) %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</section>

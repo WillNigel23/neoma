@@ -1,7 +1,12 @@
 <div class="border-b border-gray-200 flex items-center justify-between space-x-8 px-4 py-3">
   <%= link_to spina.admin_mail_path(inquiry), class: "flex items-center" do %>
     <% if inquiry.artwork_id %>
-      <%= image_tag main_app.url_for(Spina::Page.find(inquiry.artwork_id).content(:image)), style: 'object-fit: contain; max-width: 40px; max-height: 40px;' %>
+      <% artwork = Artwork.find_by(id: inquiry.artwork_id) %>
+      <% if artwork %>
+        <%= image_tag main_app.url_for(artwork.image.file), style: 'object-fit: contain; max-width: 40px; max-height: 40px;' %>
+      <% else %>
+        <%= image_tag main_app.url_for(Spina::Page.find(inquiry.artwork_id).content(:image)), style: 'object-fit: contain; max-width: 40px; max-height: 40px;' %>
+      <% end %>
     <% end %>
     <div style='margin-left: 0.5rem;'>
       <div class='font-medium'> <%= "#{inquiry.first_name} #{inquiry.last_name}" %></div>

@@ -1,0 +1,9 @@
+<%= content_for :header do %>
+  <h1 class='text-2xl font-normal items-center'> Bulk Operations </h1>
+<% end %>
+
+<%= content_for :content do %>
+  <div class="max-w-full overflow-x-auto rounded-xl shadow-lg">
+    <%= render partial: 'table' %>
+  </div>
+<% end %>

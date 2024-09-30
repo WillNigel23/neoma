@@ -60,6 +60,7 @@ module V2
           :title,
           :description,
           :status,
+          :sale_status,
           :medium,
           :price,
           :size,

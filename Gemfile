@@ -10,6 +10,7 @@ gem 'cloudinary', '~> 1.29'
 gem 'devise', '~> 4.9'
 gem 'friendly_id', '~> 5.5'
 gem 'importmap-rails'
+gem 'interactor', '~> 3.0'
 gem 'jbuilder'
 gem 'jsbundling-rails'
 gem 'pg', '~> 1.1'
@@ -26,6 +27,7 @@ group :development, :test do
   gem 'debug', platforms: [:mri, :mswin, :mswin64, :mingw, :x64_mingw]
 
   gem 'database_consistency'
+  gem 'dotenv'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'fuubar'

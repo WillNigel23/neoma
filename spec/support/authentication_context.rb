@@ -4,6 +4,6 @@ RSpec.shared_context 'user_types' do
   let(:super_admin) { create(:user, role: :super_admin) }
 
   def login_as(user)
-    post '/v2/admin/users/sign_in', params: { v2_admin_user: { email: user.email, password: user.password } }
+    post '/admin/users/sign_in', params: { v2_admin_user: { email: user.email, password: user.password } }
   end
 end
