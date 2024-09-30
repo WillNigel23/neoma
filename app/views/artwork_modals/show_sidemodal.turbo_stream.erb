@@ -29,7 +29,18 @@
           <%= f.text_area :message, required: true, class: 'font-montserrat flex-grow bg-transparent border-none focus:ring-0 text-white m-0 p-0 font-light w-full', placeholder: t('form.inquiries.placeholder.message'), rows: 3 %>
           <hr class='w-full mb-5 pr-0 md:pr-10 opacity-10'>
 
-          <% if @artwork %>
+          <% if @artwork && @v2 %>
+            <%= f.hidden_field :artwork_id, value: @artwork.id %>
+            <div class='flex items-center reveal' data-scroll-reveal-target='item'>
+              <%= image_tag @artwork.image.file, class: 'max-w-[150px] max-h-[150px] reveal' %>
+              <div style='margin-left: 1.5rem;'>
+                <div class='font-restora font-medium'> <%= @artwork.title %></div>
+                <div class='font-montserrat text-sm'><%= @artwork.artist&.name %></div>
+                <div class='font-montserrat text-gray-500 text-sm'><%= format_price(@artwork.price) %></div>
+              </div>
+            </div>
+            <hr class='w-full mt-5 mb-10 pr-0 md:pr-10 opacity-10'>
+          <% elsif @artwork %>
             <%= f.hidden_field :artwork_id, value: @artwork.id %>
             <div class='flex items-center reveal' data-scroll-reveal-target='item'>
               <%= image_tag main_app.url_for(@artwork.content(:image)), class: 'max-w-[150px] max-h-[150px] reveal' %>

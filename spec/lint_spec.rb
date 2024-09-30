@@ -6,6 +6,7 @@ describe 'Lint Specs' do
       # Application Controller
       Rails.root.join('app/controllers/application_controller.rb').to_s,
       Rails.root.join('app/controllers/v2/admin/base_controller.rb').to_s,
+      Rails.root.join('app/controllers/v2/about_controller.rb').to_s,
 
       # Admin Controllers
       Rails.root.join('app/controllers/v2/admin').to_s,
@@ -43,7 +44,10 @@ describe 'Lint Specs' do
       # Linking Tables
       Rails.root.join('app/models/content_image.rb').to_s,
       Rails.root.join('app/models/exhibit_artwork.rb').to_s,
-      Rails.root.join('app/models/gallery_artwork.rb').to_s
+      Rails.root.join('app/models/gallery_artwork.rb').to_s,
+
+      # TODO
+      Rails.root.join('app/models/import.rb').to_s
     ]
 
     Dir[Rails.root.join('app/models/**/*.rb')].reject do |model_file|

@@ -133,7 +133,7 @@ module ApplicationHelper
       [:artists, v2_artists_path],
       [:articles, v2_articles_path],
       [:galleries, v2_galleries_path],
-      [:about, v2_root_path]
+      [:about, v2_about_index_path]
     ]
   end
 
@@ -144,8 +144,9 @@ module ApplicationHelper
       [:artworks, v2_admin_artworks_path],
       [:artists, v2_admin_artists_path],
       [:articles, v2_admin_articles_path],
-      [:galleries, v2_admin_galleries_path]
-      # [:about, v2_root_path]
+      [:galleries, v2_admin_galleries_path],
+      # [:about, v2_root_path],
+      [:bulk_operations, v2_admin_bulk_operations_path]
     ]
   end
 
@@ -172,6 +173,14 @@ module ApplicationHelper
       ['Draft', :draft],
       ['Live', :live],
       ['Archived', :archived]
+    ]
+  end
+
+  def sale_statuses_collection
+    [
+      ['Available', :available],
+      ['Reserved', :reserved],
+      ['Sold', :sold]
     ]
   end
 

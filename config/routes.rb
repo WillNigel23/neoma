@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  namespace :v2 do
+  namespace :v2, path: '/' do
     resources :articles, only: [:index, :show]
     resources :artists, only: [:index, :show]
     resources :artworks, only: [:index, :show]
     resources :exhibits, only: [:index, :show]
     resources :galleries, only: [:index, :show]
     resources :homepage, only: [:index]
+    resources :about, only: [:index]
 
     root to: 'homepage#index'
 
@@ -21,6 +22,10 @@ Rails.application.routes.draw do
       resources :galleries
       resources :images, only: [:index, :create] do
         post 'insert_image', on: :collection
+      end
+      resources :bulk_operations, only: [:index] do
+        post :export_csv, on: :collection
+        post :import_csv, on: :collection
       end
 
       root to: 'homepage#index'
@@ -46,7 +51,7 @@ Rails.application.routes.draw do
     end
   end
 
-  mount Spina::Engine => '/'
+  mount Spina::Engine => '/v1'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

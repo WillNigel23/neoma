@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_05_224828) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_27_202749) do
   create_schema "heroku_ext"
 
   # These are extensions that must be enabled in order to support this database
@@ -98,6 +98,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_224828) do
     t.bigint "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sale_status", default: 0, null: false
     t.index ["artist_id"], name: "index_artworks_on_artist_id"
     t.index ["image_id"], name: "index_artworks_on_image_id"
     t.index ["title"], name: "unique_slug_per_artwork", unique: true
@@ -173,6 +174,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_224828) do
   end
 
   create_table "images", force: :cascade do |t|
+  end
+
+  create_table "imports", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
+    t.integer "import_type", null: false
+    t.text "csv_content"
+    t.text "logs"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "spina_accounts", id: :serial, force: :cascade do |t|

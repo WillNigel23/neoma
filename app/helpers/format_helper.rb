@@ -18,7 +18,7 @@ module FormatHelper
   end
 
   def format_price(price, currency: :php)
-    return price if price.nil?
+    return if price.nil? || price.zero?
 
     case currency
     when :php

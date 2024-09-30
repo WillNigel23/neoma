@@ -6,6 +6,7 @@
 #  description :text
 #  medium      :string
 #  price       :integer
+#  sale_status :integer          default("available"), not null
 #  size        :string
 #  slug        :string
 #  status      :integer          default("draft"), not null
@@ -47,6 +48,21 @@ class Artwork < ApplicationRecord
   validates :title, presence: true, uniqueness: true
 
   enum status: { draft: 0, live: 1, archived: 2 }
+  enum sale_status: { available: 0, reserved: 1, sold: 2 }
+
+  ATTRIBUTES = [
+    :slug,
+    :title,
+    :size,
+    :medium,
+    :price,
+    :year,
+    :status,
+    :sale_status,
+    :description,
+    :image,
+    :artist
+  ]
 
   SORTING_PARAMS = {
     title: 'title ASC',

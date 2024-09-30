@@ -13,7 +13,13 @@ class ArtworkModalsController < ApplicationController
 
   def show_sidemodal
     @inquiry = Spina::Mail.new
-    @artwork = params[:artwork].present? ? artworks.find(params[:artwork]) : nil
+    if params[:from] == 'v2'
+      @v2 = true
+      @artwork = Artwork.find_by(id: params[:artwork])
+    else
+      @v2 = false
+      @artwork = params[:artwork].present? ? artworks.find(params[:artwork]) : nil
+    end
     respond_to(&:turbo_stream)
   end
 

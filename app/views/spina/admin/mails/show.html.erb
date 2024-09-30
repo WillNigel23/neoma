@@ -14,11 +14,20 @@
 
       <% if @artwork %>
         <div class="flex items-center">
-          <%= image_tag main_app.url_for(@artwork.content(:image)), style: 'object-fit: contain; max-width: 150px; max-height: 150px' %>
+          <%= image_tag main_app.url_for(@artwork.image.file), style: 'object-fit: contain; max-width: 150px; max-height: 150px' %>
           <div style='margin-left: 0.5rem;'>
-            <div class='font-medium'> <%= @artwork.content(:header) %></div>
-            <div class="text-sm"><%= @artwork.content(:featured_artist)[0].content(:header) %></div>
-            <div class="text-gray-500 text-sm"><%= @artwork.content(:price) %></div>
+            <div class='font-medium'> <%= @artwork.title %></div>
+            <div class="text-sm"><%= @artwork.artist&.name %></div>
+            <div class="text-gray-500 text-sm"><%= @artwork.price %></div>
+          </div>
+        </div>
+      <% elsif @spina_artwork %>
+        <div class="flex items-center">
+          <%= image_tag main_app.url_for(@spina_artwork.content(:image)), style: 'object-fit: contain; max-width: 150px; max-height: 150px' %>
+          <div style='margin-left: 0.5rem;'>
+            <div class='font-medium'> <%= @spina_artwork.content(:header) %></div>
+            <div class="text-sm"><%= @spina_artwork.content(:featured_artist)[0].content(:header) %></div>
+            <div class="text-gray-500 text-sm"><%= @spina_artwork.content(:price) %></div>
           </div>
         </div>
       <% end %>

@@ -19,7 +19,7 @@
               <% end %>
               <%= fe_featured_item_title(artwork.title) %>
               <%= fe_featured_item_subtitle(artwork.artist.name) if artwork.artist %>
-              <%= fe_featured_item_text(format_price(artwork.price)) if artwork.price %>
+              <%= fe_featured_item_text(format_price(artwork.price)) %>
             <% end %>
           <% end %>
         <% end %>
