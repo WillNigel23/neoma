@@ -84,8 +84,12 @@ Neoma Galleria CMS is CMS built with Ruby on Rails for Neoma Galleria.
     - [x] Homepage elements reordering
     - [x] View All buttons on homepage
 - [x] Feature and Change Requests - April 23
-    - [x] Combine News & Events 
-    - [x] Descending arrangements on date 
+    - [x] Combine News & Events
+    - [x] Descending arrangements on date
+- [x] Feature and Change Requests - November 5
+    - [x] List view on past exhibits
+    - [ ] Hover on past exhibits to show banner
+    - [x] Hide artworks on past exhibits
 - [ ] Feature Requests
     - [ ] Suggested items
     - [ ] Filters (for artworks, artists, etc)
