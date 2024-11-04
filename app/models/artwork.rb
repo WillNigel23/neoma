@@ -21,7 +21,6 @@
 #
 #  index_artworks_on_artist_id  (artist_id)
 #  index_artworks_on_image_id   (image_id)
-#  unique_slug_per_artwork      (title) UNIQUE
 #
 # Foreign Keys
 #
@@ -45,7 +44,7 @@ class Artwork < ApplicationRecord
 
   has_one :featured_item, as: :featureable, dependent: :destroy
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true
 
   enum status: { draft: 0, live: 1, archived: 2 }
   enum sale_status: { available: 0, reserved: 1, sold: 2 }

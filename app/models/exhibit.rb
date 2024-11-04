@@ -67,6 +67,18 @@ class Exhibit < ApplicationRecord
 
   before_destroy :nullify_images
 
+  def ongoing?
+    start_date <= Date.current && (end_date.nil? || end_date >= Date.current)
+  end
+
+  def past?
+    end_date&.<(Date.current)
+  end
+
+  def future?
+    start_date > Date.current
+  end
+
   private
 
   def nullify_images

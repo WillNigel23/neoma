@@ -53,11 +53,6 @@ describe Artwork do
         artwork.title = nil
         expect(artwork).not_to be_valid
       end
-
-      it 'requires unique title' do
-        artwork2 = build(:artwork, title: artwork.title)
-        expect(artwork2).not_to be_valid
-      end
     end
   end
 end
