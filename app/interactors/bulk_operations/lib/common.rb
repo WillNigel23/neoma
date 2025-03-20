@@ -85,10 +85,10 @@ module BulkOperations::Lib::Common
   def process_image(url)
     return nil if url.nil?
 
-    if image_url_maps[url]
-      @import.logs += "Found existing image for url: #{url}\n"
-      return image_url_maps[url].id
-    end
+    # if image_url_maps[url]
+    #   @import.logs += "Found existing image for url: #{url}\n"
+    #   return image_url_maps[url].id
+    # end
 
     @import.logs += "Creating new image for url: #{url}\n"
     if url.match?(%r{^https://drive\.google\.com/.*$})
