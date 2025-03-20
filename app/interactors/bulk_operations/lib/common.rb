@@ -109,7 +109,7 @@ module BulkOperations::Lib::Common
     image.file.attach(io: downloaded_image, filename:)
 
     image.save!
-    @image_url_maps[url] = image
+    # @image_url_maps[url] = image
 
     image.id
   end
