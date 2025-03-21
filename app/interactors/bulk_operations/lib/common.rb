@@ -101,17 +101,21 @@ module BulkOperations::Lib::Common
       download_url = url
     end
 
-    downloaded_image = URI.open(download_url)
-    uri = URI.parse(download_url)
-    filename = File.basename(uri.path)
+    # Open and save to a temporary file
+    Tempfile.create(['image', '.jpg']) do |tempfile|
+      URI.open(download_url) do |downloaded_image|
+        tempfile.binmode
+        tempfile.write(downloaded_image.read)
+        tempfile.rewind
+      end
 
-    image = Image.new
-    image.file.attach(io: downloaded_image, filename:)
+      # Attach the file to ActiveStorage
+      image = Image.new
+      image.file.attach(io: tempfile, filename: File.basename(download_url))
+      image.save!
 
-    image.save!
-    # @image_url_maps[url] = image
-
-    image.id
+      return image.id
+    end
   end
 
   def follow_redirects(download_url)
