@@ -16,7 +16,7 @@ class BulkOperations::ImportCsv
 
     @import.logs += "Starting #{@import.import_type} import process...\n"
 
-    csv = CSV.parse(@import.csv_content, headers: true)
+    csv = CSV.parse(@import.csv_content, headers: true, converters: nil)
     case @import.import_type.to_sym
     when :artworks
       import_artworks(csv)
