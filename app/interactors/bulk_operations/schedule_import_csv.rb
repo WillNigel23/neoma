@@ -16,8 +16,8 @@ class BulkOperations::ScheduleImportCsv
 
     csv_import = Import.create!(import_type: @import_type, csv_content: @file.read)
 
-    # ImportCsvJob.perform_later(csv_import.id)
-    BulkOperations::ImportCsv.call(import_id: csv_import.id)
+    ImportCsvJob.perform_later(csv_import.id)
+    # BulkOperations::ImportCsv.call(import_id: csv_import.id)
   end
 
 end
