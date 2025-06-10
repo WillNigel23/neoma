@@ -497,6 +497,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  rubyzip
   selenium-webdriver
   shoulda-matchers
   spina (~> 2.18)
