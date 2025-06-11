@@ -26,7 +26,6 @@ Rails.application.routes.draw do
       resources :bulk_operations, only: [:index] do
         post :export_csv, on: :collection
         post :import_csv, on: :collection
-        post :export_to_portal, on: :collection
       end
 
       root to: 'homepage#index'

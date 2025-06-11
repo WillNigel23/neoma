@@ -24,18 +24,6 @@ module V2
         redirect_to v2_admin_bulk_operations_path
       end
 
-      def export_to_portal
-        result = BulkOperations::ExportToPortal.call
-
-        if result.success?
-          result.file_stream.rewind
-          send_data(result.file_stream.read, filename: 'export_to_portal.zip', type: 'application/zip')
-        else
-          flash[:notice] = I18n.t('errors.error')
-          redirect_to v2_admin_bulk_operations_path
-        end
-      end
-
       private
 
       def import_params

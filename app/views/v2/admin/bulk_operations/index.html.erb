@@ -1,11 +1,5 @@
 <%= content_for :header do %>
   <h1 class='text-2xl font-normal items-center'> Bulk Operations </h1>
-
-  <div class='flex flex-row justify-center items-center'>
-    <%= button_to 'Export to portal',
-      export_to_portal_v2_admin_bulk_operations_path,
-      method: :post, class: 'btn btn-primary w-1/2 md:w-auto' %>
-  </div>
 <% end %>
 
 <%= content_for :content do %>

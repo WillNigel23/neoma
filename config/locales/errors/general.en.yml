@@ -1,5 +1,4 @@
 ---
 en:
   errors:
-    error: Something went wrong
     unauthorized: You are not authorized to access this page.
